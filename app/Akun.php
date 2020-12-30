@@ -3,10 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Akun extends Model
+class Akun extends Authenticatable
 {
+    protected $guard = 'warung';
     protected $fillable = [
-        'username', 'password', 'nama'
+        'username', 'nama'
+    ];
+    protected $hidden = [
+        'password'
     ];
 }
