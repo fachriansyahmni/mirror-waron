@@ -18,4 +18,8 @@ class AdminController extends Controller
     {
         return view('admin.manage');
     }
+    public function mancat()
+    {
+        return view('admin.mancat');
+    }
 }

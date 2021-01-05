@@ -28,9 +28,9 @@
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="./typography.html">
-            <i class="material-icons">library_books</i>
-            <p>Typography</p>
+          <a class="nav-link" href="{{route('admin.mancat')}}">
+            <i class="material-icons">category</i>
+            <p>Manage Category</p>
           </a>
         </li>
         <li class="nav-item ">
