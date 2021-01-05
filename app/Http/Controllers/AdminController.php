@@ -10,8 +10,16 @@ class AdminController extends Controller
     {
         return view('admin.dash_admin');
     }
-    public function test()
+    public function profile()
     {
-        return view('admin.test');
+        return view('admin.profile');
+    }
+    public function manage()
+    {
+        return view('admin.manage');
+    }
+    public function mancat()
+    {
+        return view('admin.mancat');
     }
 }
