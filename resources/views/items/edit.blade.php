@@ -33,13 +33,13 @@
             <tr>
                 <td>Pilihan</td>
                 <td>
-                    <input type="radio" name="status_id" value="1"><br>
+                    <input type="radio" name="status_id" value="1" {{ ($barang->status_id=="1")? "checked" : "" }} ><br>
                     <label for="">Tersedia</label>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="radio" name="status_id" value="0">
+                    <input type="radio" name="status_id" value="0" {{ ($barang->status_id=="0")? "checked" : "" }} >
                     <label for="">Tidak Tersedia</label>
                 </td>
             </tr>
