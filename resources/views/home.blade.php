@@ -34,6 +34,34 @@
    .package {
        fill: #b4F5FF;
    }
+   .warung-landing{
+     display: flex;
+     height: 100vh;
+     background: url("{{asset('img/pop1.png')}}") no-repeat;
+     background-size: 70vw;
+     align-items: center;
+     place-content: center;
+     justify-content: space-around;
+    }
+    .warung-icon{
+      height: 100%;
+      width: 100%;
+      max-width: 350px;
+      max-height: 350px;
+      background: url("{{asset('img/shop.png')}}") no-repeat;
+      background-size:  contain;
+    }
+    input.search[type="text"] {
+        /* width: 200px;
+        height: 20px; */
+        padding-right: calc(100%-60px);
+    }
+
+    input.submitsearch[type="submit"] {
+        margin-left: -60px;
+        height: 30px;
+        margin-top: 10px;
+    }
 </style>
 
 <body>
@@ -41,53 +69,54 @@
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: rgba(); position: absolute;">
     <div class="container">
-      <a class="navbar-brand proxi" href="#" style="color:black">Kios.Ku</a>
+      <a class="navbar-brand proxi" href="/" style="color:black">Kios.Ku</a>
       <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link proxi" style="color:black" href="#">cari produk</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link proxi" style="color:black" href="#">daftar</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link proxi" style="color:#b4F5FF" href="#" data-toggle="modal" data-target="#myModal">login</a>
-      </li>
-    </ul>
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link proxi" style="color:black" href="#">cari produk</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link proxi" style="color:black" href="#">daftar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link proxi" style="color:#b4F5FF" href="#" data-toggle="modal" data-target="#myModal">login</a>
+        </li>
+      </ul>
     </div>
   </nav>
   <!-- Modal -->
   <div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Login ~ Penjual (Pemilik Warung)</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Login ~ Penjual (Pemilik Warung)</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <form method="POST" action="{{ route('login') }}">
+        <div class="modal-body">
+            @csrf
+            Username
+            <input type="text" name="username" value="{{ old('username') }}" required class="form-control  @error('username') is-invalid @enderror"><br>
+            Password :
+            <input type="password" name="password"  value="{{ old('password') }}" class="form-control @error('password') is-invalid @enderror" required>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="submit">Login</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        </form>
       </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        <form action="#" method="POST" class="form-group">
-           Email :
-           <input type="text" name="email" placeholder="Masukkan Alamat Email" class="form-control"><br>
-           Password :
-           <input type="password" name="password" placeholder="Masukkan Password" class="form-control">
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <a class="btn btn-primary" href="dash_penjual.html">Login</a>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-
     </div>
   </div>
-</div>
 
   <!-- Masthead -->
-  <header class="masthead text-black text-right">
+  {{-- <header class="masthead text-black text-right">
     <div class="container">
       <div class="row">
         <div class="col-xl-9 ml-auto">
@@ -97,20 +126,39 @@
           <form>
             <div class="form-row">
               <div class="col-12 col-md-9 mb-2 mb-md-0 ml-auto">
-                <input type="email" style="border-radius: 40px;" class="form-control form-control-lg" placeholder="Cari warung atau produk didekatmu...">
+                <input type="text" style="border-radius: 40px;" class="form-control form-control-lg" placeholder="Cari warung atau produk didekatmu...">
               </div>
             </div>
           </form>
         </div>
       </div>
     </div>
-  </header>
+  </header> --}}
 
+  <header class="container-fluid warung-landing">
+    <div class="warung-icon"></div>
+    <div class="warung-search">
+      <h1 style="font-size: 5vw; font-weight: 600;" class="mb-5 proxi">CARI <span style="color:#b4F5FF">WARUNG</span><br>DISEKITARMU</h1>
+      <form>
+        <div class="text-center">
+          <form method="POST">
+            @csrf
+            <div class="input-group">
+              <input type="text" style="border-radius: 40px; z-index: inherit;" class="form-control form-control-lg search" placeholder="Cari warung atau produk didekatmu...">
+              <div class="input-group-append">
+                <input type="submit" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info">
+              </div>
+            </div>
+          </form>
+        </div>
+      </form>
+    </div>
+  </header>
   <!-- Icons Grid -->
   <section class="features-icons bg-light text-center">
     <div class="container">
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4">
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
               <img src="{{ asset('img/package.svg') }}" class="m-auto" style="fill:#b4F5FF; width:55px; height: 55px;">
@@ -119,7 +167,7 @@
             <p class="lead mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4">
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
                <img src="{{ asset('img/package.svg') }}" class="m-auto" style="fill:#b4F5FF; width:55px; height: 55px;">
@@ -128,7 +176,7 @@
             <p class="lead mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<p>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4">
           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
               <img src="{{ asset('img/package.svg') }}" class="m-auto" style="fill:#b4F5FF; width:55px; height: 55px;">
