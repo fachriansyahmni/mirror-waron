@@ -27,4 +27,23 @@ Route::delete('/barang/{id}','BarangController@destroy'); //menghapus
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get(
+    '/home',
+    function () {
+        if (Auth::guard('admin')->check()) {
+            return redirect()->route('admin.home');
+        }
+    }
+)->name('home');
+
+//area admin
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/admin', 'AdminController@index')->name('admin.home');
+    Route::get('/profile', 'AdminController@profile')->name('admin.profile');
+    Route::get('/manage', 'AdminController@manage')->name('admin.manage');
+});
+
+//area warung
+Route::middleware('auth:warung')->group(function () {
+});
