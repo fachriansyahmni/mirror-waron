@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Akun;
 use App\Admin;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Auth;
 
 class LoginController extends Controller
 {
@@ -40,6 +40,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
     }
     public function username()
     {
@@ -50,16 +51,14 @@ class LoginController extends Controller
     {
         $is_ownerWarung = Akun::where('username', $request->username)->first();
         $is_admin = Admin::where('username', $request->username)->first();
-        
+
         if ($is_ownerWarung) {
-            dd($is_ownerWarung);
             if (Auth::guard('warung')->attempt(['username' => $request->username, 'password' => $request->password])) {
-                // return redirect()->intended('/dashboard');
+                return redirect()->intended('/dashboard');
             };
         } elseif ($is_admin) {
-            dd($is_admin);
             if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password])) {
-                // return redirect()->intended('/admin');
+                return redirect()->intended('/admin');
             };
         } else {
             return $this->sendFailedLoginResponse($request);
