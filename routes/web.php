@@ -32,6 +32,7 @@ Route::get(
 //area admin
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin', 'AdminController@index')->name('admin.home');
+    Route::get('/test', 'AdminController@test')->name('admin.test');
 });
 
 //area warung
