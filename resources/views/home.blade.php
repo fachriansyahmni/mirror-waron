@@ -20,19 +20,7 @@
 
   <!-- Custom styles for this template -->
   <link href="{{ asset('css/landing-page.min.css') }}" rel="stylesheet">
-  @if(Auth::guard('admin')->check())
-<script type="text/javascript">
-    window.location = "{{ url('/admin') }}";//here double curly bracket
-</script>
-@elseif(Auth::guard('teacher')->check())
-<script type="text/javascript">
-    window.location = "{{ url('/teacher') }}";//here double curly bracket
-</script>
-@else
-<script type="text/javascript">
-    window.location = "{{ url('/siswa') }}";//here double curly bracket
-</script>
-@endif
+
 </head>
 <style>
   @font-face {
