@@ -27,8 +27,8 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
-      <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+      <div class="logo"><a href="#" class="simple-text logo-normal">
+          {{ Auth::user()->username }}
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
@@ -163,11 +163,11 @@
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">content_copy</i>
+                    <i class="fa fa-shop"></i>
                   </div>
-                  <p class="card-category">Used Space</p>
-                  <h3 class="card-title">49/50
-                    <small>GB</small>
+                  <p class="card-category">Jumlah Warung</p>
+                  <h3 class="card-title">7
+                    <small>Warung</small>
                   </h3>
                 </div>
                 <div class="card-footer">
