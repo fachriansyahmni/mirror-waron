@@ -20,3 +20,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//area admin
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/admin', 'AdminController@index')->name('admin.home');
+});
+
+//area warung
+Route::middleware('auth:warung')->group(function () {
+});
