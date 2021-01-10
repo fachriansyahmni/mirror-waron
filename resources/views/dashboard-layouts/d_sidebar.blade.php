@@ -9,6 +9,7 @@
       </a></div>
     <div class="sidebar-wrapper">
       <ul class="nav">
+        @if (Auth::guard('admin')->check())
         <li class="nav-item active  ">
           <a class="nav-link" href="{{route('admin.home')}}">
             <i class="material-icons">dashboard</i>
@@ -34,12 +35,6 @@
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="./icons.html">
-            <i class="material-icons">bubble_chart</i>
-            <p>Icons</p>
-          </a>
-        </li>
-        <li class="nav-item ">
           <a class="nav-link" href="./map.html">
             <i class="material-icons">location_ons</i>
             <p>Maps</p>
@@ -57,12 +52,14 @@
             <p>RTL Support</p>
           </a>
         </li>
-        <li class="nav-item active-pro ">
-          <a class="nav-link" href="./upgrade.html">
-            <i class="material-icons">unarchive</i>
-            <p>Upgrade to PRO</p>
+        @elseif(Auth::guard('warung')->check())
+        <li class="nav-item active  ">
+          <a class="nav-link" href="{{route('user.dashboard')}}">
+            <i class="material-icons">dashboard</i>
+            <p>Dashboard</p>
           </a>
         </li>
+        @endif
       </ul>
     </div>
   </div>

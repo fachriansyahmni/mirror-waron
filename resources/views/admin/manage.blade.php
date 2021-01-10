@@ -56,26 +56,6 @@
                                 <a href="#" class="btn btn-success">Manage</a>
                           </td>
                         </tr>
-                        <tr>
-                          <td>
-                            2
-                          </td>
-                          <td>
-                            Warung Miss Claude
-                          </td>
-                          <td>
-                            Bekasi
-                          </td>
-                          <td>
-                            West Bekasi
-                          </td>
-                          <td>
-                            West Java
-                          </td>
-                          <td> 
-                                <a href="#" class="btn btn-success">Manage</a>
-                          </td>
-                        </tr>
                       </tbody>
                     </table>
                   </div>
