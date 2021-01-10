@@ -17,7 +17,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-<<<<<<< HEAD
 //crud barang
 Route::get('/barang/create','BarangController@create'); //menampilkan form
 Route::post('/barang','BarangController@store'); //menyimpan form
@@ -26,15 +25,6 @@ Route::get('/barang/{id}/edit','BarangController@edit'); //menampilkan form edit
 Route::get('/barang/{id}/show','BarangController@show'); //lihat detail data
 Route::put('/barang/{id}','BarangController@update'); //menyimpan hasil edit
 Route::delete('/barang/{id}','BarangController@destroy'); //menghapus
-=======
-Route::get('/barang/create', 'BarangController@create'); //menampilkan form
-Route::post('/barang', 'BarangController@store'); //menyimpan form
-Route::get('/barang', 'BarangController@index'); //menampilkan item
-Route::get('/barang/{id}/edit', 'BarangController@edit'); //menampilkan form edit
-Route::get('/barang/{id}/show', 'BarangController@show'); //lihat detail data
-Route::put('/barang/{id}', 'BarangController@update'); //menyimpan hasil edit
-Route::delete('/barang/{id}', 'BarangController@destroy'); //menghapus
->>>>>>> 07e7117f33b1fbb1f9aaee73dd47fda904c60416
 
 Route::get('/registerwarung/create','RegisterWarungController@create');//menampilkan form
 Route::post('/registerwarung','RegisterWarungController@store'); //menyimpan form
