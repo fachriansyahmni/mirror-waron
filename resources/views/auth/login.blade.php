@@ -1,7 +1,46 @@
-@extends('layouts.app')
+@extends('layouts.template')
 
 @section('content')
 <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-12">
+            <div class="form-block mx-auto">
+              <div class="text-center mb-5">
+                <h3 class="text-uppercase">Login to <strong>Kios.Ku</strong></h3>
+              </div>
+              <form action="{{ route('login') }}" method="post">
+                @csrf
+                <div class="form-group first">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control @error('username') is-invalid @enderror" placeholder="your-email@gmail.com" id="username" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                  @error('username')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+                <div class="form-group last mb-3">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" placeholder="Your Password" id="password" name="password">
+                </div>
+                
+                <div class="d-sm-flex mb-5 align-items-center">
+                  <label class="control control--checkbox mb-3 mb-sm-0"><span class="caption">Remember me</span>
+                    <input type="checkbox" checked="checked"/ >
+                    <div class="control__indicator" style="background-color: #b4F5FF;"></div>
+                  </label>
+                  <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> 
+                </div>
+
+                <input type="submit" value="Log In" class="btn btn-block py-2 " style="background-color: #b4F5FF;">
+
+                <span class="text-center my-3 d-block"><a href="{{route('register')}}" style="color: grey;">Belum punya akun?</a></span>
+              </form>
+            </div>
+          </div>
+        </div>
+
+<!--<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -69,5 +108,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 @endsection
