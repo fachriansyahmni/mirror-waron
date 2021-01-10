@@ -9,7 +9,7 @@ class WarungController extends Controller
 {
     public function create()
     {
-        return view('register_warung.create');
+        return view('warung.create');
     }
 
     public function store(Request $request)
