@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Warung;
 
-class RegisterWarungController extends Controller
+class WarungController extends Controller
 {
     public function create()
     {
