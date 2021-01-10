@@ -50,6 +50,7 @@
       max-height: 350px;
       background: url("{{asset('img/shop.png')}}") no-repeat;
       background-size:  contain;
+      background-position-y: center;
     }
     input.search[type="text"] {
         /* width: 200px;
@@ -75,45 +76,22 @@
         <li class="nav-item">
           <a class="nav-link proxi" style="color:black" href="#">cari produk</a>
         </li>
+        @guest
         <li class="nav-item">
-          <a class="nav-link proxi" style="color:black" href="#">daftar</a>
+          <a class="nav-link proxi" style="color:black" href="{{route('register')}}">daftar</a>
         </li>
         <li class="nav-item">
           <a class="nav-link proxi" style="color:#b4F5FF" href="#" data-toggle="modal" data-target="#myModal">login</a>
         </li>
+        @endguest
+        @auth
+        <li class="nav-item">
+          <a class="nav-link proxi" style="color:#b4F5FF" href="{{route('home')}}">home</a>
+        </li>
+        @endauth
       </ul>
     </div>
   </nav>
-  <!-- Modal -->
-  <div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Login ~ Penjual (Pemilik Warung)</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <!-- Modal body -->
-        <form method="POST" action="{{ route('login') }}">
-        <div class="modal-body">
-            @csrf
-            Username
-            <input type="text" name="username" value="{{ old('username') }}" required class="form-control  @error('username') is-invalid @enderror"><br>
-            Password :
-            <input type="password" name="password"  value="{{ old('password') }}" class="form-control @error('password') is-invalid @enderror" required>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button class="btn btn-primary" type="submit">Login</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
 
   <!-- Masthead -->
   {{-- <header class="masthead text-black text-right">
@@ -137,7 +115,7 @@
 
   <header class="container-fluid warung-landing">
     <div class="warung-icon"></div>
-    <div class="warung-search">
+    <div class="warung-search" style="margin-left: 40px;">
       <h1 style="font-size: 5vw; font-weight: 600;" class="mb-5 proxi">CARI <span style="color:#b4F5FF">WARUNG</span><br>DISEKITARMU</h1>
       <form>
         <div class="text-center">
@@ -258,6 +236,40 @@
       </div>
     </div>
   </footer>
+
+  
+  @guest
+  <!-- Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Login</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <form method="POST" action="{{ route('login') }}">
+        <div class="modal-body">
+            @csrf
+            Username
+            <input type="text" name="username" value="{{ old('username') }}" required class="form-control  @error('username') is-invalid @enderror"><br>
+            Password :
+            <input type="password" name="password"  value="{{ old('password') }}" class="form-control @error('password') is-invalid @enderror" required>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="submit">Login</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  @endguest
 
   <!-- Bootstrap core JavaScript -->
   <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>

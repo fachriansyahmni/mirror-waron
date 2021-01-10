@@ -9,7 +9,7 @@ class Akun extends Authenticatable
 {
     protected $guard = 'warung';
     protected $fillable = [
-        'username', 'nama'
+        'username', 'nama', 'password'
     ];
     protected $hidden = [
         'password'

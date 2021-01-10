@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'warung',
+        'passwords' => 'warungs',
     ],
 
     /*
@@ -109,8 +109,8 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'warungs' => [
+            'provider' => 'warungs',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
