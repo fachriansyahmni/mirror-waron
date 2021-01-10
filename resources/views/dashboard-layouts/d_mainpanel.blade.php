@@ -1,6 +1,7 @@
 <div class="main-panel">
     @include('dashboard-layouts.d_topnav')
     <div class="content">
+        @yield('header-content')
         @yield('content')
     </div>
     {{-- <footer class="footer">

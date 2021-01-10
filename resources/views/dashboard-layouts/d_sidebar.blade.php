@@ -4,40 +4,34 @@
 
       Tip 2: you can also add an image using data-image tag
   -->
-    <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+    <div class="logo"><a href="/" class="simple-text logo-normal">
         Creative Tim
       </a></div>
     <div class="sidebar-wrapper">
       <ul class="nav">
         @if (Auth::guard('admin')->check())
-        <li class="nav-item active  ">
+        <li class="nav-item {{ (request()->routeIs('admin.home')) ? 'active' : '' }}">
           <a class="nav-link" href="{{route('admin.home')}}">
             <i class="material-icons">dashboard</i>
             <p>Dashboard</p>
           </a>
         </li>
-        <li class="nav-item ">
+        <li class="nav-item {{ (request()->routeIs('admin.profile')) ? 'active' : '' }}">
           <a class="nav-link" href="{{route('admin.profile')}}">
             <i class="material-icons">person</i>
             <p>User Profile</p>
           </a>
         </li>
-        <li class="nav-item ">
+        <li class="nav-item {{ (request()->routeIs('admin.manage')) ? 'active' : '' }}">
           <a class="nav-link" href="{{route('admin.manage')}}">
             <i class="material-icons">store</i>
             <p>Manage Warung</p>
           </a>
         </li>
-        <li class="nav-item ">
+        <li class="nav-item {{ (request()->routeIs('admin.mancat')) ? 'active' : '' }}">
           <a class="nav-link" href="{{route('admin.mancat')}}">
             <i class="material-icons">category</i>
             <p>Manage Category</p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./map.html">
-            <i class="material-icons">location_ons</i>
-            <p>Maps</p>
           </a>
         </li>
         <li class="nav-item ">
@@ -53,10 +47,16 @@
           </a>
         </li>
         @elseif(Auth::guard('warung')->check())
-        <li class="nav-item active  ">
+        <li class="nav-item {{ (request()->routeIs('user.dashboard')) ? 'active' : '' }}">
           <a class="nav-link" href="{{route('user.dashboard')}}">
             <i class="material-icons">dashboard</i>
             <p>Dashboard</p>
+          </a>
+        </li>
+        <li class="nav-item {{ (request()->routeIs('user.warung')) ? 'active' : '' }}">
+          <a class="nav-link" href="{{route('user.warung')}}">
+            <i class="material-icons">accessible</i>
+            <p>Warung</p>
           </a>
         </li>
         @endif

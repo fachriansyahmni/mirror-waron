@@ -26,8 +26,6 @@ Route::get('/barang/{id}/show', 'BarangController@show'); //lihat detail data
 Route::put('/barang/{id}', 'BarangController@update'); //menyimpan hasil edit
 Route::delete('/barang/{id}', 'BarangController@destroy'); //menghapus
 
-Route::get('/registerwarung/create', 'WarungController@create'); //menampilkan form
-Route::post('/registerwarung', 'WarungController@store'); //menyimpan form
 
 Auth::routes();
 
@@ -55,7 +53,12 @@ Route::middleware('auth:admin')->group(function () {
 
 //area warung
 Route::middleware('auth:warung')->group(function () {
+    Route::any('/me', 'AkunController@myProfile')->name('user.me'); //user profile
     Route::any('/dashboard', 'AkunController@index')->name('user.dashboard');
+});
 
-    Route::any('/me', 'AkunController@myProfile')->name('user.me');
+Route::middleware('auth:admin,warung')->group(function () {
+    Route::any('/warung', 'WarungController@warung')->name('user.warung');
+
+    Route::any('/warung/buat', 'WarungController@create')->name('user.warung.create'); //menampilkan form
 });
