@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('home');
 });
 
+//crud barang
 Route::get('/barang/create','BarangController@create'); //menampilkan form
 Route::post('/barang','BarangController@store'); //menyimpan form
 Route::get('/barang','BarangController@index'); //menampilkan item
@@ -24,6 +25,9 @@ Route::get('/barang/{id}/edit','BarangController@edit'); //menampilkan form edit
 Route::get('/barang/{id}/show','BarangController@show'); //lihat detail data
 Route::put('/barang/{id}','BarangController@update'); //menyimpan hasil edit
 Route::delete('/barang/{id}','BarangController@destroy'); //menghapus
+
+Route::get('/registerwarung/create','RegisterWarungController@create');//menampilkan form
+Route::post('/registerwarung','RegisterWarungController@store'); //menyimpan form
 
 Auth::routes();
 
