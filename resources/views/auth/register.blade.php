@@ -1,7 +1,65 @@
-@extends('layouts.app')
+@extends('layouts.template')
 
 @section('content')
 <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-12">
+            <div class="form-block mx-auto">
+              <div class="text-center mb-5">
+                <h3 class="text-uppercase">Register to join <strong>Kios.Ku</strong></h3>
+              </div>
+              <form action="{{ route('register') }}" method="post">
+                @csrf
+                <div class="form-group last mb-3">
+                  <label for="name">Nama Lengkap</label>
+                  <input type="text" class="form-control form-control @error('name') is-invalid @enderror" placeholder="Isikan nama lengkap Anda" id="name" name="name" value="{{ old('name') }}" required autocomplete="name">
+                  @error('name')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
+
+                </div>
+
+                <div class="form-group first">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control @error('username') is-invalid @enderror" placeholder="Isikan username" id="username" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                  @error('username')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+                <div class="form-group last mb-3">
+                  <label for="password">Password</label>
+                  <input type="password" placeholder="Isikan password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" required autocomplete="new-password">
+                 @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                 @enderror
+                </div>
+
+                <div class="form-group last mb-3">
+                  <label for="password-confirm">Konfirmasi Password</label>
+                  <input type="password" placeholder="Isikan password" class="form-control @error('password-confirm') is-invalid @enderror" name="password_confirmation" id="password-confirm" required autocomplete="new-password">
+                 @error('password-confirm')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                 @enderror
+                </div>
+                
+
+                <button type="submit" class="btn btn-block py-2" style="background-color: #b4F5FF;">
+                    {{ __('Register') }}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+<!--<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -88,4 +146,5 @@
         </div>
     </div>
 </div>
+-->
 @endsection
