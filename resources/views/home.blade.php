@@ -50,6 +50,7 @@
       max-height: 350px;
       background: url("{{asset('img/shop.png')}}") no-repeat;
       background-size:  contain;
+      background-position-y: center;
     }
     input.search[type="text"] {
         /* width: 200px;
@@ -114,7 +115,7 @@
 
   <header class="container-fluid warung-landing">
     <div class="warung-icon"></div>
-    <div class="warung-search">
+    <div class="warung-search" style="margin-left: 40px;">
       <h1 style="font-size: 5vw; font-weight: 600;" class="mb-5 proxi">CARI <span style="color:#b4F5FF">WARUNG</span><br>DISEKITARMU</h1>
       <form>
         <div class="text-center">
