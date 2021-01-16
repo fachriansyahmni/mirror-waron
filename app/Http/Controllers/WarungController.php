@@ -49,4 +49,23 @@ class WarungController extends Controller
         }
         return view('warung.create');
     }
+
+    public function manage(Request $request, $idWarung)
+    {
+        $DataWarung = $this->getDataWarung()->where('id', $idWarung)->first();
+        if ($DataWarung == null) return redirect()->back()->with('error', 'not valid'); // validasi warung jika tidak ada
+
+        if ($request->has('submitedit')) {
+            // $url = "https://dev.farizdotid.com/api/daerahindonesia/provinsi";
+            // dd($url);
+            // $json = json_decode(file_get_contents($url), true);
+
+            // dd($json);
+            dd($request);
+        }
+
+        $compacts = ['DataWarung'];
+
+        return view('warung.edit', compact($compacts));
+    }
 }

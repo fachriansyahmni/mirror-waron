@@ -23,13 +23,11 @@
 
   <div class="d-md-flex half">
     <div class="bg" style="background-color: #b4F5FF;"></div>
-    <div class="contents">
+      <div class="contents">
       @yield('content')
       
       </div>
-    </div>
-
-    
+    </div>  
   </div>
     
     

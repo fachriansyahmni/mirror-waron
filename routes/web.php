@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::any('/cari', function () {
+    return view('search');
+})->name('cari');
+
 //crud barang
 Route::get('/barang/create', 'BarangController@create'); //menampilkan form
 Route::post('/barang', 'BarangController@store'); //menyimpan form
@@ -61,4 +65,5 @@ Route::middleware('auth:admin,warung')->group(function () {
     Route::any('/warung', 'WarungController@warung')->name('user.warung');
 
     Route::any('/warung/buat', 'WarungController@create')->name('user.warung.create'); //menampilkan form
+    Route::any('/warung/m/{id}', 'WarungController@manage')->name('user.warung.manage'); //manage warung (edit, delete, dsb)
 });
