@@ -25,6 +25,8 @@
         @include('dashboard-layouts.d_sidebar')
         @include('dashboard-layouts.d_mainpanel')
     </div>
+   
+    @yield('modal-content') 
   <!--   Core JS Files   -->
   <script src="{{ asset('js/core/jquery.min.js') }}"></script>
   <script src="{{ asset('js/core/popper.min.js') }}"></script>

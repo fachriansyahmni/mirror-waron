@@ -30,7 +30,6 @@
     </div>  
   </div>
     
-    
 
     <script src="{{ asset('template/login/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('template/login/js/popper.min.js') }}"></script>
