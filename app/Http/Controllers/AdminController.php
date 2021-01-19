@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\KategoriWarung;
+use App\Warung;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -15,6 +16,14 @@ class AdminController extends Controller
     {
         return KategoriWarung::get();
     }
+    public function getAllWarungActive()
+    {
+        return Warung::where('is_active', 1);
+    }
+    public function getAllWarungNotActive()
+    {
+        return Warung::where('is_active', 0);
+    }
 
     public function index()
     {
@@ -26,7 +35,11 @@ class AdminController extends Controller
     }
     public function manage()
     {
-        return view('admin.manage');
+        $getWarungActive = $this->getAllWarungActive()->get();
+        $getWarungNotActive = $this->getAllWarungNotActive()->get();
+
+        $compacts = ['getWarungActive', 'getWarungNotActive'];
+        return view('admin.manage', compact($compacts));
     }
     public function mancat(Request $request)
     {

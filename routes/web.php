@@ -51,7 +51,7 @@ Route::get(
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin', 'AdminController@index')->name('admin.home');
     Route::get('/admin/profile', 'AdminController@profile')->name('admin.profile');
-    Route::get('/admin/manage', 'AdminController@manage')->name('admin.manage');
+    Route::any('/admin/manage', 'AdminController@manage')->name('admin.manage');
     Route::any('/admin/mancat', 'AdminController@mancat')->name('admin.mancat');
 });
 

@@ -16,11 +16,11 @@
         <tr>
             <td>Provinsi : </td>
             <td>
-                    @php
-                        $urlDataProvinsi = "https://dev.farizdotid.com/api/daerahindonesia/provinsi"; //ambil semua data provinsi
-                        $getDataProvinsi = json_decode(file_get_contents($urlDataProvinsi), true);
-                        // dd($getDataProvinsi);
-                    @endphp
+                @php
+                    $urlDataProvinsi = "https://dev.farizdotid.com/api/daerahindonesia/provinsi"; //ambil semua data provinsi
+                    $getDataProvinsi = json_decode(file_get_contents($urlDataProvinsi), true);
+                    // dd($getDataProvinsi);
+                @endphp
                 <select name="prov">
                     @foreach ($getDataProvinsi["provinsi"] as $index => $provinsi)
                         <option value="{{$provinsi["id"]}}">{{$provinsi['nama']}}</option>
@@ -30,11 +30,8 @@
         </tr>
         <tr>
             <td>Kab/Kota : </td>
-            <td>
-                <p class="asd"></p>
+            <td id="inputKabkot">
                 <select name="kabkot">
-                    <option value="Kota Bandung">Kota Bandung</option>
-                    <option value="Kab.Bekasi">Kab.Bekasi</option>
                 </select>
             </td>
         </tr>
@@ -42,8 +39,6 @@
             <td>Kecamatan : </td>
             <td>
                 <select name="kec">
-                    <option value="Dago">Dago</option>
-                    <option value="Tambun">Tambun</option>
                 </select>
             </td>
         </tr>
@@ -81,13 +76,30 @@
                 type: "GET",
                 contentType: 'application/json; charset=utf-8',
                 success: function(resultData) {
-                    console.log(resultData);
                     data = JSON.stringify(resultData.kota_kabupaten);
-                    console.log(data.length);
-                    // for(var i = 0;i <= data.length; i++){
+                    $('select[name="kabkot"]').find('option').remove();
+                    $('select[name="kec"]').find('option').remove();
+                    $.each(JSON.parse(data), function(i, item) {
+                        $('select[name="kabkot"]').append("<option value="+item.id+">"+item.nama+"</option>");
+                    });
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                },
 
-                    // }
-                    $('.asd').html(JSON.stringify(resultData.kota_kabupaten));
+                timeout: 120000,
+            })
+        });
+        $('select[name="kabkot"]').on('change', function() {
+            $.ajax({
+                url:"https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota="+this.value,
+                type: "GET",
+                contentType: 'application/json; charset=utf-8',
+                success: function(resultData) {
+                    data = JSON.stringify(resultData.kecamatan);
+                    $('select[name="kec"]').find('option').remove();
+                    $.each(JSON.parse(data), function(i, item) {
+                        $('select[name="kec"]').append("<option value="+item.id+">"+item.nama+"</option>");
+                    });
                 },
                 error : function(jqXHR, textStatus, errorThrown) {
                 },
