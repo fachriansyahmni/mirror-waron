@@ -54,6 +54,7 @@
                         <div class="card-body">
                             <b>Warung Lorem</b>
                             <div class="text-muted">pemilik</div>
+                            <a href="/namawarung" class="stretched-link text-muted text-decoration-none"></a>
                         </div>
                     </div>
                 </div>

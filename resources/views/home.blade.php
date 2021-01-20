@@ -65,6 +65,34 @@
         font-size: 10vw;
       }
     }
+    .left-arrow,.right-arrow{
+      position: relative;
+      z-index: 1;
+      top: 120px;
+    }
+    .left-arrow{
+      left: 40px;
+    }
+    .right-arrow{
+      right: 40px;
+    }
+    .card-jw{
+      display:flex;
+      flex-direction: column;
+      background-color:#b4F5FF;
+      border-radius: 20px;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 250px;
+      height: 300px;
+      margin: 10px;
+    }
+    .card-jw a{
+      text-decoration: none;
+      color: black;
+      font-family: "Font Proxi";
+    }
 </style>
     
 @endpush
@@ -149,29 +177,45 @@
   </section>
 
   <!-- List Jenis Warung -->
-  <br>
-  <div class="container">
-      <center>
-          <h1 class="proxi">JENIS WARUNG</h1>
-          <br>
-          <div class="row" style="margin-left: 50px;">
-            <a href="#" style="color:black" onclick="alert('Astagfirullah :V')"><div class="card" style="width:250px; height:300px; background-color:#b4F5FF; border-radius: 20px;">
-            <br><br>
-            <center><img class="card-img-top" src="{{ asset('img/coffee-cup.svg') }}" alt="Card image" style="width:130px; height: 130px;"></center>
+  <div class="container mt-5">
+    <div class="text-center mb-5">
+      <h1 class="proxi">JENIS WARUNG</h1>
+    </div>
+    <div class="d-flex">
+      <div class="left-arrow">
+        <a href="#">
+          <svg width="70" height="70" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="64.8995" cy="64.8994" r="64" transform="rotate(179.189 64.8995 64.8994)" fill="#EBEBEB"/>
+            <line x1="83.0415" y1="95.1755" x2="44.5924" y2="63.7165" stroke="black" stroke-width="4"/>
+            <line x1="44.694" y1="65.5956" x2="82.2797" y2="36.0607" stroke="black" stroke-width="4"/>
+            </svg>
+        </a>
+      </div>
+      @for ($i = 0; $i < 4; $i++)
+        <div class="card card-jw">
+          <img src="{{ asset('img/coffee-cup.svg') }}" class="card-img-top mt-5" style="width:130px; height: 130px;">
           <div class="card-body">
-              <h5 class="card-title proxi">WARUNG KOPI</h5>
+            <a href="#" class="stretched-link text-uppercase">warung kopi</a>
           </div>
-      </div></a>
-      <br>
-      </center>
+        </div>
+      @endfor
+    
+      <div class="right-arrow">
+        <a href="#">
+          <svg width="70" height="70" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="64" cy="64" r="64" fill="#EBEBEB"/>
+            <line x1="46.2883" y1="33.4702" x2="84.2883" y2="65.4702" stroke="black" stroke-width="4"/>
+            <line x1="84.2133" y1="63.5899" x2="46.2133" y2="92.5899" stroke="black" stroke-width="4"/>
+          </svg>
+        </a>
+      </div>
+    </div>
   </div>
   <br>
   <center>
     <a href="#" class="proxi" style="color:black"><u>Tampilkan lebih banyak</u></a>
   </center>
-  <br>
-
-
+    
 
   @guest
   <!-- Modal -->

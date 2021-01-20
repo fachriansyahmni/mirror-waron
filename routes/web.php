@@ -21,6 +21,10 @@ Route::any('/cari', function () {
     return view('search');
 })->name('cari');
 
+Route::any('/namawarung', function () {
+    return view('overview');
+})->name('overview.warung');
+
 //crud barang
 Route::get('/barang/create', 'BarangController@create'); //menampilkan form
 Route::post('/barang', 'BarangController@store'); //menyimpan form
