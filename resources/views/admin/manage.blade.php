@@ -13,7 +13,7 @@
                     <i class="material-icons">store</i>
                   </div>
                   <p class="card-category">Total Warung Aktif</p>
-                  <h3 class="card-title">{{count($getWarungActive)}}</h3>
+                  <h3 class="card-title">{{count($getAllWarung)}}</h3>
                 </div>
                 <div class="card-footer"></div>
               </div>
@@ -23,7 +23,9 @@
                 <h4 class="text-dark font-weight-bold">
                   {{count($getWarungNotActive)}} warung waiting for activation
                 </h4>
-                <button class="btn btn-danger">check</button>
+                <form method="GET" class="m-0">
+                  <button class="btn btn-danger" type="submit" name="q" value="waiting">check</button>
+                </form>
               </div>
             </div>
             <div class="col-md-12">
@@ -36,46 +38,29 @@
                 <div class="card-body">
                   <div class="table-responsive">
                     <table class="table">
-                      <thead class=" text-primary">
-                        <th>
-                          NO
-                        </th>
-                        <th>
-                          Warung Name
-                        </th>
-                        <th>
-                          City
-                        </th>
-                        <th>
-                          Districts
-                        </th>
-                        <th>
-                          Province
-                        </th>
-                        <th>
-                          Options
-                        </th>
+                      <thead class="text-primary">
+                        <th>NO</th>
+                        <th>Warung</th>
+                        {{-- <th>City</th>
+                        <th>Districts</th>
+                        <th>Province</th> --}}
+                        <th>Options</th>
                       </thead>
                       <tbody>
-                        @foreach ($getWarungActive as $index => $warung)
+                        @foreach ($getAllWarung as $index => $warung)
                         <tr>
                           <td>
                             {{$index + 1}}
                           </td>
                           <td>
-                            {{$warung}}
+                            <b>{{$warung->nama_warung}}</b>
                           </td>
-                          <td>
-                            -
-                          </td>
-                          <td>
-                            -
-                          </td>
-                          <td>
-                            -
-                          </td>
+                          {{-- <td>-</td>
+                          <td>-</td>
+                          <td>-</td> --}}
                           <td> 
-                                <a href="#" class="btn btn-success">Manage</a>
+                              <button class="btn btn-info">details</button>
+                              <a href="#" class="btn btn-success">Manage</a>
                           </td>
                         </tr>
                         @endforeach

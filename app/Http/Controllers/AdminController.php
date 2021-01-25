@@ -16,6 +16,10 @@ class AdminController extends Controller
     {
         return KategoriWarung::get();
     }
+    public function getAllWarung()
+    {
+        return Warung::paginate(20);
+    }
     public function getAllWarungActive()
     {
         return Warung::where('is_active', 1);
@@ -33,12 +37,18 @@ class AdminController extends Controller
     {
         return view('admin.profile');
     }
-    public function manage()
+    public function manage(Request $request)
     {
-        $getWarungActive = $this->getAllWarungActive()->get();
+        $getAllWarung = $this->getAllWarung();
+        // $getWarungActive = $this->getAllWarungActive()->get();
         $getWarungNotActive = $this->getAllWarungNotActive()->get();
 
-        $compacts = ['getWarungActive', 'getWarungNotActive'];
+        $compacts = ['getAllWarung', 'getWarungNotActive'];
+
+        if ($request->has('q')) {
+            return "cari";
+        }
+
         return view('admin.manage', compact($compacts));
     }
     public function mancat(Request $request)

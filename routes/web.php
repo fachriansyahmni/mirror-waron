@@ -20,6 +20,9 @@ Route::get('/', function () {
 Route::any('/cari', function () {
     return view('search');
 })->name('cari');
+Route::any('/about', function () {
+    return view('about');
+})->name('about');
 
 Route::any('/namawarung', function () {
     return view('overview');
@@ -56,6 +59,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/admin', 'AdminController@index')->name('admin.home');
     Route::get('/admin/profile', 'AdminController@profile')->name('admin.profile');
     Route::any('/admin/manage', 'AdminController@manage')->name('admin.manage');
+    Route::any('/admin/manage/warung-activation', 'AdminController@warungActivation')->name('admin.manage.warung-activation');
     Route::any('/admin/mancat', 'AdminController@mancat')->name('admin.mancat');
 });
 

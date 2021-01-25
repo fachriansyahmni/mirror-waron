@@ -144,8 +144,8 @@
   <!-- Icons Grid -->
   <section class="features-icons bg-light text-center">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-4">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-6">
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
               <img src="{{ asset('img/package.svg') }}" class="m-auto" style="fill:#b4F5FF; width:55px; height: 55px;">
@@ -154,7 +154,7 @@
             <p class="lead mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
           </div>
         </div>
-        <div class="col-lg-4 col-md-4">
+        <div class="col-lg-4 col-md-4 col-sm-6">
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
               <img src="{{ asset('img/package.svg') }}" class="m-auto" style="fill:#b4F5FF; width:55px; height: 55px;">
@@ -163,7 +163,7 @@
             <p class="lead mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<p>
           </div>
         </div>
-        <div class="col-lg-4 col-md-4">
+        <div class="col-lg-4 col-md-4 col-sm-6">
           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
               <img src="{{ asset('img/package.svg') }}" class="m-auto" style="fill:#b4F5FF; width:55px; height: 55px;">
@@ -211,10 +211,15 @@
       </div>
     </div>
   </div>
-  <br>
+
+  <!-- List Warung -->
+  <div class="container-fluid mt-5">
+
+  </div>
+  {{-- <br>
   <center>
     <a href="#" class="proxi" style="color:black"><u>Tampilkan lebih banyak</u></a>
-  </center>
+  </center> --}}
     
 
   @guest

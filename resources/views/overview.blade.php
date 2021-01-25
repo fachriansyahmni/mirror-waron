@@ -29,11 +29,59 @@
     }
     #etalase .items{
         display:flex;
-        flex-direction: row;
+        /* flex-direction: row; */
+        flex-wrap: wrap;
     }
     .items .barang{
         width: 200px;
         height: 300px;
+        /* margin-left: auto;
+        margin-right: auto; */
+        margin: 10px auto 10px auto;
+    }
+    .items .barang:hover{
+        background:#dfe6e960;
+        border-radius: 20px;
+    }
+    .barang .details-barang{
+        padding-left: 10px;
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+    .barang .details-barang span.name-product{
+        font-size: 18px;
+        font-weight: 300;        
+    }
+    .barang .details-barang span.price-product{
+        font-size: 15px;
+        font-weight: 300;   
+        color:#B0B0B0;     
+    }
+    .barang .details-barang span.status-product{
+        margin-top: 10px;
+        font-size: 15px;
+        font-weight: 300;   
+        color:#22FF1E;     
+    }
+    .searchform{
+        margin-bottom: 30px;
+        position: sticky;
+        top: 20px;
+    }
+    .search-input{
+        border-radius: 40px;
+        max-width: 600px;
+    }
+    .search-input:hover{
+        border-color: #B4F5FF
+    }
+    .search-input:focus{
+        border-color: none;
+        box-shadow: none;
+    }
+    .search-input::-webkit-input-placeholder{
+        text-indent: 50%;
     }
 </style>
 @endpush
@@ -63,15 +111,24 @@
 <section id="etalase">
     <h3 class="proxi">Etalase</h3>
     <div class="searchform">
-
+        <form method="POST" style="padding: 0 50px 0 50px;text-align: -webkit-center;">
+            @csrf
+            <input type="text" class="form-control form-control-lg search-input" placeholder="cari">
+        </form>
     </div>
     <div class="items">
+        @for ($i = 0; $i < 25; $i++)
         <div class="barang">
-            
             <svg width="201" height="174" viewBox="0 0 201 174" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="201" height="174" rx="20" fill="#EFEFEF"/>
             </svg>
+            <div class="details-barang">
+                <span class="proxi name-product">product name</span>
+                <span class="proxi price-product">RP 123.456</span>
+                <span class="proxi status-product">tersedia</span>
+            </div>
         </div>
+        @endfor
     </div>
 </section>
 @endsection
