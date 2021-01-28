@@ -17,6 +17,7 @@
   <link href="{{ asset('css/material-dashboard.css?v=2.1.2') }}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{ asset('demo/demo.css') }}" rel="stylesheet" />
+  @stack('add-css')
 </head>
 
 <body class="">
@@ -25,6 +26,8 @@
         @include('dashboard-layouts.d_sidebar')
         @include('dashboard-layouts.d_mainpanel')
     </div>
+   
+    @yield('modal-content') 
   <!--   Core JS Files   -->
   <script src="{{ asset('js/core/jquery.min.js') }}"></script>
   <script src="{{ asset('js/core/popper.min.js') }}"></script>
@@ -246,6 +249,7 @@
 
     });
   </script>
+  @stack('scripts')
 </body>
 
 </html>

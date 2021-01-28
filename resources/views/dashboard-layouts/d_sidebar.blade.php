@@ -34,18 +34,6 @@
             <p>Manage Category</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./notifications.html">
-            <i class="material-icons">notifications</i>
-            <p>Notifications</p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./rtl.html">
-            <i class="material-icons">language</i>
-            <p>RTL Support</p>
-          </a>
-        </li>
         @elseif(Auth::guard('warung')->check())
         <li class="nav-item {{ (request()->routeIs('user.dashboard')) ? 'active' : '' }}">
           <a class="nav-link" href="{{route('user.dashboard')}}">
