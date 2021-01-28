@@ -31,7 +31,9 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.dash_admin');
+        $getWarungNotActive = $this->getAllWarungNotActive()->get();
+        $compacts = ['getWarungNotActive'];
+        return view('admin.dash_admin',compact($compacts));
     }
     public function profile()
     {
