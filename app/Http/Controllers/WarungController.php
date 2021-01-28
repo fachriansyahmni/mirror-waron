@@ -35,18 +35,27 @@ class WarungController extends Controller
     {
         $getAllCategoryWarung = $this->getAllCategory();
         if ($request->has('submitwarung')) {
+            $request->validate([
+                'nama_warung' => 'required',
+                'alamat' => 'required',
+                'no_hp' => 'required',
+                'prov' => 'required|integer',
+                'kabkot' => 'required|integer',
+                'kec' => 'required|integer',
+                'jenis' => 'required|integer',
+            ]);
             $warung = new Warung;
-            $warung->nama_warung = $request["nama_warung"];
+            $warung->nama_warung = $request->nama_warung;
             $warung->pemilik = $this->getdataAuth()->id;
-            $warung->alamat = $request["alamat"];
-            $warung->no_hp = $request["no_hp"];
+            $warung->alamat = $request->alamat;
+            $warung->no_hp = $request->no_hp;
             $warung->foto = $request["foto"];
-            $warung->koordinat = $request["koordinat"];
-            $warung->kategori_id = 1;
-            $warung->akun_id = 1;
-            $warung->kec_id = 1;
-            $warung->kabkot_id = 1;
-            $warung->prov_id = 1;
+            $warung->koordinat = $request->koordinat;
+            $warung->kategori_id = $request->jenis;
+            $warung->akun_id = $this->getdataAuth()->id;
+            $warung->kec_id = $request->kec;
+            $warung->kabkot_id = $request->kabkot;
+            $warung->prov_id = $request->prov;
             $warung->is_active = 0;
             $warung->save();
             return redirect()->route('user.warung')->with('success', 'berhasil');

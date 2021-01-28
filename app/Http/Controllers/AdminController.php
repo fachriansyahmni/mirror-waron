@@ -37,6 +37,10 @@ class AdminController extends Controller
     {
         return view('admin.profile');
     }
+    public function confirm()
+    {
+        return view('admin.confirm');
+    }
     public function manage(Request $request)
     {
         $getAllWarung = $this->getAllWarung();
@@ -51,6 +55,15 @@ class AdminController extends Controller
 
         return view('admin.manage', compact($compacts));
     }
+
+    public function warungActivation()
+    {
+        $getWarungNotActive = $this->getAllWarungNotActive()->orderBy('created_at', 'DESC')->get();
+
+        $compacts = ['getWarungNotActive'];
+        return view('admin.activation-warung', compact($compacts));
+    }
+
     public function mancat(Request $request)
     {
 

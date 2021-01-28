@@ -23,9 +23,7 @@
                 <h4 class="text-dark font-weight-bold">
                   {{count($getWarungNotActive)}} warung waiting for activation
                 </h4>
-                <form method="GET" class="m-0">
-                  <button class="btn btn-danger" type="submit" name="q" value="waiting">check</button>
-                </form>
+                <a href="{{route('admin.manage.warung-activation')}}" class="btn btn-danger">check</a>
               </div>
             </div>
             <div class="col-md-12">
