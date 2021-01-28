@@ -1,5 +1,9 @@
 @extends('dashboard-layouts.d_master')
 
+@push('add-css')
+<link rel="stylesheet" href="{{asset('vendor/leaflet/leaflet.css')}}" />
+@endpush
+
 @section('content')
 <div class="card">
     <div class="card-body">

@@ -59,7 +59,7 @@
             </tr>
             <tr>
                 <td>Nomor Handphone : </td>
-                <td><input type="text" name="no_hp"></td>
+                <td><input type="number" name="no_hp"></td>
             </tr>
             <tr>
                 <td>Koordinat : </td>

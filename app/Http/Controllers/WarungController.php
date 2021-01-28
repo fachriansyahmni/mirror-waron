@@ -38,7 +38,6 @@ class WarungController extends Controller
         if ($request->has('submitwarung')) {
             $request->validate([
                 'nama_warung' => 'required',
-                'alamat' => 'required',
                 'no_hp' => 'required',
                 'prov' => 'required|integer',
                 'kabkot' => 'required|integer',
@@ -88,7 +87,7 @@ class WarungController extends Controller
     {
         $DataWarung = $this->getDataWarung()->where('id', $idwarung)->first();
         if ($DataWarung == null) return redirect()->back()->with('error', 'not valid'); // validasi warung jika tidak ada
-        
+
         //barang
         $barangs = Barang::inRandomOrder()->get();
         return view('warung.view', compact('barangs'));
@@ -116,7 +115,7 @@ class WarungController extends Controller
         $barang->warung_id = "1";
         $barang->status_id = $request["status_id"];
         $barang->save();
-        return redirect('/my-warung'.'/' . $request["warung_id"]);
+        return redirect('/my-warung' . '/' . $request["warung_id"]);
         //note : cara return
     }
 
@@ -124,7 +123,7 @@ class WarungController extends Controller
     {
         $barang = Barang::find($id);
         $barang->delete();
-        return redirect('/my-warung'.'/' . $request["warung_id"]);
+        return redirect('/my-warung' . '/' . $request["warung_id"]);
         //note : cara return
     }
 }

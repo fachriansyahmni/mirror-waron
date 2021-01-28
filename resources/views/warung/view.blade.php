@@ -65,11 +65,17 @@
             font-weight: 300;   
             color:#B0B0B0;     
         }
-        .barang .details-barang span.status-product{
+        .barang .details-barang span.status-product-ready{
             margin-top: 10px;
             font-size: 15px;
             font-weight: 300;   
             color:#22FF1E;     
+        }
+        .barang .details-barang span.status-product-unready{
+            margin-top: 10px;
+            font-size: 15px;
+            font-weight: 300;   
+            color:#ff531e;     
         }
     </style>
 @endpush
@@ -106,9 +112,9 @@
                             </span>
                             <span class="proxi price-product">{{$barang->harga}}</span>
                             @if ($barang->status_id == 1)
-                                <span class="proxi status-product">tersedia</span>
+                                <span class="proxi status-product-ready">tersedia</span>
                             @else
-                                <span class="proxi status-product">tidak tersedia</span>
+                                <span class="proxi status-product-unready">tidak tersedia</span>
                             @endif 
                         </div>
                     </div>

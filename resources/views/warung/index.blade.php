@@ -6,12 +6,18 @@
     @foreach ($getMyWarung as $warung)
         <div class="card">
             <div class="card-body d-flex justify-content-between">
-                <div class="">
+                <div class="d-flex">
                     <img src="{{asset('img/shop.png')}}" width="100px">
-                    <div class="">
+                    <div class="ml-3 d-flex flex-column">
                         <strong class="proxi">{{$warung->nama_warung}}</strong>
-                        {{$warung->kategori->kategori}}
-                        {{$warung->is_active}}
+                        @isset($warung->kategori)
+                            <h5><span class="badge badge-primary">{{$warung->kategori->kategori}}</span></h5>
+                        @endisset
+                        @if ($warung->is_active == 1)
+                            active
+                        @else
+                            pending
+                        @endif
                     </div>
                 </div>
                 <div class="d-flex flex-column">
