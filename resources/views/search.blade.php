@@ -47,18 +47,20 @@
                 </div>
             </div>
             <div id="content-filter" class="row">
-                @for ($i = 0; $i < 10; $i++)
+                @foreach ($getWarungActive as $warung)
                 <div class="col-lg-3 col-md-4 col-sm-4 mb-3">
                     <div class="card shadow-none border-0 card-content-result">
                         <div class="card-cr-img"></div>
                         <div class="card-body">
-                            <b>Warung Lorem</b>
-                            <div class="text-muted">pemilik</div>
-                            <a href="/namawarung" class="stretched-link text-muted text-decoration-none"></a>
+                            <b>{{$warung->nama_warung}}</b>
+                            <div class="text-muted">@isset($warung->owner)
+                                {{$warung->owner->nama}}
+                            @endisset</div>
+                            <a href="{{route('overview.warung',$warung->id)}}" class="stretched-link text-muted text-decoration-none"></a>
                         </div>
                     </div>
                 </div>
-                @endfor
+                @endforeach
             </div>
         </section>
     </div>

@@ -17,17 +17,13 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::any('/cari', function () {
-    return view('search');
-})->name('cari');
+Route::any('/cari', 'MainController@cariPage')->name('cari');
 Route::any('/about', function () {
     return view('about');
 })->name('about');
 
-Route::any('/namawarung', function () {
-    return view('overview');
-})->name('overview.warung');
-
+Route::any('/warung-{id}', 'MainController@warungOverview')->name('overview.warung');
+Route::any('/kategori/{id}', 'MainController@warungByKategori')->name('kategori.warung');
 //crud barang
 Route::get('/barang/create', 'BarangController@create'); //menampilkan form
 Route::post('/barang', 'BarangController@store'); //menyimpan form
@@ -61,8 +57,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::any('/admin/manage', 'AdminController@manage')->name('admin.manage');
     Route::any('/admin/manage/warung-activation', 'AdminController@warungActivation')->name('admin.manage.warung-activation');
     Route::any('/admin/mancat', 'AdminController@mancat')->name('admin.mancat');
-    Route::any('/admin/mancat/{id}/edit','AdminController@edit')->name('admin.edit');
-    Route::put('/admin/mancat/{id}','AdminController@update')->name('admin.update');
+    Route::any('/admin/mancat/{id}/edit', 'AdminController@edit')->name('admin.edit');
+    Route::put('/admin/mancat/{id}', 'AdminController@update')->name('admin.update');
     Route::any('/admin/confirm', 'AdminController@confirm')->name('admin.confirm');
 });
 

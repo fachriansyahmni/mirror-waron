@@ -56,10 +56,21 @@ class AdminController extends Controller
         return view('admin.manage', compact($compacts));
     }
 
-    public function warungActivation()
+    public function warungActivation(Request $request)
     {
-        $getWarungNotActive = $this->getAllWarungNotActive()->orderBy('created_at', 'DESC')->get();
+        if ($request->has('confirm-warung')) {
+            $request->validate([
+                'warungId' => 'required|integer'
+            ]);
+            $getWarung = Warung::find($request->warungId);
+            if ($getWarung == null) return redirect()->back(); //jika data warung tidak ditemukan akan redirect 
 
+            $updateActivated = $getWarung->update(['is_active' => 1]);
+            if ($updateActivated) return redirect()->back()->with('success', 'berhasil diupdate');
+            return redirect()->back();
+        }
+
+        $getWarungNotActive = $this->getAllWarungNotActive()->orderBy('created_at', 'DESC')->get();
         $compacts = ['getWarungNotActive'];
         return view('admin.activation-warung', compact($compacts));
     }
@@ -90,7 +101,7 @@ class AdminController extends Controller
     public function edit($id)
     {
         $category = KategoriWarung::find($id);
-        return view('admin.edit_mancat',compact('category'));
+        return view('admin.edit_mancat', compact('category'));
     }
 
     public function update(Request $request, $id)
