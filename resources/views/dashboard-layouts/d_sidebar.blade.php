@@ -43,7 +43,7 @@
         </li>
         <li class="nav-item {{ (request()->routeIs('user.warung')) ? 'active' : '' }}">
           <a class="nav-link" href="{{route('user.warung')}}">
-            <i class="material-icons">accessible</i>
+            <i class="material-icons">shop</i>
             <p>Warung</p>
           </a>
         </li>

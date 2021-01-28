@@ -10,6 +10,7 @@
       	Isi text setelah mengisi formulir pendaftaran warung (untuk di cek sesuai ketentuan atau tidak untuk di acc/konfirmasi warungnya)
       </p>
       <button type="button" class="btn btn-info">Konfirmasi</button>
+      <a href="#" class="btn btn-danger">Tolak</a>
     </div>
   </div>
 </div>
