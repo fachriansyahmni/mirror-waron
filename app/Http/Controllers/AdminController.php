@@ -81,7 +81,10 @@ class AdminController extends Controller
         }
         $getAllCategory = $this->getAllCategory();
         $compacts = ['getAllCategory'];;
-        return view('admin.mancat', compact($compacts));
+
+        //getWarung
+        $warung = Warung::all();
+        return view('admin.mancat', compact($compacts, 'warung'));
     }
 
     public function edit($id)

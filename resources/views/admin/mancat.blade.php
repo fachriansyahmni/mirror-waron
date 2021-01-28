@@ -46,7 +46,15 @@
                             {{$category->kategori}}
                           </td>
                           <td>
-                            
+                            <?php
+                              $jumlah = 0;
+                              for ($i=0; $i < count($warung); $i++) { 
+                                  if ($category->id == $warung[$i]['kategori_id']) {
+                                  $jumlah = 1 + $jumlah;
+                                }
+                              }
+                              echo $jumlah;
+                            ?>
                           </td>
                           <td> 
                                 <a href="/admin/mancat/{{$category->id}}/edit" class="btn btn-success">Manage</a>
