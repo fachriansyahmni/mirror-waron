@@ -16,4 +16,8 @@ class Warung extends Model
     {
         return $this->hasOne(Akun::class, 'id', 'pemilik');
     }
+    public function kategori()
+    {
+        return $this->hasOne(KategoriWarung::class, 'id', 'kategori_id');
+    }
 }

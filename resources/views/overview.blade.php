@@ -86,13 +86,34 @@
     a.btn-c-whatsapp{
         padding: 20px;
     }
+
+    @media only screen and (max-width:1020px) {
+      #detailsWarung{
+          flex-direction: column;
+          align-items: center;
+      }
+      #detailsWarung .infoWarung{
+        text-align: center;
+        margin: 40px 0 0 0;
+      }
+      #mapid{
+          display: none;
+      }
+    }
 </style>
 @endpush
 
 @section('content')
 <div class="container-fluid" style="margin-top: 50px">
     <div class="d-flex justify-content-between p-5">
-        <a href="/" class="text-muted proxi"><i class="fa fa-arrow-left"></i> back</a>
+        <div class="">
+            <a href="{{route('home')}}" class="text-muted proxi"></i>home</a> > 
+            <a href="#" class="text-muted proxi"></i>@isset($WarungData->kategori)
+                {{$WarungData->kategori->kategori}}
+                @else
+                Warung
+            @endisset</a>
+        </div>
         <a href="#" class="text-muted proxi">laporkan</a>
     </div>
 </div>
@@ -100,7 +121,7 @@
 <section id="detailsWarung" class="d-flex">
     <img class="imgWarung" src="{{asset('img/shop.png')}}">
     <div class="infoWarung" class="d-flex flex-column" style="max-width: 460px">
-        <strong style="font-size: 20px" class="text-uppercase proxi">nama warung</strong>
+        <strong style="font-size: 20px" class="text-uppercase proxi">{{$WarungData->nama_warung}}</strong>
         <div class="proxi" style="color: #B0B0B0">lokasi</div>
         <div class="">
             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
