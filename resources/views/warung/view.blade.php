@@ -91,7 +91,7 @@
                         Total Produk
                 </div>
                 <div class="c-card-body text-center">
-                    8
+                    {{count($barangs)}}
                 </div>
             </div>
         </div>

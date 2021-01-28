@@ -78,11 +78,10 @@
         <div class="card-header card-header-tabs card-header-primary">
           <div class="nav-tabs-navigation">
             <div class="nav-tabs-wrapper">
-              <span class="nav-tabs-title">Notification:</span>
+              <span class="nav-tabs-title"></span>
               <ul class="nav nav-tabs" data-tabs="tabs">
                 <li class="nav-item">
-                  <a class="nav-link active" href="#profile" data-toggle="tab">
-                    <i class="material-icons">notifications</i> Konfirmation
+                  <h4 class="card-title">Notifikasi</h4>
                     <div class="ripple-container"></div>
                   </a>
                 </li>
@@ -97,39 +96,11 @@
                 <tbody>
                   <tr>
                     <td>
-                      <b>Warung Name</b>
+                      <b><i class="material-icons">notifications</i></b>
                     </td>
-                    <td>You have a new Warung, Check detail to confirm.</td>
+                    <td>Kamu punya <b> {{count($getWarungNotActive)}} </b> Warung baru untuk di konfirmasi, harap cek tombol <b>lihat</b> untuk di konfirmasi.</td>
                     <td class="td-actions text-right">
-                      <a href="{{route('admin.confirm')}}" class="btn btn-primary">Details</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                    <b>Warung Name</b>
-                    </td>
-                    <td>You have a new Warung, Check detail to confirm.</td>
-                    <td class="td-actions text-right">
-                      <a href="#" class="btn btn-primary">Details</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                    <b>Warung Name</b>
-                    </td>
-                    <td>You have a new Warung, Check detail to confirm.
-                    </td>
-                    <td class="td-actions text-right">
-                      <a href="#" class="btn btn-primary">Details</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                    <b>Warung Name</b>
-                    </td>
-                    <td>You have a new Warung, Check detail to confirm.</td>
-                    <td class="td-actions text-right">
-                      <a href="#" class="btn btn-primary">Details</a>
+                      <a href="{{route('admin.manage.warung-activation')}}" class="btn btn-primary"><i class="fa fa-eye"></i> Lihat</a>
                     </td>
                   </tr>
                 </tbody>
