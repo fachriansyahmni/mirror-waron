@@ -12,7 +12,7 @@ class Warung extends Model
 
     public $timestamps = false;
 
-    public function pemilik()
+    public function owner()
     {
         return $this->hasOne(Akun::class, 'id', 'pemilik');
     }
