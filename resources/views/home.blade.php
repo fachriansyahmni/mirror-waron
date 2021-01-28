@@ -81,7 +81,7 @@
           <a class="nav-link proxi" style="color:black" href="{{route('register')}}">daftar</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link proxi" style="color:#b4F5FF" href="#" data-toggle="modal" data-target="#myModal">login</a>
+          <a class="nav-link proxi" style="color:#b4F5FF" href="{{route('login')}}">login</a>
         </li>
         @endguest
         @auth

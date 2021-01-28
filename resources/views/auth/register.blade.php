@@ -54,6 +54,7 @@
                 <button type="submit" class="btn btn-block py-2" style="background-color: #b4F5FF;">
                     {{ __('Register') }}
                 </button>
+                <span class="text-center my-3 d-block"><a href="{{route('login')}}" style="color: grey;">Sudah punya akun?</a></span>
               </form>
             </div>
           </div>
