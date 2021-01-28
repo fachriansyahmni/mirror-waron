@@ -61,6 +61,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::any('/admin/manage', 'AdminController@manage')->name('admin.manage');
     Route::any('/admin/manage/warung-activation', 'AdminController@warungActivation')->name('admin.manage.warung-activation');
     Route::any('/admin/mancat', 'AdminController@mancat')->name('admin.mancat');
+    Route::any('/admin/confirm', 'AdminController@confirm')->name('admin.confirm');
 });
 
 //area warung
