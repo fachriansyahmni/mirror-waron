@@ -3,9 +3,8 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
+      <h5 class="card-title">Ayo buat warungmu sendiri</h5>
       <p class="card-text">
-        Ayo buat warungmu sendiri
       </p>
       <button type="button" class="btn btn-info">MULAI</button>
     </div>
