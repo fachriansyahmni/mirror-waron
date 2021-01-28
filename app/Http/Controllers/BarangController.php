@@ -14,7 +14,7 @@ class BarangController extends Controller
     }
 
     public function store(Request $request)
-    {
+    { 
         $barang = new Barang;
         $barang->nama = $request["nama"];
         $barang->harga = $request["harga"];

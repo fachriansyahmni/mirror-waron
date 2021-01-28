@@ -61,6 +61,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::any('/admin/manage', 'AdminController@manage')->name('admin.manage');
     Route::any('/admin/manage/warung-activation', 'AdminController@warungActivation')->name('admin.manage.warung-activation');
     Route::any('/admin/mancat', 'AdminController@mancat')->name('admin.mancat');
+    Route::any('/admin/mancat/{id}/edit','AdminController@edit')->name('admin.edit');
+    Route::put('/admin/mancat/{id}','AdminController@update')->name('admin.update');
     Route::any('/admin/confirm', 'AdminController@confirm')->name('admin.confirm');
 });
 
