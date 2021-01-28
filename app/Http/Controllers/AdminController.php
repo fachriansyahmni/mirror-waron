@@ -70,4 +70,18 @@ class AdminController extends Controller
         $compacts = ['getAllCategory'];;
         return view('admin.mancat', compact($compacts));
     }
+
+    public function edit($id)
+    {
+        $category = KategoriWarung::find($id);
+        return view('admin.edit_mancat',compact('category'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $category = KategoriWarung::find($id);
+        $category->kategori = $request["kategori"];
+        $category->save();
+        return redirect('/admin/mancat');
+    }
 }

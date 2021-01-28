@@ -46,10 +46,10 @@
                             {{$category->kategori}}
                           </td>
                           <td>
-                          
+                            
                           </td>
                           <td> 
-                                <a href="#" class="btn btn-success">Manage</a>
+                                <a href="/admin/mancat/{{$category->id}}/edit" class="btn btn-success">Manage</a>
                           </td>
                         </tr>
                         @endforeach
