@@ -213,15 +213,25 @@
   </div>
 
   <!-- List Warung -->
-  <div class="container-fluid mt-5">
-
+  <div class="container mt-5">
+    @php
+        $getAllWarung = App\Warung::where('is_active',1)->inRandomOrder()->take(8)->get();
+    @endphp
+    <div class="d-flex flex-wrap">
+      @foreach ($getAllWarung as $warung)
+      <div class="card card-jw">
+          <img src="{{asset('img/shop.svg')}}" class="card-img-top mt-5" style="width:130px; height: 130px;">
+          <div class="card-body">
+              <a href="#" class="stretched-link text-uppercase">{{$warung->nama_warung}}</a>
+          </div>
+      </div>
+      @endforeach
+    </div>
   </div>
   {{-- <br>
   <center>
     <a href="#" class="proxi" style="color:black"><u>Tampilkan lebih banyak</u></a>
   </center> --}}
-    
-
   @guest
   <!-- Modal -->
   <div class="modal" id="myModal">

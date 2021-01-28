@@ -6,7 +6,7 @@
     @foreach ($getMyWarung as $warung)
         <div class="card">
             {{$warung}}
-            <a href="#" class="btn btn-info">view</a>
+            <a href="{{route('warung.view',$warung->id)}}" class="btn btn-info">view</a>
             <a href="{{route('user.warung.manage',$warung->id)}}" class="btn btn-outline-info">manage</a>
         </div>
     @endforeach

@@ -67,11 +67,17 @@ Route::middleware('auth:admin')->group(function () {
 Route::middleware('auth:warung')->group(function () {
     Route::any('/me', 'AkunController@myProfile')->name('user.me'); //user profile
     Route::any('/dashboard', 'AkunController@index')->name('user.dashboard');
+    Route::any('/dashboard/warung', 'WarungController@warung')->name('user.warung');
+
+    Route::any('/dashboard/warung/buat', 'WarungController@create')->name('user.warung.create'); //menampilkan form
+    Route::any('/dashboard/warung/m/{id}', 'WarungController@manage')->name('user.warung.manage'); //manage warung (edit, delete, dsb)
+
+    Route::any('/my-warung/{idwarung}', 'WarungController@view')->name('warung.view'); //view warung
 });
 
-Route::middleware('auth:admin,warung')->group(function () {
-    Route::any('/warung', 'WarungController@warung')->name('user.warung');
+// Route::middleware('auth:admin,warung')->group(function () {
+//     Route::any('/dashboard/warung', 'WarungController@warung')->name('user.warung');
 
-    Route::any('/warung/buat', 'WarungController@create')->name('user.warung.create'); //menampilkan form
-    Route::any('/warung/m/{id}', 'WarungController@manage')->name('user.warung.manage'); //manage warung (edit, delete, dsb)
-});
+//     Route::any('/dashboard/warung/buat', 'WarungController@create')->name('user.warung.create'); //menampilkan form
+//     Route::any('/dashboard/warung/m/{id}', 'WarungController@manage')->name('user.warung.manage'); //manage warung (edit, delete, dsb)
+// });

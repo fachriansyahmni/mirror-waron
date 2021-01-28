@@ -83,6 +83,9 @@
     .search-input::-webkit-input-placeholder{
         text-indent: 50%;
     }
+    a.btn-c-whatsapp{
+        padding: 20px;
+    }
 </style>
 @endpush
 
@@ -104,6 +107,8 @@
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
             when an unknown printer took a galley of type and scrambled it to make a 
             type specimen book.
+            <br>
+            <a href="#" class="btn-c-whatsapp">whatsapp</a>
         </div>
     </div>
     <div id="mapid"></div> 

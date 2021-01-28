@@ -73,4 +73,12 @@ class WarungController extends Controller
 
         return view('warung.edit', compact($compacts));
     }
+
+    public function view($idwarung)
+    {
+        $DataWarung = $this->getDataWarung()->where('id', $idwarung)->first();
+        if ($DataWarung == null) return redirect()->back()->with('error', 'not valid'); // validasi warung jika tidak ada
+
+        return view('warung.view');
+    }
 }
