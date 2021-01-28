@@ -28,9 +28,9 @@ Route::any('/kategori/{id}', 'MainController@warungByKategori')->name('kategori.
 Route::get('/barang/create', 'BarangController@create'); //menampilkan form
 Route::post('/barang', 'BarangController@store'); //menyimpan form
 Route::get('/barang', 'BarangController@index'); //menampilkan item
-Route::get('/barang/{id}/edit', 'BarangController@edit'); //menampilkan form edit
+//Route::get('/barang/{id}/edit', 'BarangController@edit'); //menampilkan form edit
 Route::get('/barang/{id}/show', 'BarangController@show'); //lihat detail data
-Route::put('/barang/{id}', 'BarangController@update'); //menyimpan hasil edit
+//Route::put('/barang/{id}', 'BarangController@update'); //menyimpan hasil edit
 Route::delete('/barang/{id}', 'BarangController@destroy'); //menghapus
 
 
@@ -72,6 +72,10 @@ Route::middleware('auth:warung')->group(function () {
     Route::any('/dashboard/warung/m/{id}', 'WarungController@manage')->name('user.warung.manage'); //manage warung (edit, delete, dsb)
 
     Route::any('/my-warung/{idwarung}', 'WarungController@view')->name('warung.view'); //view warung
+
+    Route::get('/barang/{id}/show', 'WarungController@show'); //lihat detail data
+    Route::get('/barang/{id}/edit', 'WarungController@edit'); //menampilkan form edit
+    Route::put('/barang/{id}', 'WarungController@update'); //menyimpan hasil edit
 });
 
 // Route::middleware('auth:admin,warung')->group(function () {

@@ -28,8 +28,8 @@ class BarangController extends Controller
 
     public function index()
     {
-        $barangs = Barang::all();
-        return view('items.index', compact('barangs'));
+        $barangs = Barang::get();
+        return view('warung.view', compact('barangs'));
     }
 
     public function show($id)
