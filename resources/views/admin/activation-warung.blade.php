@@ -55,7 +55,11 @@
                                                 </tr>
                                             </table>
                                         </div>
-                                        <button class="btn btn-success btn-block">confirm</button>
+                                        <form method="POST">
+                                            @csrf
+                                            <input type="hidden" value="{{$warung->id}}" name="warungId">
+                                            <button type="submit" name="confirm-warung" class="btn btn-success btn-block">confirm</button>
+                                        </form>
                                     </div>
                                   </div>
                             </td>

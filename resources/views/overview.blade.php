@@ -107,12 +107,16 @@
 <div class="container-fluid" style="margin-top: 50px">
     <div class="d-flex justify-content-between p-5">
         <div class="">
-            <a href="{{route('home')}}" class="text-muted proxi"></i>home</a> > 
-            <a href="#" class="text-muted proxi"></i>@isset($WarungData->kategori)
+            <a href="/" class="text-muted proxi"></i>home</a> > 
+            @isset($WarungData->kategori)
+            <a href="{{route('kategori.warung',$WarungData->kategori->id)}}" class="text-muted proxi"></i>
                 {{$WarungData->kategori->kategori}}
-                @else
+            </a>
+            @else
+            <a href="#" class="text-muted proxi"></i>
                 Warung
-            @endisset</a>
+            </a>
+            @endisset
         </div>
         <a href="#" class="text-muted proxi">laporkan</a>
     </div>
