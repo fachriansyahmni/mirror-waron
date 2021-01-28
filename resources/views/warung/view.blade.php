@@ -92,21 +92,28 @@
         <div id="etalase-warung" class="mt-5">
             <div class="option-etalase d-flex justify-content-between">
                 <h4 class="proxi">Etalase</h4>
-                <button>tambah produk</button>
+                <a href="/barang/create"  class="btn btn-primary">Tambah Produk</a>
             </div>
             <div class="items">
-                @for ($i = 0; $i < 25; $i++)
-                <div class="barang">
-                    <svg width="201" height="174" viewBox="0 0 201 174" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="201" height="174" rx="20" fill="#EFEFEF"/>
-                    </svg>
-                    <div class="details-barang">
-                        <span class="proxi name-product">product name</span>
-                        <span class="proxi price-product">RP 123.456</span>
-                        <span class="proxi status-product">tersedia</span>
+                    @foreach ($barangs as $barang)
+                    <div class="barang">
+                        <svg width="201" height="174" viewBox="0 0 201 174" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="201" height="174" rx="20" fill="#EFEFEF"/>
+                        </svg>
+                        <div class="details-barang">
+                            <span class="proxi name-product">
+                                <a href="/barang/{{$barang->id}}/show">{{$barang->nama}}</a>
+                            </span>
+                            <span class="proxi price-product">{{$barang->harga}}</span>
+                            @if ($barang->status_id == 1)
+                                <span class="proxi status-product">tersedia</span>
+                            @else
+                                <span class="proxi status-product">tidak tersedia</span>
+                            @endif 
+                        </div>
                     </div>
-                </div>
-                @endfor
+                    @endforeach
+                
             </div>
         </div>
     </section>

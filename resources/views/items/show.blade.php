@@ -1,3 +1,6 @@
+@extends('layouts.main-layout')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,5 +20,12 @@
         @else
             Tidak Tersedia <br>
         @endif
+        <a href="/barang/{{$barang->id}}/edit" class="btn btn-info">Edit</a>
+        <form action="/barang/{{$barang->id}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger">Hapus</button>
+        </form>
 </body>
-</html>
+</html> 
+@endsection

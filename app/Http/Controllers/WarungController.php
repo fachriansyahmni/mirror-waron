@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\KategoriWarung;
 use Illuminate\Http\Request;
 use App\Warung;
+use App\Barang;
 use Illuminate\Support\Facades\Auth;
 
 class WarungController extends Controller
@@ -87,7 +88,43 @@ class WarungController extends Controller
     {
         $DataWarung = $this->getDataWarung()->where('id', $idwarung)->first();
         if ($DataWarung == null) return redirect()->back()->with('error', 'not valid'); // validasi warung jika tidak ada
+        
+        //barang
+        $barangs = Barang::inRandomOrder()->get();
+        return view('warung.view', compact('barangs'));
+    }
 
-        return view('warung.view');
+    public function show($id)
+    {
+        $barang = Barang::find($id);
+        return view('items.show', compact('barang'));
+    }
+
+    public function edit($id)
+    {
+        $barang = Barang::find($id);
+        return view('items.edit', compact('barang'));
+    }
+
+    public function update(Request $request)
+    {
+        $barang = Barang::find($request["id"]);
+        $barang->nama = $request["nama"];
+        $barang->harga = $request["harga"];
+        $barang->deskripsi = $request["deskripsi"];
+        $barang->gambar = $request["gambar"];
+        $barang->warung_id = "1";
+        $barang->status_id = $request["status_id"];
+        $barang->save();
+        return redirect('/my-warung'.'/' . $request["warung_id"]);
+        //note : cara return
+    }
+
+    public function destroy($id)
+    {
+        $barang = Barang::find($id);
+        $barang->delete();
+        return redirect('/my-warung'.'/' . $request["warung_id"]);
+        //note : cara return
     }
 }

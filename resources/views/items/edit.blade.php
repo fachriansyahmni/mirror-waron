@@ -1,3 +1,6 @@
+@extends('layouts.main-layout')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +48,8 @@
             </tr>
             
         </table>
-        <button>edit</button>
+        <button class="btn btn-info">edit</button>
     </form>
 </body>
 </html>
+@endsection
