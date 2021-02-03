@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Warung;
+use App\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -78,8 +79,11 @@ class MainController extends Controller
     {
         $WarungData = $this->getDataWarungActive($id)->first();
         if ($WarungData == null) return redirect()->back();
-
-        $compacts = ['WarungData'];
+        
+        $koor = explode(",",$WarungData->koordinat);
+        $barangs = DB::table('barangs')->where('warung_id', $WarungData['id'])->get(); 
+        $compacts = ['WarungData','barangs','koor'];
+        
         return view('overview', compact($compacts));
     }
 }
