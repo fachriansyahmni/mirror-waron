@@ -39,10 +39,6 @@ class AdminController extends Controller
     {
         return view('admin.profile');
     }
-    public function confirm()
-    {
-        return view('admin.confirm');
-    }
     public function manage(Request $request)
     {
         $getAllWarung = $this->getAllWarung();

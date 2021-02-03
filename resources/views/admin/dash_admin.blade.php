@@ -72,7 +72,56 @@
       </div>
     </div>
   </div>
-  <div class="row">
+    <div class="row">
+            <div class="col-md-4">
+              <div class="card card-chart">
+                <div class="card-header card-header-success">
+                  <div class="ct-chart" id="dailySalesChart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Daily Sales</h4>
+                  <p class="card-category">
+                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> updated 4 minutes ago
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-chart">
+                <div class="card-header card-header-warning">
+                  <div class="ct-chart" id="websiteViewsChart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Email Subscriptions</h4>
+                  <p class="card-category">Last Campaign Performance</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> campaign sent 2 days ago
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-chart">
+                <div class="card-header card-header-danger">
+                  <div class="ct-chart" id="completedTasksChart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Completed Tasks</h4>
+                  <p class="card-category">Last Campaign Performance</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> campaign sent 2 days ago
+                  </div>
+                </div>
+              </div>
+            </div>
     <div class="col-lg-6 col-md-12">
       <div class="card">
         <div class="card-header card-header-tabs card-header-primary">
@@ -113,46 +162,35 @@
     <div class="col-lg-6 col-md-12">
       <div class="card">
         <div class="card-header card-header-warning">
-          <h4 class="card-title">Warung Stats</h4>
-          <p class="card-category">New Warung on 06th January, 2021</p>
+          <h4 class="card-title">Data Persebaran Warung</h4>
         </div>
         <div class="card-body table-responsive">
           <table class="table table-hover">
             <thead class="text-warning">
-              <th>ID</th>
-              <th>Name</th>
-              <th>City</th>
-              <th>Districts</th>
-              <th>Accepted</th>
+              <th>No</th>
+              <th>Kota</th>
+              <th>Jumlah Warung</th>
             </thead>
             <tbody>
               <tr>
                 <td>1</td>
-                <td>Dakota Rice</td>
                 <td>Bandung</td>
-                <td>Coblong</td>
-                <td>19:01 WIB</td>
+                <td>2</td>
               </tr>
               <tr>
                 <td>2</td>
-                <td>Warung Miss Claude</td>
                 <td>Bekasi</td>
-                <td>East Bekasi</td>
-                <td>18:49 WIB</td>
+                <td>1</td>
               </tr>
               <tr>
                 <td>3</td>
-                <td>Warung Mr Beddy</td>
                 <td>Bogor</td>
-                <td>Hotwater</td>
-                <td>17:19 WIB</td>
+                <td>1</td>
               </tr>
               <tr>
                 <td>4</td>
-                <td>Warung Indomie 99</td>
-                <td>Bandung</td>
-                <td>West Java</td>
-                <td>16:44 WIB</td>
+                <td>Kebumen</td>
+                <td>1</td>
               </tr>
             </tbody>
           </table>

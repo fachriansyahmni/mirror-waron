@@ -222,7 +222,7 @@
       <div class="card card-jw">
           <img src="{{asset('img/shop.svg')}}" class="card-img-top mt-5" style="width:130px; height: 130px;">
           <div class="card-body">
-              <a href="#" class="stretched-link text-uppercase">{{$warung->nama_warung}}</a>
+              <a href="{{route('overview.warung',$warung->id)}}" class="stretched-link text-uppercase">{{$warung->nama_warung}}</a>
           </div>
       </div>
       @endforeach
