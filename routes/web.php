@@ -76,6 +76,11 @@ Route::middleware('auth:warung')->group(function () {
     Route::get('/barang/{id}/show', 'WarungController@show'); //lihat detail data
     Route::get('/barang/{id}/edit', 'WarungController@edit'); //menampilkan form edit
     Route::put('/barang/{id}', 'WarungController@update'); //menyimpan hasil edit
+
+    //profile
+    Route::get('/profile/{id}/show', 'AkunController@show');
+    Route::get('/profile/{id}/edit', 'AkunController@edit'); //menampilkan form edit
+    Route::put('/profile/{id}', 'AkunController@update'); //menyimpan hasil edit
 });
 
 // Route::middleware('auth:admin,warung')->group(function () {

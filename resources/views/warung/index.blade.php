@@ -1,4 +1,9 @@
 @extends('dashboard-layouts.d_master')
+
+@section('link profile')
+    "/profile/1/show"
+@endsection
+
 @section('content')
     <div class="container-fluid">
         <a href="{{route('user.warung.create')}}" class="btn btn-info">buat</a>

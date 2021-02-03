@@ -38,7 +38,6 @@ class WarungController extends Controller
         if ($request->has('submitwarung')) {
             $request->validate([
                 'nama_warung' => 'required',
-                'alamat' => 'required',
                 'no_hp' => 'required',
                 'prov' => 'required|integer',
                 'kabkot' => 'required|integer',

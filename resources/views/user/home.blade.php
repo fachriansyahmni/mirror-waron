@@ -1,5 +1,9 @@
 @extends('dashboard-layouts.d_master')
 
+@section('link profile')
+    "/profile/1/show"
+@endsection
+
 @section('content')
 <div class="card">
     <div class="card-body">

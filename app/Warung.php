@@ -10,7 +10,7 @@ class Warung extends Model
         'nama_warung', 'pemilik', 'no_hp', 'foto', 'alamat', 'koordinat', 'kategori_id', 'akun_id', 'kec_id', 'kabkot_id', 'prov_id', 'is_active'
     ];
 
-    public $timestamps = false;
+    //public $timestamps = false;
 
     public function owner()
     {
