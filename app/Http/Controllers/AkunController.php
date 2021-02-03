@@ -33,11 +33,18 @@ class AkunController extends Controller
         return view('user.edit', compact('akun'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
-        $akun = Akun::find($request['id']);
-        $akun->nama = $request['nama'];
+        $akun = Akun::find($request['$id']);
+        if($request->has('UpdateNama')){
+            $akun->nama = $request->nama;
+        }elseif($request->has('UpdatePassword')){
+            $akun->password = bcrypt($request->password);
+        }else{
+            return view('user.show',compact('akun'));
+        }
         $akun->save();
-        return redirect('profile/'.$request['id'].'/show');
+        return redirect()->back();
     }
+
 }

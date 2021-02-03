@@ -140,13 +140,17 @@
       <!-- Modal body -->
       <div class="modal-body">
         <h4>Ubah Kata Sandi & Nama Akun</h4>
-        <label>Nama Akun</label>
-        <input type="text" name="nama" class="form-control" value="{{Auth::user()->nama}}">
+        <form method="POST">
+          @csrf
+        <label>Nama Akun anda ({{Auth::user()->nama}})</label>
+        <input type="text" name="nama" class="form-control">
+        <input type="submit" name="UpdateNama" value="Ubah Nama" class="btn btn-primary"><br>
         <label>Masukkan Password Lama</label>
-        <input type="password" name="test" class="form-control">
+        <input type="password" name="password" class="form-control">
         <label>Masukkan Password Baru</label>
         <input type="password" name="test" class="form-control">
-        <input type="submit" name="acc" value="Ubah" class="btn btn-primary">
+        <input type="submit" name="UpdatePassword" value="Ubah Password" class="btn btn-primary">
+      </form>
       </div>
 
       <!-- Modal footer -->
