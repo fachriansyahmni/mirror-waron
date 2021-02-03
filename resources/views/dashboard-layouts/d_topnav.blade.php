@@ -111,7 +111,7 @@
               </p>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-              <a class="dropdown-item" href="#">Profile</a>
+              <a class="dropdown-item" href="#">{{Auth::user()->nama}}</a>
               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalSet">Pengaturan</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
@@ -140,8 +140,9 @@
       <!-- Modal body -->
       <div class="modal-body">
         <h4>Ubah Kata Sandi & Nama Akun</h4>
-        <form method="POST">
+        <form method="POST" action="{{route('update.profile.action',AUTH::user()->id)}}">
           @csrf
+          @method('PUT')
         <label>Nama Akun anda ({{Auth::user()->nama}})</label>
         <input type="text" name="nama" class="form-control">
         <input type="submit" name="UpdateNama" value="Ubah Nama" class="btn btn-primary"><br>

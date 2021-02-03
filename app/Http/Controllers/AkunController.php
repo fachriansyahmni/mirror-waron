@@ -35,7 +35,7 @@ class AkunController extends Controller
 
     public function update(Request $request,$id)
     {
-        $akun = Akun::find($request['$id']);
+        $akun = Akun::find($id);
         if($request->has('UpdateNama')){
             $akun->nama = $request->nama;
         }elseif($request->has('UpdatePassword')){
