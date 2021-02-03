@@ -79,7 +79,7 @@ Route::middleware('auth:warung')->group(function () {
     Route::put('/barang/{id}', 'WarungController@update'); //menyimpan hasil edit
 
     //profile
-    Route::get('/profile/{id}/show', 'AkunController@show')->name('profile.show'); //menampilkan profile
+    Route::get('/profile/{id}/show', 'AkunController@show')->name('show.profile');; //menampilkan profile
     Route::get('/profile/{id}/edit', 'AkunController@edit'); //menampilkan form edit
     Route::put('/profile/{id}', 'AkunController@update')->name('update.profile.action'); //menyimpan hasil edit
 });
