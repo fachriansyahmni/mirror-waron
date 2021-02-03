@@ -4,26 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Barang;    
+use App\Barang;
+use App\Warung;
 
-class BarangController extends Controller
+class BarangController extends WarungController
 {
-    public function create()
+    public function createBarang()
     {
         return view('items.create');
     }
 
-    public function store(Request $request)
-    { 
+    public function store(Request $request, $idwarung)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'status_id' => 'required',
+        ]);
         $barang = new Barang;
-        $barang->nama = $request["nama"];
-        $barang->harga = $request["harga"];
-        $barang->deskripsi = $request["deskripsi"];
-        $barang->gambar = $request["gambar"];
-        $barang->warung_id = "1";
-        $barang->status_id = $request["status_id"];
-        $barang->save();
-        return redirect('/barang');
+        $barang->nama = $request->nama;
+        $barang->harga = $request->harga;
+        $barang->deskripsi = $request->deskripsi;
+        $barang->gambar = $request->gambar;
+        $barang->warung_id = $idwarung;
+        $barang->status_id = $request->status_id;
+        $saveBarang = $barang->save();
+        if ($saveBarang) return redirect()->back(); // jika berhasil
+        return redirect()->back();
     }
 
     public function index()

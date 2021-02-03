@@ -89,8 +89,10 @@ class WarungController extends Controller
         if ($DataWarung == null) return redirect()->back()->with('error', 'not valid'); // validasi warung jika tidak ada
 
         //barang
-        $barangs = Barang::inRandomOrder()->get();
-        return view('warung.view', compact('barangs'));
+        $barangs = Barang::inRandomOrder()->where('warung_id', $idwarung)->get();
+
+        $compacts = ['DataWarung', 'barangs'];
+        return view('warung.view', compact($compacts));
     }
 
     public function show($id)
