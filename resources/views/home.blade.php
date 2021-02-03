@@ -34,8 +34,12 @@
         height: 20px; */
         padding-right: calc(100%-60px);
     }
+    input.search[type="text"]:focus {
+      border: 1px solid #b4F5FF;
+      box-shadow: 1px solid;
+    }
 
-    input.submitsearch[type="submit"] {
+    button.submitsearch[type="submit"] {
         margin-left: -60px;
         height: 30px;
         margin-top: 10px;
@@ -129,12 +133,13 @@
             <input type="text" class="form-control" name="search" id="">
             <button class="btn btn-block btn-info" type="submit">cari</button>
           </form>
-          <form method="POST" action="{{route('cari')}}" class="search-d">
-            @csrf
+          <form method="GET" action="{{route('cari')}}" class="search-d">
             <div class="input-group">
-              <input type="text" style="border-radius: 40px; z-index: inherit;" name="search" class="form-control form-control-lg search" placeholder="Cari warung atau produk didekatmu...">
+              <input type="text" style="border-radius: 40px; z-index: inherit;" name="q" class="form-control form-control-lg search" placeholder="Cari warung atau produk didekatmu...">
+              <input type="text" name="type" value="warung" hidden>
               <div class="input-group-append">
-                <input type="submit" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info">
+                <button type="submit" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info">cari</button>
+                {{-- <input type="submit" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info"> --}}
               </div>
             </div>
           </form>

@@ -2,7 +2,7 @@
 
 @push('css')
     <style>
-
+        /* modal type 1 */
         .modal {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
@@ -74,6 +74,7 @@
             color: white;
         }
 
+        
         #div-view-warung{
             margin-top: 100px;
             display: flex;
@@ -149,6 +150,56 @@
             font-weight: 300;   
             color:#ff531e;     
         }
+
+
+
+        #target-content {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 200ms;
+        }
+        #target-content:target {
+            pointer-events: all;
+            opacity: 1;
+        }
+        #target-content #target-inner {
+            position: absolute;
+            display: block;
+            padding: 48px;
+            line-height: 1.8;
+            width: 70%;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
+            background: white;
+            color: #34495E;
+        }
+        #target-content #target-inner h2 {
+            margin-top: 0;
+        }
+        #target-content #target-inner code {
+            font-weight: bold;
+        }
+        #target-content a.close {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: #34495E;
+            opacity: 0.5;
+            transition: opacity 200ms;
+        }
+        #target-content a.close:hover {
+            opacity: 0.4;
+        }
     </style>
 @endpush
 
@@ -167,14 +218,24 @@
                 </div>
             </div>
         </div>
+        {{-- <a href="#target-content" id="button">Open CSS Modal via <code>:target</code></a> --}}
+
+        {{-- <div id="target-content">
+            <a href="#" class="close"></a>
+            <div id="target-inner">
+                <h2>CSS Modal</h2>
+                This modal is open because its id is the target in the <code>href</code> of the link. You can style an element's target state with the selector <code>:target</code>. When this modal is toggled, an invisible link with <code>href="#"</code> is positioned absolutely behind the modal content. Clicking it will change the target and thus close the modal.
+            </div>
+        </div> --}}
         <div id="etalase-warung" class="mt-5">
             <div class="option-etalase d-flex justify-content-between">
                 <h4 class="proxi">Etalase</h4>
-                <button id="btnTambahProduk"  class="btn btn-primary">Tambah Produk</button>
+                <button id="btnTambahProduk" class="btn btn-primary">Tambah Produk</button>
+                <button id="btnmodal2" class="btn btn-primary">test</button>
             </div>
             <div class="items">
                     @foreach ($barangs as $barang)
-                    <div class="barang">
+                    <div class="barang" data-target="barang-{{$barang->id}}">
                         <svg width="201" height="174" viewBox="0 0 201 174" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="201" height="174" rx="20" fill="#EFEFEF"/>
                         </svg>
@@ -196,7 +257,7 @@
     </section>
 </div>
 
-<div id="myModal" class="modal">
+<div id="modalTambahProduk" class="modal">
 
     <!-- Modal content -->
     <div class="modal-content">
@@ -246,12 +307,25 @@
     </div>
   
   </div>
+<div id="modal2" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        modal 2
+      </div>
+    </div>
+  
+  </div>
 @endsection
 
 @push('scripts')
 <script>
     // Get the modal
-    var modal = document.getElementById("myModal");
+    var modal = document.getElementById("modalTambahProduk");
     
     // Get the button that opens the modal
     var btn = document.getElementById("btnTambahProduk");
@@ -259,6 +333,9 @@
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
     
+    $('.barang').click(function(){
+        alert($(this).data('target'));
+    });
     // When the user clicks the button, open the modal 
     btn.onclick = function() {
       modal.style.display = "block";

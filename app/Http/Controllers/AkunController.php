@@ -24,7 +24,7 @@ class AkunController extends Controller
     public function show($id)
     {
         $akun = Akun::find($id);
-        return view('user.show',compact('akun'));
+        return view('user.show', compact('akun'));
     }
 
     public function edit($id)
@@ -38,6 +38,6 @@ class AkunController extends Controller
         $akun = Akun::find($request['id']);
         $akun->nama = $request['nama'];
         $akun->save();
-        return redirect('profile/'.$request['id'].'/show');
+        return redirect('profile/' . $request['id'] . '/show');
     }
 }

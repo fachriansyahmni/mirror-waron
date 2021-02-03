@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Warung;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
@@ -15,12 +16,58 @@ class MainController extends Controller
     {
         return Warung::where('is_active', 1);
     }
-    public function cariPage()
-    {
-        $compacts = [];
 
-        $getWarungActive = $this->getAllWarungActive()->paginate(15);
-        array_push($compacts, 'getWarungActive');
+    public function cariPage(Request $request)
+    {
+        // $request->validate([
+        //     'q' => 'required',
+        //     'type' => 'required',
+        // ]);
+        if (isset($request->q)) {
+            $querySearch = $request->q;
+        } else {
+            $querySearch = " ";
+        }
+
+        if (isset($request->type)) {
+            $typeSearch = $request->type;
+        } else {
+            $typeSearch = "warung";
+        }
+        switch ($typeSearch) {
+            case "warung":
+                $dbSearch = "warungs";
+                break;
+            default:
+                $dbSearch = "warungs";
+                break;
+        }
+
+        $table = DB::table($dbSearch);
+        switch ($typeSearch) {
+            case "warung":
+                $table->join('kategori_warungs', $dbSearch . '.kategori_id', '=', 'kategori_warungs.id');
+                $table->select($dbSearch . '.*', 'kategori_warungs.id as kategId');
+                $table->where('is_active', 1);
+                $table->where(function ($query) use ($querySearch) {
+                    $query->where('nama_warung', 'LIKE', '%' . $querySearch . '%')
+                        ->orWhere('kategori', 'LIKE', '%' . $querySearch . '%');
+                });
+                // $table->where('nama_warung', 'LIKE', '%' . $querySearch . '%')->orWhere('kategori', 'LIKE', '%' . $querySearch . '%');
+                if (isset($request->category)) {
+                    $table->where('kategori_id', $request->category);
+                }
+                break;
+            default:
+
+                break;
+        }
+        $hasil = $table->get();
+        $compacts = ['hasil'];
+
+        // $getWarungActive = $this->getAllWarungActive()->paginate(15);
+
+        // $hasil = array_push($compacts, 'getWarungActive');
         return view('search', compact($compacts));
     }
     public function warungByKategori($id)
