@@ -134,7 +134,7 @@
             <div class="input-group">
               <input type="text" style="border-radius: 40px; z-index: inherit;" name="search" class="form-control form-control-lg search" placeholder="Cari warung atau produk didekatmu...">
               <div class="input-group-append">
-                <input type="submit" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info">
+                <input type="submit" value="Cari" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info">
               </div>
             </div>
           </form>
