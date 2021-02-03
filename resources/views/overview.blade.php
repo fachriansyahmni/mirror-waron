@@ -87,6 +87,9 @@
         padding: 20px;
     }
 
+
+
+
     @media only screen and (max-width:1020px) {
       #detailsWarung{
           flex-direction: column;
@@ -160,6 +163,7 @@
         </div>
         @endfor
     </div>
+    <a href="#target-content" id="button">Open CSS Modal via <code>:target</code></a>
 </section>
 @endsection
 

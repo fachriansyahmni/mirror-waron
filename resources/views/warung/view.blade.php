@@ -2,6 +2,78 @@
 
 @push('css')
     <style>
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid rgb(248, 248, 248);
+            width: 80%;
+            max-width: 620px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
+
+        /* Add Animation */
+        @-webkit-keyframes animatetop {
+            from {top:-300px; opacity:0} 
+            to {top:0; opacity:1}
+        }
+
+        @keyframes animatetop {
+            from {top:-300px; opacity:0}
+            to {top:0; opacity:1}
+        }
+
+        /* The Close Button */
+        .close {
+            color: rgb(63, 63, 63);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            /* padding: 2px 16px; */
+            /* background-color: #5cb85c; */
+            color: white;
+            border: 0;
+        }
+
+        .modal-body {padding: 2px 16px;}
+
+        .modal-footer {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            color: white;
+        }
+
         #div-view-warung{
             margin-top: 100px;
             display: flex;
@@ -98,7 +170,7 @@
         <div id="etalase-warung" class="mt-5">
             <div class="option-etalase d-flex justify-content-between">
                 <h4 class="proxi">Etalase</h4>
-                <a href="/barang/create"  class="btn btn-primary">Tambah Produk</a>
+                <button id="btnTambahProduk"  class="btn btn-primary">Tambah Produk</button>
             </div>
             <div class="items">
                     @foreach ($barangs as $barang)
@@ -119,9 +191,89 @@
                         </div>
                     </div>
                     @endforeach
-                
             </div>
         </div>
     </section>
 </div>
+
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <form action="{{route('barang.create',$DataWarung->id)}}" method="POST">
+            @csrf
+            <table>
+                <tr>
+                    <td>Nama Barang :</td>
+                    <td><input type="text" name="nama" placeholder="Masukan Nama Barang"></td>
+                </tr>
+                <tr>
+                    <td>Deskripsi :</td>
+                    <td>
+                        <input type="text" name="deskripsi" placeholder="Deskripsi">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Harga</td>
+                    <td><input type="text" name="harga" placeholder="Masukan Harga"></td>
+                </tr>
+                <tr>
+                    <td>Gambar</td>
+                    <td><input type="text"name="gambar" placeholder="Gambar"></td>
+                </tr>
+                <tr>
+                    <td>Pilihan</td>
+                    <td>
+                        <input type="radio" name="status_id" checked value="1"><br>
+                        <label for="">Tersedia</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" name="status_id" value="0">
+                        <label for="">Tidak Tersedia</label>
+                    </td>
+                </tr>
+                
+            </table>
+            <button>Submit</button>
+        </form>
+      </div>
+    </div>
+  
+  </div>
 @endsection
+
+@push('scripts')
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    
+    // Get the button that opens the modal
+    var btn = document.getElementById("btnTambahProduk");
+    
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    </script>
+@endpush
