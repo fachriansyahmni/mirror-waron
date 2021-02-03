@@ -129,14 +129,11 @@
     <img class="imgWarung" src="{{asset('img/shop.png')}}">
     <div class="infoWarung" class="d-flex flex-column" style="max-width: 460px">
         <strong style="font-size: 20px" class="text-uppercase proxi">{{$WarungData->nama_warung}}</strong>
-        <div class="proxi" style="color: #B0B0B0">lokasi</div>
+        <div class="proxi" style="color: #B0B0B0">{{$WarungData->prov_id}}</div> {{-- Lokasi --}}
         <div class="">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-            when an unknown printer took a galley of type and scrambled it to make a 
-            type specimen book.
+            {{$WarungData->alamat}}, {{$WarungData->kec_id}}, {{$WarungData->kabkot_id}} 
             <br>
-            <a href="#" class="btn-c-whatsapp">whatsapp</a>
+            <a href="{{$WarungData->no_hp}}" class="btn-c-whatsapp">whatsapp</a>
         </div>
     </div>
     <div id="mapid"></div> 
@@ -150,7 +147,21 @@
         </form>
     </div>
     <div class="items">
-        @for ($i = 0; $i < 25; $i++)
+        @foreach ($barangs as $barang)
+            <div class="barang">
+                <svg width="201" height="174" viewBox="0 0 201 174" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="201" height="174" rx="20" fill="#EFEFEF"/>
+                </svg>
+                <div class="details-barang">
+                    <span class="proxi name-product">{{$barang->nama}}</span>
+                    <span class="proxi price-product">{{$barang->harga}}</span>
+                    <span class="proxi status-product">tersedia</span>
+                </div>
+            </div>
+        @endforeach
+    </div>
+    
+    {{-- <div class="items">
         <div class="barang">
             <svg width="201" height="174" viewBox="0 0 201 174" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="201" height="174" rx="20" fill="#EFEFEF"/>
@@ -161,9 +172,7 @@
                 <span class="proxi status-product">tersedia</span>
             </div>
         </div>
-        @endfor
-    </div>
-    <a href="#target-content" id="button">Open CSS Modal via <code>:target</code></a>
+    </div> --}}
 </section>
 @endsection
 
@@ -171,8 +180,8 @@
 @push('scripts')
 <script src="{{asset('vendor/leaflet/leaflet.js')}}"></script>
 <script>
-    var latx = -6.210591; //misalkan
-    var lngy = 106.850043; //misalkan
+    var latx = "{{$koor[0]}}"; //misalkan -6.210591
+    var lngy = "{{$koor[1]}}"; //misalkan 106.850043
     var mymap = L.map('mapid').setView([latx, lngy], 13);
     var marker = L.marker([latx, lngy]).addTo(mymap);
     marker.bindPopup("<b>my location</b>").openPopup();
