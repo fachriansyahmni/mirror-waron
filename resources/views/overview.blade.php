@@ -87,6 +87,9 @@
         padding: 20px;
     }
 
+
+
+
     @media only screen and (max-width:1020px) {
       #detailsWarung{
           flex-direction: column;
