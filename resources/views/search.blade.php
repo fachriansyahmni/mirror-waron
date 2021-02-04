@@ -32,22 +32,52 @@
     </style>
 @endpush
 @section('content')
-    <div class="container-fluid" style="margin-top: 120px; margin-bottom: 20px">
+    <div class="container-fluid" style="margin-top: 120px; margin-bottom: 20px; min-height: 100vh;">
         <div class="search-form">
-            <form method="GET">
-                <input type="text" name="q" class="form-control" value="{{old('q')}}">
+            <form method="GET" id="form_search">
+                <input type="text" name="q" class="form-control" value="{{$_GET['q']}}">
                 <button class="btn btn-info">cari</button>
             </form>
         </div>
         <section class="content">
             <div id="filter">
                 <div class="card card-body shadow-none">
-                    <input type="radio" name="type" checked>
-                    <input type="radio" name="type">
+                    <div class="form-group text-center">
+                        Type
+                        <div class="row">
+                            <div class="col">
+                                <input id="r_type_warung" type="radio" name="type" value="warung" checked>
+                                <label for="r_type_warung">Warung</label>
+                            </div>
+                            <div class="col">
+                                <input id="r_type_barang" type="radio" name="type" value="barang">
+                                <label for="r_type_barang">Barang</label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        Kategori
+                        <select name="category" id="">
+                            <option value="0">All</option>
+                            @php
+                                $getAllCategories = App\KategoriWarung::select(['id','kategori'])->get();
+                            @endphp
+                            @foreach ($getAllCategories as $category)
+                                <option value="{{$category->id}}">{{$category->kategori}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
+                <button>filter</button>
             </div>
             <div id="content-filter" class="row">
-                @foreach ($getWarungActive as $warung)
+                @if (count($hasil) < 1)
+                    <div class="col-lg-12 text-center">
+                        <strong>Tidak ada hasil</strong>
+                    </div>
+                @endif
+                @foreach ($hasil as $warung)
                 <div class="col-lg-3 col-md-4 col-sm-4 mb-3">
                     <div class="card shadow-none border-0 card-content-result">
                         <div class="card-cr-img"></div>
