@@ -333,9 +333,6 @@
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
     
-    $('.barang').click(function(){
-        alert($(this).data('target'));
-    });
     // When the user clicks the button, open the modal 
     btn.onclick = function() {
       modal.style.display = "block";

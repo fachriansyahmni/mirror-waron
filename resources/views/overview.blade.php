@@ -23,7 +23,6 @@
         height: 225px;
         margin-left: auto;
     }
-
     #etalase{
         margin-top: 10vh;
         min-height: 100vh;
@@ -87,10 +86,6 @@
     a.btn-c-whatsapp{
         padding: 20px;
     }
-
-
-
-
     @media only screen and (max-width:1020px) {
       #detailsWarung{
           flex-direction: column;
@@ -131,10 +126,10 @@
     <div class="infoWarung" class="d-flex flex-column" style="max-width: 460px">
         <strong style="font-size: 20px" class="text-uppercase proxi">{{$WarungData->nama_warung}}</strong>
         <div class="proxi" style="color: #B0B0B0">
-            {{$WarungData->prov_id}}
+          {{$WarungData->nama_kecamatan}}, {{$WarungData->nama_kota}}
         </div> {{-- Lokasi --}}
         <div class="">
-            {{$WarungData->alamat}}, {{$WarungData->kec_id}}, {{$WarungData->kabkot_id}} 
+            {{$WarungData->alamat}}, {{$WarungData->nama_kecamatan}}, {{$WarungData->nama_kota}},  {{$WarungData->nama_provinsi}}
             <br>
             <a href="{{$WarungData->no_hp}}" class="btn-c-whatsapp">whatsapp</a>
         </div>
