@@ -77,13 +77,18 @@ class MainController extends Controller
     }
     public function warungOverview($id)
     {
+        $urlDataProvinsi = "https://dev.farizdotid.com/api/daerahindonesia/provinsi"; //ambil semua data provinsi
+        $getDataProvinsi = json_decode(file_get_contents($urlDataProvinsi), true);
+        // dd($getDataProvinsi['provinsi'][2]['nama']);
         $WarungData = $this->getDataWarungActive($id)->first();
         if ($WarungData == null) return redirect()->back();
-        
-        $koor = explode(",",$WarungData->koordinat);
-        $barangs = DB::table('barangs')->where('warung_id', $WarungData['id'])->get(); 
-        $compacts = ['WarungData','barangs','koor'];
-        
+        // $WarungData->append('is_admin')->toArray();
+        // $this->WarungData['zzz'] = $getDataProvinsi['provinsi'][2]['nama'];
+        dd($WarungData);
+        $koor = explode(",", $WarungData->koordinat);
+        $barangs = DB::table('barangs')->where('warung_id', $WarungData['id'])->get();
+        $compacts = ['WarungData', 'barangs', 'koor'];
+
         return view('overview', compact($compacts));
     }
 }
