@@ -70,11 +70,6 @@ class WarungController extends Controller
         if ($DataWarung == null) return redirect()->back()->with('error', 'not valid'); // validasi warung jika tidak ada
 
         if ($request->has('submitedit')) {
-            // $url = "https://dev.farizdotid.com/api/daerahindonesia/provinsi";
-            // dd($url);
-            // $json = json_decode(file_get_contents($url), true);
-
-            // dd($json);
             dd($request);
         }
 
@@ -145,7 +140,7 @@ class WarungController extends Controller
         $barang->stok = $request->stok;
 
         $barang->save();
-        return redirect('/my-warung'.'/' . $request->warung_id);
+        return redirect('/my-warung' . '/' . $request->warung_id);
         //note : bug return
     }
 
