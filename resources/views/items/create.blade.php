@@ -32,7 +32,6 @@
                 <td>Gambar</td>
                 <td><input type="text"name="gambar" placeholder="Gambar"></td>
             </tr>
-            <tr>
                 <td>Pilihan</td>
                 <td>
                     <input type="radio" name="status_id" value="1"><br>

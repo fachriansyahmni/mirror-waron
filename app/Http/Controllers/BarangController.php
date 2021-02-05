@@ -17,16 +17,23 @@ class BarangController extends WarungController
     public function store(Request $request, $idwarung)
     {
         $request->validate([
-            'nama' => 'required',
-            'status_id' => 'required',
+            'nama' => 'required'
         ]);
+        
         $barang = new Barang;
         $barang->nama = $request->nama;
         $barang->harga = $request->harga;
         $barang->deskripsi = $request->deskripsi;
         $barang->gambar = $request->gambar;
         $barang->warung_id = $idwarung;
-        $barang->status_id = $request->status_id;
+        
+        if ($request->stok <= 0) {
+            $barang->status_id = 0;
+        } else {
+            $barang->status_id = 1;
+        }
+        $barang->stok = $request->stok;
+
         $saveBarang = $barang->save();
         if ($saveBarang) return redirect()->back(); // jika berhasil
         return redirect()->back();
