@@ -34,11 +34,11 @@ class MainController extends Controller
         $name = $getDatakota['kota_kabupaten'][$key]['nama'];
         return $name;
     }
-    public function getKecName($idKota)
+    public function getKecName($idKota, $idKecamatan)
     {
         $urlDataKecamatan = "https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=" . $idKota; //ambil semua data provinsi
         $getDataKecamatan = json_decode(file_get_contents($urlDataKecamatan), true);
-        $key = array_search($idKota, array_column($getDataKecamatan['kecamatan'], 'id'));
+        $key = array_search($idKecamatan, array_column($getDataKecamatan['kecamatan'], 'id'));
         $name = $getDataKecamatan['kecamatan'][$key]['nama'];
         return $name;
     }
@@ -102,15 +102,11 @@ class MainController extends Controller
     }
     public function warungOverview($id)
     {
-
-        // dd($getDataProvinsi['provinsi'][12]['nama']);
         $WarungData = $this->getDataWarungActive($id)->first();
         $WarungData->nama_provinsi = $this->getProvName($WarungData->prov_id);
         $WarungData->nama_kota = $this->getKotaName($WarungData->prov_id, $WarungData->kabkot_id);
-        $WarungData->nama_kecamatan = $this->getKecName($WarungData->kabkot_id);
+        $WarungData->nama_kecamatan = $this->getKecName($WarungData->kabkot_id, $WarungData->kec_id);
         if ($WarungData == null) return redirect()->back();
-        // $WarungData->append('is_admin')->toArray();
-        // $this->WarungData['zzz'] = $getDataProvinsi['provinsi'][2]['nama'];
         $koor = explode(",", $WarungData->koordinat);
         $barangs = DB::table('barangs')->where('warung_id', $WarungData['id'])->get();
         $compacts = ['WarungData', 'barangs', 'koor'];
