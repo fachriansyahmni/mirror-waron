@@ -86,6 +86,9 @@
     a.btn-c-whatsapp{
         padding: 20px;
     }
+    form#formByCategory{
+        display: none;
+    }
     @media only screen and (max-width:1020px) {
       #detailsWarung{
           flex-direction: column;
@@ -108,9 +111,12 @@
         <div class="">
             <a href="/" class="text-muted proxi"></i>home</a> > 
             @isset($WarungData->kategori)
-            <a href="{{route('kategori.warung',$WarungData->kategori->id)}}" class="text-muted proxi"></i>
+            <a href="#" onclick="document.getElementById('formByCategory').submit();" class="text-muted proxi"></i>
                 {{$WarungData->kategori->kategori}}
             </a>
+            <form id="formByCategory" method="GET" action="{{route('cari')}}">
+                <input type="text" name="category" value="{{$WarungData->kategori->id}}">
+            </form>
             @else
             <a href="#" class="text-muted proxi"></i>
                 Warung

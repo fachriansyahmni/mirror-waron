@@ -98,7 +98,7 @@ class MainController extends Controller
     }
     public function warungByKategori($id)
     {
-        dd($id);
+        return Warung::where('kategori_id', $id)->get();
     }
     public function warungOverview($id)
     {
