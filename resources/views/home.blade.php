@@ -123,29 +123,30 @@
   </header> --}}
 
 @section('content')
-  <header class="container-fluid warung-landing">
-    <div class="warung-icon"></div>
-    <div class="warung-search">
-      <h1 style="font-weight: 600;" class="mb-5 proxi">CARI <span style="color:#b4F5FF">WARUNG</span><br>DISEKITARMU</h1>
-        <div class="text-center">
-          <form method="POST" action="{{route('cari')}}" class="search-m">
-            @csrf
-            <input type="text" class="form-control" name="search" id="">
-            <button class="btn btn-block btn-info" type="submit">cari</button>
-          </form>
-          <form method="GET" action="{{route('cari')}}" class="search-d">
-            <div class="input-group">
-              <input type="text" style="border-radius: 40px; z-index: inherit;" name="q" class="form-control form-control-lg search" placeholder="Cari warung atau produk didekatmu...">
-              <input type="text" name="type" value="warung" hidden>
-              <div class="input-group-append">
-                <button type="submit" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info">cari</button>
-                {{-- <input type="submit" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info"> --}}
-              </div>
+<header class="container-fluid warung-landing">
+  <div class="warung-icon"></div>
+  <div class="warung-search">
+    <h1 style="font-weight: 600;" class="mb-5 proxi">CARI <span style="color:#b4F5FF">WARUNG</span><br>DISEKITARMU</h1>
+      <div class="text-center">
+        <form method="POST" action="{{route('cari')}}" class="search-m">
+          @csrf
+          <input type="text" class="form-control" name="search" id="">
+          <button class="btn btn-block btn-info" type="submit">cari</button>
+        </form>
+        <form method="GET" action="{{route('cari')}}" class="search-d">
+          <div class="input-group">
+            <input type="text" style="border-radius: 40px; z-index: inherit;" name="q" class="form-control form-control-lg search" placeholder="Cari warung atau produk didekatmu...">
+            <input type="text" name="type" value="warung" hidden>
+            <div class="input-group-append">
+              <button type="submit" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info">cari</button>
+              {{-- <input type="submit" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info"> --}}
             </div>
-          </form>
-        </div>
-    </div>
-  </header>
+          </div>
+        </form>
+      </div>
+  </div>
+</header>
+
   <!-- Icons Grid -->
   <section class="features-icons bg-light text-center">
     <div class="container">
@@ -196,14 +197,17 @@
             </svg>
         </a>
       </div>
-      @for ($i = 0; $i < 4; $i++)
+      @php
+          $getAllCategory = App\KategoriWarung::inRandomOrder()->take(4)->get();
+      @endphp
+      @foreach ($getAllCategory as $category)
         <div class="card card-jw">
           <img src="{{ asset('img/coffee-cup.svg') }}" class="card-img-top mt-5" style="width:130px; height: 130px;">
           <div class="card-body">
-            <a href="#" class="stretched-link text-uppercase">warung kopi</a>
+            <a href="{{route('cari')}}" class="stretched-link text-uppercase">{{$category->kategori}}</a>
           </div>
         </div>
-      @endfor
+      @endforeach
     
       <div class="right-arrow">
         <a href="#">
