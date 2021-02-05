@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Create Items</h1>
+    <h1>Edit Items</h1>
     <form action="/barang/{{$barang->id}}" method="POST">
         @csrf
         @method('PUT')
@@ -34,6 +34,10 @@
                 <td><input type="text"name="gambar" placeholder="Gambar" value="{{$barang->gambar}}"></td>
             </tr>
             <tr>
+                <td>Stok</td>
+                <td><input type="number" name="stok" placeholder="Masukan Stok Barang" value="{{$barang->stok}}"></td>
+            </tr>
+            {{-- <tr>
                 <td>Pilihan</td>
                 <td>
                     <input type="radio" name="status_id" value="1" {{ ($barang->status_id=="1")? "checked" : "" }} ><br>
@@ -45,7 +49,7 @@
                     <input type="radio" name="status_id" value="0" {{ ($barang->status_id=="0")? "checked" : "" }} >
                     <label for="">Tidak Tersedia</label>
                 </td>
-            </tr>
+            </tr> --}}
             
         </table>
         <button class="btn btn-info">edit</button>

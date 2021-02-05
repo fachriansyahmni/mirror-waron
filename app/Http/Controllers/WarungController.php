@@ -115,10 +115,38 @@ class WarungController extends Controller
         $barang->deskripsi = $request["deskripsi"];
         $barang->gambar = $request["gambar"];
         $barang->warung_id = "1";
-        $barang->status_id = $request["status_id"];
+
+        if ($request->stok <= 0) {
+            $barang->status_id = 0;
+        } else {
+            $barang->status_id = 1;
+        }
+        $barang->stok = $request->stok;
+
         $barang->save();
         return redirect('/my-warung' . '/' . $request["warung_id"]);
-        //note : cara return
+        //note : bug return
+    }
+
+    public function editStok($id)
+    {
+        $barang = Barang::find($id);
+        return view('items.editStok', compact('barang'));
+    }
+
+    public function updateStok(Request $request)
+    {
+        $barang = Barang::find($request->id);
+        if ($request->stok <= 0) {
+            $barang->status_id = 0;
+        } else {
+            $barang->status_id = 1;
+        }
+        $barang->stok = $request->stok;
+
+        $barang->save();
+        return redirect('/my-warung'.'/' . $request->warung_id);
+        //note : bug return
     }
 
     public function destroy($id)
@@ -126,6 +154,6 @@ class WarungController extends Controller
         $barang = Barang::find($id);
         $barang->delete();
         return redirect('/my-warung' . '/' . $request["warung_id"]);
-        //note : cara return
+        //note : bug return
     }
 }
