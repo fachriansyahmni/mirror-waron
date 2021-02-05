@@ -197,14 +197,17 @@
             </svg>
         </a>
       </div>
-      @for ($i = 0; $i < 4; $i++)
+      @php
+          $getAllCategory = App\KategoriWarung::inRandomOrder()->take(4)->get();
+      @endphp
+      @foreach ($getAllCategory as $category)
         <div class="card card-jw">
           <img src="{{ asset('img/coffee-cup.svg') }}" class="card-img-top mt-5" style="width:130px; height: 130px;">
           <div class="card-body">
-            <a href="#" class="stretched-link text-uppercase">warung kopi</a>
+            <a href="{{route('cari')}}" class="stretched-link text-uppercase">{{$category->kategori}}</a>
           </div>
         </div>
-      @endfor
+      @endforeach
     
       <div class="right-arrow">
         <a href="#">

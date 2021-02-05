@@ -84,7 +84,7 @@ class MainController extends Controller
         if ($WarungData == null) return redirect()->back();
         // $WarungData->append('is_admin')->toArray();
         // $this->WarungData['zzz'] = $getDataProvinsi['provinsi'][2]['nama'];
-        dd($WarungData);
+        //dd($WarungData);
         $koor = explode(",", $WarungData->koordinat);
         $barangs = DB::table('barangs')->where('warung_id', $WarungData['id'])->get();
         $compacts = ['WarungData', 'barangs', 'koor'];
