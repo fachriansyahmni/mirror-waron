@@ -26,6 +26,7 @@
 
     #etalase{
         margin-top: 10vh;
+        min-height: 100vh;
     }
     #etalase .items{
         display:flex;
@@ -107,7 +108,7 @@
 @endpush
 
 @section('content')
-<div class="container-fluid" style="margin-top: 50px">
+<div class="container-fluid" style="margin-top: 50px;">
     <div class="d-flex justify-content-between p-5">
         <div class="">
             <a href="/" class="text-muted proxi"></i>home</a> > 
@@ -129,7 +130,9 @@
     <img class="imgWarung" src="{{asset('img/shop.png')}}">
     <div class="infoWarung" class="d-flex flex-column" style="max-width: 460px">
         <strong style="font-size: 20px" class="text-uppercase proxi">{{$WarungData->nama_warung}}</strong>
-        <div class="proxi" style="color: #B0B0B0">{{$WarungData->prov_id}}</div> {{-- Lokasi --}}
+        <div class="proxi" style="color: #B0B0B0">
+            {{$WarungData->prov_id}}
+        </div> {{-- Lokasi --}}
         <div class="">
             {{$WarungData->alamat}}, {{$WarungData->kec_id}}, {{$WarungData->kabkot_id}} 
             <br>
@@ -179,14 +182,16 @@
 
 @push('scripts')
 <script src="{{asset('vendor/leaflet/leaflet.js')}}"></script>
-<script>
-    var latx = "{{$koor[0]}}"; //misalkan -6.210591
-    var lngy = "{{$koor[1]}}"; //misalkan 106.850043
-    var mymap = L.map('mapid').setView([latx, lngy], 13);
-    var marker = L.marker([latx, lngy]).addTo(mymap);
-    marker.bindPopup("<b>my location</b>").openPopup();
-            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="#">kios.ku</a>'
-    }).addTo(mymap);
-</script>
+    @if(count($koor) == 2)
+        <script>
+            var latx = "{{$koor[0]}}"; //misalkan -6.210591
+            var lngy = "{{$koor[1]}}"; //misalkan 106.850043
+            var mymap = L.map('mapid').setView([latx, lngy], 13);
+            var marker = L.marker([latx, lngy]).addTo(mymap);
+            marker.bindPopup("<b>my location</b>").openPopup();
+                    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="#">kios.ku</a>'
+            }).addTo(mymap);
+        </script>
+    @endif
 @endpush
