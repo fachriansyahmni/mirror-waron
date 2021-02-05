@@ -138,12 +138,8 @@
               <input type="text" style="border-radius: 40px; z-index: inherit;" name="q" class="form-control form-control-lg search" placeholder="Cari warung atau produk didekatmu...">
               <input type="text" name="type" value="warung" hidden>
               <div class="input-group-append">
-<<<<<<< HEAD
                 <button type="submit" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info">cari</button>
                 {{-- <input type="submit" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info"> --}}
-=======
-                <input type="submit" value="Cari" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info">
->>>>>>> 2184be4911cbb8505a776c7de21b00f10362ffc8
               </div>
             </div>
           </form>
