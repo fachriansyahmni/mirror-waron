@@ -140,7 +140,6 @@
               <div class="input-group-append">
                 <button type="submit" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info">cari</button>
                 {{-- <input type="submit" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info"> --}}
-                <input type="submit" value="Cari" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info">
               </div>
             </div>
           </form>
