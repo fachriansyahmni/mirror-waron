@@ -131,7 +131,7 @@
         <div class="">
             {{$WarungData->alamat}}, {{$WarungData->nama_kecamatan}}, {{$WarungData->nama_kota}},  {{$WarungData->nama_provinsi}}
             <br>
-            <a href="{{$WarungData->no_hp}}" class="btn-c-whatsapp">whatsapp</a>
+            <a href="https://api.whatsapp.com/send?phone={{$WarungData->no_hp}}&text=Permisi.." class="btn-c-whatsapp">whatsapp</a>
         </div>
     </div>
     <div id="mapid"></div> 
