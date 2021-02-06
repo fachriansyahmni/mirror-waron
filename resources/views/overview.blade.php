@@ -108,7 +108,7 @@
         <div class="">
             <a href="/" class="text-muted proxi"></i>home</a> > 
             @isset($WarungData->kategori)
-            <a href="{{route('kategori.warung',$WarungData->kategori->id)}}" class="text-muted proxi"></i>
+            <a href="#" class="text-muted proxi"></i>
                 {{$WarungData->kategori->kategori}}
             </a>
             @else
@@ -183,7 +183,7 @@
             var lngy = "{{$koor[1]}}"; //misalkan 106.850043
             var mymap = L.map('mapid').setView([latx, lngy], 13);
             var marker = L.marker([latx, lngy]).addTo(mymap);
-            marker.bindPopup("<b>my location</b>").openPopup();
+            marker.bindPopup("<b>{{$WarungData->nama_warung}}</b>").openPopup();
                     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="#">kios.ku</a>'
             }).addTo(mymap);
