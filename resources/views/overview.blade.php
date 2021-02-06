@@ -84,7 +84,18 @@
         text-indent: 50%;
     }
     a.btn-c-whatsapp{
+        background: #DCF8C6;
         padding: 20px;
+        border-radius: 10px;
+        text-decoration: none;
+        margin-top: 20px;
+        color: #128C7E;
+    }
+    a.btn-c-whatsapp:hover{
+        background: #25D366;
+    }
+    form#formByCategory{
+        display: none;
     }
     @media only screen and (max-width:1020px) {
       #detailsWarung{
@@ -108,9 +119,12 @@
         <div class="">
             <a href="/" class="text-muted proxi"></i>home</a> > 
             @isset($WarungData->kategori)
-            <a href="#" class="text-muted proxi"></i>
+            <a href="#" onclick="document.getElementById('formByCategory').submit();" class="text-muted proxi"></i>
                 {{$WarungData->kategori->kategori}}
             </a>
+            <form id="formByCategory" method="GET" action="{{route('cari')}}">
+                <input type="text" name="category" value="{{$WarungData->kategori->id}}">
+            </form>
             @else
             <a href="#" class="text-muted proxi"></i>
                 Warung
@@ -128,10 +142,12 @@
         <div class="proxi" style="color: #B0B0B0">
           {{$WarungData->nama_kecamatan}}, {{$WarungData->nama_kota}}
         </div> {{-- Lokasi --}}
-        <div class="">
-            {{$WarungData->alamat}}, {{$WarungData->nama_kecamatan}}, {{$WarungData->nama_kota}},  {{$WarungData->nama_provinsi}}
+        <div class="" style="padding-right: 10px;">
+            <p>
+                {{$WarungData->alamat}}, {{$WarungData->nama_kecamatan}}, {{$WarungData->nama_kota}},  {{$WarungData->nama_provinsi}}
+            </p>
             <br>
-            <a href="https://api.whatsapp.com/send?phone={{$WarungData->no_hp}}&text=Permisi.." class="btn-c-whatsapp">whatsapp</a>
+            <a href="https://api.whatsapp.com/send?phone={{$WarungData->no_hp}}&text=Permisi.." class="btn-c-whatsapp proxi"><img style="width: 20px; margin-right: 10px;" src="{{asset('img/whatsapp.svg')}}" alt=""> whatsapp</a>
         </div>
     </div>
     <div id="mapid"></div> 

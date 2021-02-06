@@ -78,6 +78,7 @@
         #div-view-warung{
             margin-top: 100px;
             display: flex;
+            min-height: 100vh;
         }
         #div-view-warung section#details-warung{
             width: 30%;
@@ -265,7 +266,7 @@
         <span class="close">&times;</span>
       </div>
       <div class="modal-body">
-        <form action="{{route('barang.create',$DataWarung->id)}}" method="POST">
+        <form action="{{route('barang.create',$DataWarung->id)}}" enctype="multipart/form-data" method="POST">
             @csrf
             <table>
                 <tr>
@@ -284,7 +285,7 @@
                 </tr>
                 <tr>
                     <td>Gambar</td>
-                    <td><input type="text"name="gambar" placeholder="Gambar"></td>
+                    <td><input type="file" name="gambar"></td>
                 </tr>
                 <tr>
                     <td>Stok</td>
@@ -310,7 +311,7 @@
       </div>
     </div>
   
-  </div>
+</div>
 <div id="modal2" class="modal">
 
     <!-- Modal content -->
