@@ -3,6 +3,86 @@
 @push('css')
 <link rel="stylesheet" href="{{asset('vendor/leaflet/leaflet.css')}}" />
 <style>
+        :root {
+        --lightgray: #efefef;
+        --blue: steelblue;
+        --white: #fff;
+        --maincolor: #B4F5FF;
+        --black: rgba(0, 0, 0, 0.8);
+        --bounceEasing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
+        }
+
+    .open-modal {
+        font-weight: bold;
+        background: var(--blue);
+        color: var(--white);
+        padding: 0.75rem 1.75rem;
+        margin-bottom: 1rem;
+        border-radius: 5px;
+    }
+        /* MODAL
+    –––––––––––––––––––––––––––––––––––––––––––––––––– */
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        background: var(--black);
+        cursor: pointer;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.35s ease-in;
+    }
+
+    .modal.is-visible {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .modal-dialog {
+        position: relative;
+        max-width: 800px;
+        max-height: 80vh;
+        border-radius: 5px;
+        background: var(--white);
+        overflow: auto;
+        cursor: default;
+    }
+
+    .modal-dialog > * {
+        padding: 1rem;
+    }
+
+    .modal-header,
+    .modal-footer {
+        background: var(--maincolor);
+    }
+
+    .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    button.close-modal{
+        border-radius: 20px;
+        border: 0;
+        background: transparent;
+    }
+    .modal-header .close-modal {
+        font-size: 1.5rem;
+    }
+
+    .modal p + p {
+    margin-top: 1rem;
+    }
+    textarea#txtMsgWA{
+        min-width: 600px;
+    }
     #detailsWarung,#etalase{
         padding: 0 50px 0 50px;
     }
@@ -74,7 +154,7 @@
         max-width: 600px;
     }
     .search-input:hover{
-        border-color: #B4F5FF
+        border-color: #B4F5FF;
     }
     .search-input:focus{
         border-color: none;
@@ -119,16 +199,16 @@
         <div class="">
             <a href="/" class="text-muted proxi"></i>home</a> > 
             @isset($WarungData->kategori)
-            <a href="#" onclick="document.getElementById('formByCategory').submit();" class="text-muted proxi"></i>
-                {{$WarungData->kategori->kategori}}
-            </a>
-            <form id="formByCategory" method="GET" action="{{route('cari')}}">
-                <input type="text" name="category" value="{{$WarungData->kategori->id}}">
-            </form>
+                <a href="#" onclick="document.getElementById('formByCategory').submit();" class="text-muted proxi"></i>
+                    {{$WarungData->kategori->kategori}}
+                </a>
+                <form id="formByCategory" method="GET" action="{{route('cari')}}">
+                    <input type="text" name="category" value="{{$WarungData->kategori->id}}">
+                </form>
             @else
-            <a href="#" class="text-muted proxi"></i>
-                Warung
-            </a>
+                <a href="#" class="text-muted proxi"></i>
+                    Warung
+                </a>
             @endisset
         </div>
         <a href="#" class="text-muted proxi">laporkan</a>
@@ -147,7 +227,29 @@
                 {{$WarungData->alamat}}, {{$WarungData->nama_kecamatan}}, {{$WarungData->nama_kota}},  {{$WarungData->nama_provinsi}}
             </p>
             <br>
-            <a href="https://api.whatsapp.com/send?phone={{$WarungData->no_hp}}&text=Permisi.." class="btn-c-whatsapp proxi"><img style="width: 20px; margin-right: 10px;" src="{{asset('img/whatsapp.svg')}}" alt=""> whatsapp</a>
+            <a href="#" data-open="modal1" class="btn-c-whatsapp proxi open-modal"><img style="width: 20px; margin-right: 10px;" src="{{asset('img/whatsapp.svg')}}" alt=""> whatsapp</a>
+            {{-- <button type="button" class="open-modal" data-open="modal1">
+                Launch first modal
+            </button> --}}
+
+            <div class="modal" id="modal1">
+                <div class="modal-dialog">
+                  <header class="modal-header">
+                    Kirim Pesan
+                    <button class="close-modal" aria-label="close modal" data-close>
+                      &times;  
+                    </button>
+                  </header>
+                    <section class="modal-content">
+                        Isi Pesan
+                        <textarea id="txtMsgWA" rows="10"></textarea>
+                        <a href="https://api.whatsapp.com/send?phone={{$WarungData->no_hp}}&text=Permisi..">kirim</a>
+                    </section>
+                  {{-- <footer class="modal-footer">
+                    The footer of the first modal
+                  </footer> --}}
+                </div>
+            </div>
         </div>
     </div>
     <div id="mapid"></div> 
@@ -162,7 +264,7 @@
     </div>
     <div class="items">
         @foreach ($barangs as $barang)
-            <div class="barang">
+            <div class="barang" data-open="barang{{$barang->id}}">
                 <svg width="201" height="174" viewBox="0 0 201 174" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="201" height="174" rx="20" fill="#EFEFEF"/>
                 </svg>
@@ -170,6 +272,19 @@
                     <span class="proxi name-product">{{$barang->nama}}</span>
                     <span class="proxi price-product">{{$barang->harga}}</span>
                     <span class="proxi status-product">tersedia</span>
+                </div>
+            </div>
+            <div class="modal" id="barang{{$barang->id}}">
+                <div class="modal-dialog" style="min-width: 70vw;">
+                  <header class="modal-header" style="background: transparent;border: 0;">
+                    Barang Details
+                    <button class="close-modal" aria-label="close modal" data-close>
+                      &times;  
+                    </button>
+                  </header>
+                    <section class="modal-content" style=" border: 0;">
+                        {{$barang->nama}}
+                    </section>
                 </div>
             </div>
         @endforeach
@@ -205,4 +320,36 @@
             }).addTo(mymap);
         </script>
     @endif
+
+<script>
+    const openEls = document.querySelectorAll("[data-open]");
+    const closeEls = document.querySelectorAll("[data-close]");
+    const isVisible = "is-visible";
+
+    for (const el of openEls) {
+    el.addEventListener("click", function() {
+        const modalId = this.dataset.open;
+        document.getElementById(modalId).classList.add(isVisible);
+    });
+    }
+
+    for (const el of closeEls) {
+    el.addEventListener("click", function() {
+        this.parentElement.parentElement.parentElement.classList.remove(isVisible);
+    });
+    }
+
+    document.addEventListener("click", e => {
+    if (e.target == document.querySelector(".modal.is-visible")) {
+        document.querySelector(".modal.is-visible").classList.remove(isVisible);
+    }
+    });
+
+    document.addEventListener("keyup", e => {
+    // if we press the ESC
+    if (e.key == "Escape" && document.querySelector(".modal.is-visible")) {
+        document.querySelector(".modal.is-visible").classList.remove(isVisible);
+    }
+    });
+</script>
 @endpush

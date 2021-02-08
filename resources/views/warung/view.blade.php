@@ -32,6 +32,83 @@
             animation-name: animatetop;
             animation-duration: 0.4s
         }
+        :root {
+        --lightgray: #efefef;
+        --blue: steelblue;
+        --white: #fff;
+        --maincolor: #B4F5FF;
+        --black: rgba(0, 0, 0, 0.397);
+        --bounceEasing: cubic-bezier(0.51, 0.92, 0.24, 1.15);
+        }
+        /* modal type 2 */
+        .open-modal2 {
+            font-weight: bold;
+            background: var(--blue);
+            color: var(--white);
+            padding: 0.75rem 1.75rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+        }
+            /* MODAL
+        –––––––––––––––––––––––––––––––––––––––––––––––––– */
+        .modal2 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: var(--black);
+            cursor: pointer;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.35s ease-in;
+        }
+
+        .modal2.is-visible2 {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal2-dialog {
+            position: relative;
+            max-width: 800px;
+            max-height: 80vh;
+            border-radius: 5px;
+            background: var(--white);
+            overflow: auto;
+            cursor: default;
+        }
+
+        .modal2-dialog > * {
+            padding: 1rem;
+        }
+
+        .modal2-header,
+        .modal2-footer {
+            background: var(--maincolor);
+        }
+
+        .modal2-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        button.close-modal2{
+            border-radius: 20px;
+            border: 0;
+            background: transparent;
+        }
+        .modal2-header .close-modal2 {
+            font-size: 1.5rem;
+        }
+
+        .modal2 p + p {
+        margin-top: 1rem;
+        }
 
         /* Add Animation */
         @-webkit-keyframes animatetop {
@@ -82,6 +159,23 @@
         }
         #div-view-warung section#details-warung{
             width: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+        }
+        #details-warung img.imgWarung{
+            background:#B4F5FF;
+            padding: 10px;
+            max-width: 200px;
+            max-height: 200px;
+            width: 100%;
+            border-radius: 100%;
+        }
+        .infoWarung{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         #div-view-warung section#items-warung{
             width: 100%;
@@ -201,12 +295,24 @@
         #target-content a.close:hover {
             opacity: 0.4;
         }
+
+        @media only screen and (max-width:1020px) {
+            #div-view-warung section#details-warung{
+                display: none;
+            }
+        }
     </style>
 @endpush
 
 @section('content')
 <div id="div-view-warung" class="container-fluid">
     <section id="details-warung">
+        <img class="imgWarung" src="{{asset('img/shop.png')}}">
+        <div class="infoWarung">
+            <h4><strong class="proxi">{{$DataWarung->nama_warung}}</strong></h4>
+            <div class="text-muted">lokasi</div>
+            <div class="alamatWarung">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam culpa sint consequuntur odit autem quas, quam distinctio totam veritatis cumque veniam, cum perspiciatis iusto accusamus, alias ad nobis adipisci laboriosam fuga magni!</div>
+        </div>
     </section>
     <section id="items-warung">
         <div class="card border-0 flex" style="flex-flow: wrap;">
@@ -232,11 +338,10 @@
             <div class="option-etalase d-flex justify-content-between">
                 <h4 class="proxi">Etalase</h4>
                 <button id="btnTambahProduk" class="btn btn-primary">Tambah Produk</button>
-                <button id="btnmodal2" class="btn btn-primary">test</button>
             </div>
             <div class="items">
                     @foreach ($barangs as $barang)
-                    <div class="barang" data-target="barang-{{$barang->id}}">
+                    <div class="barang"  data-open="barang{{$barang->id}}">
                         <svg width="201" height="174" viewBox="0 0 201 174" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="201" height="174" rx="20" fill="#EFEFEF"/>
                         </svg>
@@ -250,6 +355,19 @@
                             @else
                                 <span class="proxi status-product-unready">tidak tersedia</span>
                             @endif 
+                        </div>
+                    </div>
+                    <div class="modal2" id="barang{{$barang->id}}">
+                        <div class="modal2-dialog" style="min-width: 70vw;">
+                          <header class="modal2-header" style="background: transparent;border: 0;">
+                            Barang Details
+                            <button class="close-modal2" aria-label="close modal2" data-close>
+                              &times;  
+                            </button>
+                          </header>
+                            <section class="modal2-content" style=" border: 0;">
+                                {{$barang->nama}}
+                            </section>
                         </div>
                     </div>
                     @endforeach
@@ -312,19 +430,6 @@
     </div>
   
 </div>
-<div id="modal2" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="close">&times;</span>
-      </div>
-      <div class="modal-body">
-        modal 2
-      </div>
-    </div>
-  
-  </div>
 @endsection
 
 @push('scripts')
@@ -354,5 +459,36 @@
         modal.style.display = "none";
       }
     }
+    </script>
+    <script>
+        const openEls = document.querySelectorAll("[data-open]");
+        const closeEls = document.querySelectorAll("[data-close]");
+        const isVisible = "is-visible2";
+    
+        for (const el of openEls) {
+            el.addEventListener("click", function() {
+                const modalId = this.dataset.open;
+                document.getElementById(modalId).classList.add(isVisible);
+            });
+        }
+    
+        for (const el of closeEls) {
+            el.addEventListener("click", function() {
+                this.parentElement.parentElement.parentElement.classList.remove(isVisible);
+            });
+        }
+    
+        document.addEventListener("click", e => {
+            if (e.target == document.querySelector(".modal2.is-visible2")) {
+                document.querySelector(".modal2.is-visible2").classList.remove(isVisible);
+            }
+        });
+    
+        document.addEventListener("keyup", e => {
+            // if we press the ESC
+            if (e.key == "Escape" && document.querySelector(".modal2.is-visible2")) {
+                document.querySelector(".modal2.is-visible2").classList.remove(isVisible);
+            }
+        });
     </script>
 @endpush
