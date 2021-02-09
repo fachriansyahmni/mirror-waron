@@ -203,7 +203,7 @@
       </div>
       <div class="owl-carousel">
       @php
-          $getAllCategory = App\KategoriWarung::inRandomOrder()->take(4)->get();
+          $getAllCategory = App\KategoriWarung::inRandomOrder()->get();
       @endphp
       @foreach ($getAllCategory as $category)
         <div class="card card-jw">
@@ -243,10 +243,10 @@
       @endforeach
     </div>
   </div>
-  {{-- <br>
+  <br>
   <center>
-    <a href="#" class="proxi" style="color:black"><u>Tampilkan lebih banyak</u></a>
-  </center> --}}
+    <a href="/cari" class="proxi" style="color:black"><u>Tampilkan lebih banyak</u></a>
+  </center>
   @guest
   <!-- Modal -->
   <div class="modal" id="myModal">
