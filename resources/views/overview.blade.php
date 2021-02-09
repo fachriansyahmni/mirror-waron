@@ -283,7 +283,11 @@
                     </button>
                   </header>
                     <section class="modal-content" style=" border: 0;">
+                        {{$barang->gambar}}
                         {{$barang->nama}}
+                        {{$barang->harga}}
+                        {{$barang->deskripsi}}
+                        {{$barang->stok}}
                     </section>
                 </div>
             </div>

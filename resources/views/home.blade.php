@@ -100,6 +100,10 @@
 </style>
     
 @endpush
+@push('css')
+<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css')}}">
+<link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css')}}">
+@endpush
 {{-- <body> --}}
 
   <!-- Masthead -->
@@ -157,7 +161,7 @@
               <img src="{{ asset('img/package.svg') }}" class="m-auto" style="fill:#b4F5FF; width:55px; height: 55px;">
             </div>
             <h3>Produk</h3>
-            <p class="lead mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+            <p class="lead mb-0">Produk dijamin berkualitas.</p>
           </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6">
@@ -166,7 +170,7 @@
               <img src="{{ asset('img/package.svg') }}" class="m-auto" style="fill:#b4F5FF; width:55px; height: 55px;">
             </div>
             <h3>Harga</h3>
-            <p class="lead mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<p>
+            <p class="lead mb-0">Harga sesuai ketika datang langsung ke warung.<p>
           </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6">
@@ -175,7 +179,7 @@
               <img src="{{ asset('img/package.svg') }}" class="m-auto" style="fill:#b4F5FF; width:55px; height: 55px;">
             </div>
             <h3>Stok</h3>
-            <p class="lead mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+            <p class="lead mb-0">Stok selalu terupdate oleh penjual.</p>
           </div>
         </div>
       </div>
@@ -197,6 +201,7 @@
             </svg>
         </a>
       </div>
+      <div class="owl-carousel">
       @php
           $getAllCategory = App\KategoriWarung::inRandomOrder()->take(4)->get();
       @endphp
@@ -208,6 +213,7 @@
           </div>
         </div>
       @endforeach
+      </div>
     
       <div class="right-arrow">
         <a href="#">
@@ -273,4 +279,12 @@
     </div>
   </div>
   @endguest
+@push('scripts')
+<script src="{{asset ('js/owl.carousel.min.js')}}"></script>
+<script>
+$(document).ready(function(){
+  $(".owl-carousel").owlCarousel();
+});
+</script>
+@endpush
 @endsection
