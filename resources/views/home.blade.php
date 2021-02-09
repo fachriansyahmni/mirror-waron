@@ -157,7 +157,7 @@
               <img src="{{ asset('img/package.svg') }}" class="m-auto" style="fill:#b4F5FF; width:55px; height: 55px;">
             </div>
             <h3>Produk</h3>
-            <p class="lead mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+            <p class="lead mb-0">Produk dijamin berkualitas.</p>
           </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6">
@@ -166,7 +166,7 @@
               <img src="{{ asset('img/package.svg') }}" class="m-auto" style="fill:#b4F5FF; width:55px; height: 55px;">
             </div>
             <h3>Harga</h3>
-            <p class="lead mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<p>
+            <p class="lead mb-0">Harga sesuai ketika datang langsung ke warung.<p>
           </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6">
@@ -175,7 +175,7 @@
               <img src="{{ asset('img/package.svg') }}" class="m-auto" style="fill:#b4F5FF; width:55px; height: 55px;">
             </div>
             <h3>Stok</h3>
-            <p class="lead mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+            <p class="lead mb-0">Stok selalu terupdate oleh penjual.</p>
           </div>
         </div>
       </div>
