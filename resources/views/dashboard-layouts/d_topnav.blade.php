@@ -23,7 +23,7 @@
              @if (count($getWarungNotActive) >= 1)
              @foreach ($getWarungNotActive as $index => $warung)
              
-              
+              <!-- TEST -->
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="{{route('admin.manage.warung-activation')}}"><b>{{$index + 1}}{{$warung->nama_warung}}</b>&nbsp;You have a new Warung.</a>
               @endforeach

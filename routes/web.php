@@ -72,13 +72,13 @@ Route::middleware('auth:warung')->group(function () {
     Route::get('/barang', 'BarangController@index'); //menampilkan item
     //Route::get('/barang/{id}/edit', 'BarangController@edit'); //menampilkan form edit
     Route::get('/barang/{id}/show', 'BarangController@show'); //lihat detail data
-    //Route::put('/barang/{id}', 'BarangController@update'); //menyimpan hasil edit
+    Route::put('/barang/update', 'BarangController@updateBarang')->name('barang.update.action'); //menyimpan hasil edit
     Route::delete('/barang/{id}', 'BarangController@destroy'); //menghapus
 
     Route::get('/barang/{id}/show', 'WarungController@show'); //lihat detail data
     Route::get('/barang/{id}/edit', 'WarungController@edit'); //menampilkan form edit
     Route::put('/barang/{id}', 'WarungController@update'); //menyimpan hasil edit
-    Route::get('/barang/{id}/edit-stok', 'WarungController@editStok');//menampilkan form edit stok 
+    Route::get('/barang/{id}/edit-stok', 'WarungController@editStok'); //menampilkan form edit stok 
     Route::put('/barang/{id}/stok', 'WarungController@updateStok'); //menyimpan hasil edit
 
     //profile
