@@ -100,6 +100,10 @@
 </style>
     
 @endpush
+@push('css')
+<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css')}}">
+<link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css')}}">
+@endpush
 {{-- <body> --}}
 
   <!-- Masthead -->
@@ -197,6 +201,7 @@
             </svg>
         </a>
       </div>
+      <div class="owl-carousel">
       @php
           $getAllCategory = App\KategoriWarung::inRandomOrder()->take(4)->get();
       @endphp
@@ -208,6 +213,7 @@
           </div>
         </div>
       @endforeach
+      </div>
     
       <div class="right-arrow">
         <a href="#">
@@ -273,4 +279,12 @@
     </div>
   </div>
   @endguest
+@push('scripts')
+<script src="{{asset ('js/owl.carousel.min.js')}}"></script>
+<script>
+$(document).ready(function(){
+  $(".owl-carousel").owlCarousel();
+});
+</script>
+@endpush
 @endsection
