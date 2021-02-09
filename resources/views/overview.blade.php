@@ -243,7 +243,8 @@
                     <section class="modal-content">
                         Isi Pesan
                         <textarea id="txtMsgWA" rows="10"></textarea>
-                        <a href="https://api.whatsapp.com/send?phone={{$WarungData->no_hp}}&text=Permisi..">kirim</a>
+                        {{-- <a id="btnkirim" href="https://api.whatsapp.com/send?phone={{$WarungData->no_hp}}&text=">kirim</a> --}}
+                        <button id="btnkirim">kirim</button>
                     </section>
                   {{-- <footer class="modal-footer">
                     The footer of the first modal
@@ -355,5 +356,12 @@
         document.querySelector(".modal.is-visible").classList.remove(isVisible);
     }
     });
+
+    $('#btnkirim').click(function(){
+        window.open(
+            'https://api.whatsapp.com/send?phone={{$WarungData->no_hp}}&text='+$('#txtMsgWA').val(),
+            '_blank' // <- This is what makes it open in a new window.
+        );
+    })
 </script>
 @endpush
