@@ -167,7 +167,7 @@
         <div class="col-lg-4 col-md-4 col-sm-6">
           <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
-              <img src="{{ asset('img/package.svg') }}" class="m-auto" style="fill:#b4F5FF; width:55px; height: 55px;">
+              <img src="{{ asset('img/money-bill-wave-solid.svg') }}" class="m-auto" style="fill:#b4F5FF; width:55px; height: 55px;">
             </div>
             <h3>Harga</h3>
             <p class="lead mb-0">Harga sesuai ketika datang langsung ke warung.<p>
@@ -176,7 +176,7 @@
         <div class="col-lg-4 col-md-4 col-sm-6">
           <div class="features-icons-item mx-auto mb-0 mb-lg-3">
             <div class="features-icons-icon d-flex">
-              <img src="{{ asset('img/package.svg') }}" class="m-auto" style="fill:#b4F5FF; width:55px; height: 55px;">
+              <img src="{{ asset('img/luggage-cart-solid.svg') }}" class="m-auto" style="fill:#b4F5FF; width:55px; height: 55px;">
             </div>
             <h3>Stok</h3>
             <p class="lead mb-0">Stok selalu terupdate oleh penjual.</p>
