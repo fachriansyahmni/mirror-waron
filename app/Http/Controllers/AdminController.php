@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\KategoriWarung;
 use App\Warung;
+use App\Admin;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -108,5 +110,12 @@ class AdminController extends Controller
         $category->kategori = $request["kategori"];
         $category->save();
         return redirect('/admin/mancat');
+    }
+
+    public function resetPsswd($id)
+    {
+        $akun = Admin::find($id);
+        //dd($akun);
+        return view('admin.resetPassword',compact('akun'));
     }
 }
