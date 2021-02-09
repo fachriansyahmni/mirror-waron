@@ -214,6 +214,9 @@
             margin-right: auto; */
             margin: 10px auto 10px auto;
         }
+        .items .barang img{
+            border-radius: 20px;
+        }
         .items .barang:hover{
             background:#dfe6e960;
             border-radius: 20px;
@@ -310,8 +313,8 @@
         <img class="imgWarung" src="{{asset('img/shop.png')}}">
         <div class="infoWarung">
             <h4><strong class="proxi">{{$DataWarung->nama_warung}}</strong></h4>
-            <div class="text-muted">lokasi</div>
-            <div class="alamatWarung">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam culpa sint consequuntur odit autem quas, quam distinctio totam veritatis cumque veniam, cum perspiciatis iusto accusamus, alias ad nobis adipisci laboriosam fuga magni!</div>
+            <div class="text-muted">{{$DataWarung->nama_kecamatan}}, {{$DataWarung->nama_kota}}</div>
+            <div class="alamatWarung">{{$DataWarung->alamat}}, {{$DataWarung->nama_kecamatan}}, {{$DataWarung->nama_kota}},  {{$DataWarung->nama_provinsi}}</div>
         </div>
     </section>
     <section id="items-warung">
@@ -342,9 +345,13 @@
             <div class="items">
                     @foreach ($barangs as $barang)
                     <div class="barang"  data-open="barang{{$barang->id}}">
+                        @if ($barang->gambar == null)
                         <svg width="201" height="174" viewBox="0 0 201 174" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="201" height="174" rx="20" fill="#EFEFEF"/>
                         </svg>
+                        @else    
+                        <img src="{{asset($barang->gambar)}}" width="201" height="174" alt="">
+                        @endif
                         <div class="details-barang">
                             <span class="proxi name-product">
                                 <a href="/barang/{{$barang->id}}/show">{{$barang->nama}}</a>
@@ -389,7 +396,7 @@
             <table>
                 <tr>
                     <td>Nama Barang :</td>
-                    <td><input type="text" name="nama" placeholder="Masukan Nama Barang"></td>
+                    <td><input type="text" name="nama" placeholder="Masukan Nama Barang" required></td>
                 </tr>
                 <tr>
                     <td>Deskripsi :</td>
@@ -399,7 +406,7 @@
                 </tr>
                 <tr>
                     <td>Harga</td>
-                    <td><input type="text" name="harga" placeholder="Masukan Harga"></td>
+                    <td><input type="text" name="harga" placeholder="Masukan Harga" required></td>
                 </tr>
                 <tr>
                     <td>Gambar</td>
