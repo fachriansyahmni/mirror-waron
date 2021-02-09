@@ -8,7 +8,7 @@ use App\Warung;
 use App\Barang;
 use Illuminate\Support\Facades\Auth;
 
-class WarungController extends Controller
+class WarungController extends AkunController
 {
     function getdataAuth()
     {
@@ -22,7 +22,30 @@ class WarungController extends Controller
     {
         return Warung::where('pemilik', $this->getdataAuth()->id);
     }
-
+    public function getProvName($id)
+    {
+        $urlDataProvinsi = "https://dev.farizdotid.com/api/daerahindonesia/provinsi"; //ambil semua data provinsi
+        $getDataProvinsi = json_decode(file_get_contents($urlDataProvinsi), true);
+        $key = array_search($id, array_column($getDataProvinsi['provinsi'], 'id'));
+        $name = $getDataProvinsi['provinsi'][$key]['nama'];
+        return $name;
+    }
+    public function getKotaName($idProv, $idKota)
+    {
+        $urlDatakota = "https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=" . $idProv; //ambil semua data provinsi
+        $getDatakota = json_decode(file_get_contents($urlDatakota), true);
+        $key = array_search($idKota, array_column($getDatakota['kota_kabupaten'], 'id'));
+        $name = $getDatakota['kota_kabupaten'][$key]['nama'];
+        return $name;
+    }
+    public function getKecName($idKota, $idKecamatan)
+    {
+        $urlDataKecamatan = "https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=" . $idKota; //ambil semua data provinsi
+        $getDataKecamatan = json_decode(file_get_contents($urlDataKecamatan), true);
+        $key = array_search($idKecamatan, array_column($getDataKecamatan['kecamatan'], 'id'));
+        $name = $getDataKecamatan['kecamatan'][$key]['nama'];
+        return $name;
+    }
     public function warung()
     {
         $compacts = [];
@@ -83,6 +106,11 @@ class WarungController extends Controller
         $DataWarung = $this->getDataWarung()->where('id', $idwarung)->first();
         if ($DataWarung == null) return redirect()->back()->with('error', 'not valid'); // validasi warung jika tidak ada
 
+        //get nama provinsi, nama kota, nama kecamatan
+        $DataWarung->nama_provinsi = $this->getProvName($DataWarung->prov_id);
+        $DataWarung->nama_kota = $this->getKotaName($DataWarung->prov_id, $DataWarung->kabkot_id);
+        $DataWarung->nama_kecamatan = $this->getKecName($DataWarung->kabkot_id, $DataWarung->kec_id);
+
         //barang
         $barangs = Barang::inRandomOrder()->where('warung_id', $idwarung)->get();
 
@@ -102,7 +130,7 @@ class WarungController extends Controller
         return view('items.edit', compact('barang'));
     }
 
-    public function update(Request $request)
+    public function updateBarang(Request $request)
     {
         $barang = Barang::find($request["id"]);
         $barang->nama = $request["nama"];

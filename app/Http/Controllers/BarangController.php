@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 use App\Barang;
 use App\Warung;
@@ -19,14 +20,27 @@ class BarangController extends WarungController
         $request->validate([
             'nama' => 'required'
         ]);
-        
+        $validasiWarung = Warung::find($idwarung);
+        if ($validasiWarung == null) return redirect()->back(); // jika null
         $barang = new Barang;
         $barang->nama = $request->nama;
         $barang->harga = $request->harga;
         $barang->deskripsi = $request->deskripsi;
-        $barang->gambar = $request->gambar;
+        if ($request->hasFile('gambar')) {
+            $lokasi_gambar = public_path('img/warung');
+            $gambar = $request->file('gambar');
+            $new_gambar = time() . $gambar->getClientOriginalName();
+            $filename = 'img/warung/' . $new_gambar;
+            $gmbr = Image::make($gambar->path());
+            $gmbr->resize(201, 174)->save($lokasi_gambar . '/' . $new_gambar);
+
+            $barang->gambar = $filename;
+        }
+        if ($barang->gambar == null) {
+            $barang->gambar = 'img/warung/barang-default.svg';
+        }
         $barang->warung_id = $idwarung;
-        
+
         if ($request->stok <= 0) {
             $barang->status_id = 0;
         } else {
@@ -57,18 +71,18 @@ class BarangController extends WarungController
         return view('items.edit', compact('barang'));
     }
 
-    public function update(Request $request)
-    {
-        $barang = Barang::find($request["id"]);
-        $barang->nama = $request["nama"];
-        $barang->harga = $request["harga"];
-        $barang->deskripsi = $request["deskripsi"];
-        $barang->gambar = $request["gambar"];
-        $barang->warung_id = "1";
-        $barang->status_id = $request["status_id"];
-        $barang->save();
-        return redirect('/barang');
-    }
+    // public function updateBarang(Request $request)
+    // {
+    //     $barang = Barang::find($request["id"]);
+    //     $barang->nama = $request["nama"];
+    //     $barang->harga = $request["harga"];
+    //     $barang->deskripsi = $request["deskripsi"];
+    //     $barang->gambar = $request["gambar"];
+    //     $barang->warung_id = "1";
+    //     $barang->status_id = $request["status_id"];
+    //     $barang->save();
+    //     return redirect('/barang');
+    // }
 
     public function destroy($id)
     {
