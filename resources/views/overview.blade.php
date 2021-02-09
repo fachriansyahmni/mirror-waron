@@ -243,7 +243,7 @@
                     <section class="modal-content">
                         Isi Pesan
                         <textarea id="txtMsgWA" rows="10"></textarea>
-                        <a href="https://api.whatsapp.com/send?phone={{$WarungData->no_hp}}&text=Permisi..">kirim</a>
+                        <a href="https://api.whatsapp.com/send?phone={{$WarungData->no_hp}}&text=test">kirim</a>
                     </section>
                   {{-- <footer class="modal-footer">
                     The footer of the first modal
@@ -265,13 +265,23 @@
     <div class="items">
         @foreach ($barangs as $barang)
             <div class="barang" data-open="barang{{$barang->id}}">
-                <svg width="201" height="174" viewBox="0 0 201 174" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="201" height="174" rx="20" fill="#EFEFEF"/>
-                </svg>
-                <div class="details-barang">
-                    <span class="proxi name-product">{{$barang->nama}}</span>
-                    <span class="proxi price-product">{{$barang->harga}}</span>
-                    <span class="proxi status-product">tersedia</span>
+                 @if ($barang->gambar == null)
+                        <svg width="201" height="174" viewBox="0 0 201 174" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="201" height="174" rx="20" fill="#EFEFEF"/>
+                        </svg>
+                        @else    
+                        <img src="{{asset($barang->gambar)}}" width="201" height="174" alt="">
+                        @endif
+                        <div class="details-barang">
+                            <span class="proxi name-product">
+                                <a href="/barang/{{$barang->id}}/show">{{$barang->nama}}</a>
+                            </span>
+                            <span class="proxi price-product">{{$barang->harga}}</span>
+                            @if ($barang->status_id == 1)
+                                <span class="proxi status-product-ready" style="color:green">tersedia</span>
+                            @else
+                                <span class="proxi status-product-unready" style="color:red">tidak tersedia</span>
+                            @endif
                 </div>
             </div>
             <div class="modal" id="barang{{$barang->id}}">
