@@ -124,32 +124,32 @@ class WarungController extends AkunController
         return view('items.show', compact('barang'));
     }
 
-    public function edit($id)
-    {
-        $barang = Barang::find($id);
-        return view('items.edit', compact('barang'));
-    }
+    // public function edit($id)
+    // {
+    //     $barang = Barang::find($id);
+    //     return view('items.edit', compact('barang'));
+    // }
 
-    public function updateBarang(Request $request)
-    {
-        $barang = Barang::find($request["id"]);
-        $barang->nama = $request["nama"];
-        $barang->harga = $request["harga"];
-        $barang->deskripsi = $request["deskripsi"];
-        $barang->gambar = $request["gambar"];
-        $barang->warung_id = "1";
+    // public function updateBarang(Request $request)
+    // {
+    //     $barang = Barang::find($request["id"]);
+    //     $barang->nama = $request["nama"];
+    //     $barang->harga = $request["harga"];
+    //     $barang->deskripsi = $request["deskripsi"];
+    //     $barang->gambar = $request["gambar"];
+    //     $barang->warung_id = "1";
 
-        if ($request->stok <= 0) {
-            $barang->status_id = 0;
-        } else {
-            $barang->status_id = 1;
-        }
-        $barang->stok = $request->stok;
+    //     if ($request->stok <= 0) {
+    //         $barang->status_id = 0;
+    //     } else {
+    //         $barang->status_id = 1;
+    //     }
+    //     $barang->stok = $request->stok;
 
-        $barang->save();
-        return redirect('/my-warung' . '/' . $request["warung_id"]);
-        //note : bug return
-    }
+    //     $barang->save();
+    //     return redirect('/my-warung' . '/' . $request["warung_id"]);
+    //     //note : bug return
+    // }
 
     public function editStok($id)
     {
