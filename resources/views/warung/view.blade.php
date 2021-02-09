@@ -151,7 +151,12 @@
             color: white;
         }
 
-        
+        .d-flex{
+            display: flex;
+        }
+        .d-flex.flex-column{
+            flex-direction: column;
+        }
         #div-view-warung{
             margin-top: 100px;
             display: flex;
@@ -346,17 +351,18 @@
                     @foreach ($barangs as $barang)
                     <div class="barang"  data-open="barang{{$barang->id}}">
                         @if ($barang->gambar == null)
-                        <svg width="201" height="174" viewBox="0 0 201 174" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="201" height="174" rx="20" fill="#EFEFEF"/>
-                        </svg>
+                            <svg width="201" height="174" viewBox="0 0 201 174" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="201" height="174" rx="20" fill="#EFEFEF"/>
+                            </svg>
                         @else    
-                        <img src="{{asset($barang->gambar)}}" width="201" height="174" alt="">
+                            <img src="{{asset($barang->gambar)}}" width="201" height="174" alt="">
                         @endif
                         <div class="details-barang">
                             <span class="proxi name-product">
-                                <a href="/barang/{{$barang->id}}/show">{{$barang->nama}}</a>
+                                {{-- <a href="/barang/{{$barang->id}}/show">{{$barang->nama}}</a> --}}
+                                <strong>{{$barang->nama}}</strong>
                             </span>
-                            <span class="proxi price-product">{{$barang->harga}}</span>
+                            <span class="proxi price-product">@currency($barang->harga)</span>
                             @if ($barang->status_id == 1)
                                 <span class="proxi status-product-ready">tersedia</span>
                             @else
@@ -373,7 +379,25 @@
                             </button>
                           </header>
                             <section class="modal2-content" style=" border: 0;">
-                                {{$barang->nama}}
+                                <form method="POST" action="{{route('barang.update.action')}}" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('put')
+                                    <div class="">
+                                        <input type="hidden" value="{{$barang->id}}" name="idbarang"> 
+                                        @if ($barang->gambar == null)
+                                        <svg width="201" height="174" viewBox="0 0 201 174" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="201" height="174" rx="20" fill="#EFEFEF"/>
+                                        </svg>
+                                        @else    
+                                        <img src="{{asset($barang->gambar)}}" width="201" height="174" alt="">
+                                        @endif
+                                        <input type="text" name="e_namabarang" value="{{old('e_namabarang',$barang->nama)}}" placeholder="nama barang" required>
+                                        <input type="number" name="e_harga" value="{{old('e_harga',$barang->harga)}}" required>
+                                        <input type="text" name="e_stok" value="{{old('e_stok',$barang->stok)}}">
+
+                                        <button type="submit">update</button>
+                                    </div>
+                                </form>       
                             </section>
                         </div>
                     </div>

@@ -65,10 +65,21 @@ class BarangController extends WarungController
         return view('items.show', compact('barang'));
     }
 
-    public function edit($id)
+    public function updateBarang(Request $request)
     {
+        $request->validate([
+            'idbarang' => 'required',
+            'e_namabarang' => 'required|string',
+            'e_harga' => 'required|integer',
+        ]);
+
+        $id = $request->idbarang;
         $barang = Barang::find($id);
-        return view('items.edit', compact('barang'));
+        if ($barang == null) return redirect()->back(); // jika null
+        $barang->nama = $request->e_namabarang;
+        $barang->harga = $request->e_harga;
+        $barang->save();
+        return redirect()->back();
     }
 
     // public function updateBarang(Request $request)
