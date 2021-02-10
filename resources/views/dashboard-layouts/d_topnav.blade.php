@@ -24,8 +24,8 @@
              @foreach ($getWarungNotActive as $index => $warung)
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="{{route('admin.manage.warung-activation')}}"><b>{{$index + 1}}{{$warung->nama_warung}}</b>&nbsp;You have a new Warung.</a>
-              @endforeach
             </div>
+            @endforeach
             @else
             <li class="nav-item dropdown">
             <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -37,8 +37,8 @@
               <!-- TEST -->
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" style="color:grey">Tidak pembaruan ada notifikasi</a>
-              @endif
             </div>
+            @endif
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
