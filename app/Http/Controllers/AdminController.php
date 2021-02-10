@@ -122,9 +122,8 @@ class AdminController extends Controller
     {
         $akun = Admin::find($id);
         if (Hash::check($request->passwordLama, $akun->password)) {
-            $akun->fill([
-                'password' => Hash::make($request->passwordBaru)
-            ])->save();
+            $akun->password = $request->password;
+            $akun->save();
             return redirect()->back()->with('success','success change password');
         }
         return redirect()->back();
