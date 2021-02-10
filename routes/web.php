@@ -52,7 +52,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::any('/admin/mancat', 'AdminController@mancat')->name('admin.mancat');
     Route::any('/admin/mancat/{id}/edit', 'AdminController@edit')->name('admin.edit');
     Route::put('/admin/mancat/{id}', 'AdminController@update')->name('admin.update');
-    Route::any('/admin/{id}/reset', 'AdminController@resetPsswd')->name('admin.reset');
+    Route::any('/admin/reset', 'AdminController@resetPsswd')->name('admin.reset');
+    Route::any('/admin/{id}/reset', 'AdminController@savePsswd')->name('admin.save');
 });
 
 //area warung

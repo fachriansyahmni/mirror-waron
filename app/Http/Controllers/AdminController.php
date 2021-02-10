@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\KategoriWarung;
 use App\Warung;
 use App\Admin;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -112,10 +113,20 @@ class AdminController extends Controller
         return redirect('/admin/mancat');
     }
 
-    public function resetPsswd($id)
+    public function resetPsswd()
+    {
+        return view('admin.resetPassword');
+    }
+
+    public function savePsswd(Request $request, $id)
     {
         $akun = Admin::find($id);
-        //dd($akun);
-        return view('admin.resetPassword',compact('akun'));
+        if (Hash::check($request->passwordLama, $akun->password)) {
+            $akun->fill([
+                'password' => Hash::make($request->passwordBaru)
+            ])->save();
+            return redirect()->back()->with('success','success change password');
+        }
+        return redirect()->back();
     }
 }
