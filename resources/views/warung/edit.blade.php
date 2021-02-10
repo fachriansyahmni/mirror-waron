@@ -2,6 +2,13 @@
 
 @push('add-css')
 <link rel="stylesheet" href="{{asset('vendor/leaflet/leaflet.css')}}" />
+<style>
+    #mapid{
+        border-radius: 20px;
+        width: 374px;
+        height: 225px;
+    }
+</style>
 @endpush
 
 @section('content')
@@ -57,12 +64,15 @@
                 </tr>
                 <tr>
                     <td>Koordinat : </td>
-                    <td><input type="text" name="koordinat" value="{{old('koordinat',$DataWarung->koordinat)}}"></td>
+                    <td>
+                        <input type="hidden" name="koordinat" value="{{old('koordinat',$DataWarung->koordinat)}}">
+                        <div id="mapid"></div>
+                    </td>
                 </tr>
                 <tr>
                     <td>Jenis Warung : </td>
                     <td>
-                        <select name="jenis" id="">
+                        <select name="jenis" id="" class="form-control">
                             <option value="Warung Sembako">Warung Sembako</option>
                             <option value="Warung Kelontong">Warung Kelontong</option>
                         </select>
@@ -81,6 +91,20 @@
 
 @push('scripts')
     <script src="{{asset('vendor/leaflet/leaflet.js')}}"></script>
+    @if (count($koor) == 2)
+        <script>
+            var latx = "{{$koor[0]}}"; 
+            var lngy = "{{$koor[1]}}"; 
+            
+
+            var mymap = L.map('mapid').setView([latx, lngy], 13);
+            var marker = L.marker([latx, lngy]).addTo(mymap);
+            marker.bindPopup("<b>{{$DataWarung->nama_warung}}</b>").openPopup();
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="#">kios.ku</a>'
+            }).addTo(mymap);
+        </script>
+    @endif
     <script>
         $('select[name="prov"]').on('change', function() {
             $.ajax({

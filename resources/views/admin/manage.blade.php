@@ -18,6 +18,7 @@
                 <div class="card-footer"></div>
               </div>
             </div>
+            @if (count($getWarungNotActive)>0)
             <div class="col-lg-12">
               <div class="alert alert-warning d-flex justify-content-between align-items-center" role="alert">
                 <h4 class="text-dark font-weight-bold">
@@ -26,6 +27,7 @@
                 <a href="{{route('admin.manage.warung-activation')}}" class="btn btn-danger">check</a>
               </div>
             </div>
+            @endif
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
@@ -132,12 +134,7 @@
                 type: "GET",
                 contentType: 'application/json; charset=utf-8',
                 success: function(resultData) {
-                    console.log(resultData);
                     data = JSON.stringify(resultData.kota_kabupaten);
-                    console.log(data.length);
-                    // for(var i = 0;i <= data.length; i++){
-
-                    // }
                     $('.asd').html(JSON.stringify(resultData.kota_kabupaten));
                 },
                 error : function(jqXHR, textStatus, errorThrown) {
