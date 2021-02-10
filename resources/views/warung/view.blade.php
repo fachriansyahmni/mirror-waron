@@ -363,7 +363,7 @@
                                 <strong>{{$barang->nama}}</strong>
                             </span>
                             <span class="proxi price-product">@currency($barang->harga)</span>
-                            @if ($barang->status_id == 1)
+                            @if ($barang->stok >= 1)
                                 <span class="proxi status-product-ready">tersedia</span>
                             @else
                                 <span class="proxi status-product-unready">tidak tersedia</span>
