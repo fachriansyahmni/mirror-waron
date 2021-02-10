@@ -33,11 +33,12 @@ class AdminController extends Controller
     {
         $getWarungNotActive = $this->getAllWarungNotActive()->get();
         $compacts = ['getWarungNotActive'];
-        return view('admin.dash_admin',compact($compacts));
+        return view('admin.dash_admin', compact($compacts));
     }
     public function profile()
     {
-        return view('admin.profile');
+        $this->data['getWarungNotActive'] = $this->getAllWarungNotActive()->get();
+        return view('admin.profile', $this->data);
     }
     public function manage(Request $request)
     {
@@ -50,7 +51,6 @@ class AdminController extends Controller
         if ($request->has('q')) {
             return "cari";
         }
-
         return view('admin.manage', compact($compacts));
     }
 
@@ -89,11 +89,13 @@ class AdminController extends Controller
             return redirect()->back();
         }
         $getAllCategory = $this->getAllCategory();
-        $compacts = ['getAllCategory'];;
+        $compacts = ['getAllCategory'];
+
+        $this->data['getWarungNotActive'] = $this->getAllWarungNotActive()->get();
 
         //getWarung
         $warung = Warung::all();
-        return view('admin.mancat', compact($compacts, 'warung'));
+        return view('admin.mancat', $this->data, compact($compacts, 'warung'));
     }
 
     public function edit($id)
