@@ -108,6 +108,7 @@ class MainController extends Controller
         $WarungData->nama_kecamatan = $this->getKecName($WarungData->kabkot_id, $WarungData->kec_id);
         if ($WarungData == null) return redirect()->back();
         $koor = explode(",", $WarungData->koordinat);
+
         $barangs = DB::table('barangs')->where('warung_id', $WarungData['id'])->get();
         $compacts = ['WarungData', 'barangs', 'koor'];
         return view('overview', compact($compacts));

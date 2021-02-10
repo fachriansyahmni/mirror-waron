@@ -92,11 +92,13 @@ class WarungController extends AkunController
         $DataWarung = $this->getDataWarung()->where('id', $idWarung)->first();
         if ($DataWarung == null) return redirect()->back()->with('error', 'not valid'); // validasi warung jika tidak ada
 
+        $koor = explode(",", $DataWarung->koordinat);
+
         if ($request->has('submitedit')) {
             dd($request);
         }
 
-        $compacts = ['DataWarung'];
+        $compacts = ['DataWarung', 'koor'];
 
         return view('warung.edit', compact($compacts));
     }
