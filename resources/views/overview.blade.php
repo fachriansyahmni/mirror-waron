@@ -275,7 +275,7 @@
                         @endif
                         <div class="details-barang">
                             <span class="proxi name-product">
-                                <a href="/barang/{{$barang->id}}/show">{{$barang->nama}}</a>
+                                <strong>{{$barang->nama}}</strong>
                             </span>
                             <span class="proxi price-product">{{$barang->harga}}</span>
                             @if ($barang->status_id == 1)
