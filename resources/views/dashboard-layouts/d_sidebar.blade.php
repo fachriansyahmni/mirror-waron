@@ -16,12 +16,6 @@
             <p>Dashboard</p>
           </a>
         </li>
-        <li class="nav-item {{ (request()->routeIs('admin.profile')) ? 'active' : '' }}">
-          <a class="nav-link" href="{{route('admin.profile')}}">
-            <i class="material-icons">person</i>
-            <p>User Profile</p>
-          </a>
-        </li>
         <li class="nav-item {{ (request()->routeIs('admin.manage')) ? 'active' : '' }}">
           <a class="nav-link" href="{{route('admin.manage')}}">
             <i class="material-icons">store</i>

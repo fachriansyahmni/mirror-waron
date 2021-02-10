@@ -117,17 +117,18 @@ class AdminController extends Controller
 
     public function resetPsswd()
     {
-        return view('admin.resetPassword');
+        $this->data['getWarungNotActive'] = $this->getAllWarungNotActive()->get();
+        return view('admin.resetPassword',$this->data);
     }
 
     public function savePsswd(Request $request, $id)
     {
         $akun = Admin::find($id);
         if (Hash::check($request->passwordLama, $akun->password)) {
-            $akun->password = $request->password;
+            $akun->password = bcrypt($request->passwordBaru);
             $akun->save();
             return redirect()->back()->with('success','success change password');
         }
-        return redirect()->back();
+        return redirect()->back()->with('error','error change password');
     }
 }
