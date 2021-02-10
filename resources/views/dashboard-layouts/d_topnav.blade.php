@@ -73,7 +73,6 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
               <a class="dropdown-item" href="{{route('show.profile',AUTH::user()->id)}}">{{Auth::user()->nama}}</a>
-              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalSet">Pengaturan</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a>
             </div>
@@ -86,40 +85,6 @@
     </div>
     @endif
 </nav>
-<!-- modal -->
-  <!-- The Modal -->
-<div class="modal" id="modalSet">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Pengaturan Akun</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        <h4>Ubah Kata Sandi & Nama Akun</h4>
-        <form method="POST" action="{{route('update.profile.action',AUTH::user()->id)}}">
-          @csrf
-          @method('PUT')
-        <label>Nama Akun anda ({{Auth::user()->nama}})</label>
-        <input type="text" name="nama" class="form-control">
-        <input type="submit" name="UpdateNama" value="Ubah Nama" class="btn btn-primary"><br>
-        <label>Masukkan Password Lama</label>
-        <input type="password" name="password" class="form-control">
-        <label>Masukkan Password Baru</label>
-        <input type="password" name="test" class="form-control">
-        <input type="submit" name="UpdatePassword" value="Ubah Password" class="btn btn-primary">
-      </form>
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>
-      </div>
-
     </div>
   </div>
 </div>
