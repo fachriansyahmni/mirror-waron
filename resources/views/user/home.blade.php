@@ -10,7 +10,7 @@
       <h5 class="card-title">Ayo buat warungmu sendiri</h5>
       <p class="card-text">
       </p>
-      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">MULAI</button>
+      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Tutorial</button>
     </div>
   </div>
 

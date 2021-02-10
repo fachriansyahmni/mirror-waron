@@ -24,14 +24,6 @@
                   <input type="password" class="form-control" placeholder="Your Password" id="password" name="password">
                 </div>
                 
-                <div class="d-sm-flex mb-5 align-items-center">
-                  <label class="control control--checkbox mb-3 mb-sm-0"><span class="caption">Remember me</span>
-                    <input type="checkbox" checked="checked"/ >
-                    <div class="control__indicator" style="background-color: #b4F5FF;"></div>
-                  </label>
-                  <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> 
-                </div>
-
                 <input type="submit" value="Log In" class="btn btn-block py-2 " style="background-color: #b4F5FF;">
 
                 <span class="text-center my-3 d-block"><a href="{{route('register')}}" style="color: grey;">Belum punya akun?</a></span>

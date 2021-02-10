@@ -52,6 +52,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::any('/admin/mancat', 'AdminController@mancat')->name('admin.mancat');
     Route::any('/admin/mancat/{id}/edit', 'AdminController@edit')->name('admin.edit');
     Route::put('/admin/mancat/{id}', 'AdminController@update')->name('admin.update');
+    Route::any('/admin/reset', 'AdminController@resetPsswd')->name('admin.reset');
+    Route::any('/admin/{id}/reset', 'AdminController@savePsswd')->name('admin.save');
 });
 
 //area warung
@@ -84,6 +86,7 @@ Route::middleware('auth:warung')->group(function () {
     Route::get('/profile/{id}/show', 'AkunController@show')->name('show.profile');; //menampilkan profile
     Route::get('/profile/{id}/edit', 'AkunController@edit'); //menampilkan form edit
     Route::put('/profile/{id}', 'AkunController@update')->name('update.profile.action'); //menyimpan hasil edit
+    Route::post('/profile/{id}/edit', 'AkunController@savePsswd');
 });
 
 // Route::middleware('auth:admin,warung')->group(function () {

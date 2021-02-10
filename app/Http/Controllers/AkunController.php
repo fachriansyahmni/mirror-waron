@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Akun;
+use Illuminate\Support\Facades\Hash;
 
 class AkunController extends Controller
 {
@@ -36,14 +37,20 @@ class AkunController extends Controller
     public function update(Request $request, $id)
     {
         $akun = Akun::find($id);
-        if ($request->has('UpdateNama')) {
+        if ($request->has('nama')) {
             $akun->nama = $request->nama;
-        } elseif ($request->has('UpdatePassword')) {
-            $akun->password = bcrypt($request->password);
-        } else {
-            return view('user.show', compact('akun'));
+            $akun->save();
+            return redirect()->back()->with('success','success change name');
+        } 
+    }
+    public function savePsswd(Request $request, $id)
+    {
+        $akun = Akun::find($id);
+        if (Hash::check($request->passwordLama, $akun->password)) {
+            $akun->password = bcrypt($request->passwordBaru);
+            $akun->save();
+            return redirect()->back()->with('success','success change password');
         }
-        $akun->save();
-        return redirect()->back();
+        return redirect()->back()->with('error','error change password');
     }
 }

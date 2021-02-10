@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\KategoriWarung;
 use App\Warung;
+use App\Admin;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -110,5 +113,22 @@ class AdminController extends Controller
         $category->kategori = $request["kategori"];
         $category->save();
         return redirect('/admin/mancat');
+    }
+
+    public function resetPsswd()
+    {
+        $this->data['getWarungNotActive'] = $this->getAllWarungNotActive()->get();
+        return view('admin.resetPassword',$this->data);
+    }
+
+    public function savePsswd(Request $request, $id)
+    {
+        $akun = Admin::find($id);
+        if (Hash::check($request->passwordLama, $akun->password)) {
+            $akun->password = bcrypt($request->passwordBaru);
+            $akun->save();
+            return redirect()->back()->with('success','berhasil merubah password');
+        }
+        return redirect()->back()->with('error','password lama anda salah');
     }
 }
