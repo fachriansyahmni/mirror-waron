@@ -12,6 +12,7 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
+          @if (count($getWarungNotActive) >= 1)
           <li class="nav-item dropdown">
             <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="material-icons">notifications</i>
@@ -21,10 +22,23 @@
               </p>
             </a>
              @foreach ($getWarungNotActive as $index => $warung)
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{{route('admin.manage.warung-activation')}}"><b>{{$index + 1}}{{$warung->nama_warung}}</b>&nbsp;You have a new Warung.</a>
-              </div>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{{route('admin.manage.warung-activation')}}"><b>{{$index + 1}}{{$warung->nama_warung}}</b>&nbsp;You have a new Warung.</a>
+            </div>
             @endforeach
+            @else
+            <li class="nav-item dropdown">
+            <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="material-icons">notifications</i>
+              <p class="d-lg-none d-md-block">
+                Some Actions
+              </p>
+            </a>
+              <!-- TEST -->
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" style="color:grey">Tidak pembaruan ada notifikasi</a>
+            </div>
+            @endif
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

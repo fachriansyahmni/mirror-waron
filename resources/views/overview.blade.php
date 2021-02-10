@@ -211,7 +211,7 @@
                 </a>
             @endisset
         </div>
-        <a href="#" class="text-muted proxi">laporkan</a>
+        <a href="https://bit.ly/3p8rSlh" class="text-muted proxi">laporkan</a>
     </div>
 </div>
 
@@ -275,10 +275,10 @@
                         @endif
                         <div class="details-barang">
                             <span class="proxi name-product">
-                                <a href="/barang/{{$barang->id}}/show">{{$barang->nama}}</a>
+                                <strong>{{$barang->nama}}</strong>
                             </span>
-                            <span class="proxi price-product">{{$barang->harga}}</span>
-                            @if ($barang->status_id == 1)
+                            <span class="proxi price-product">@currency($barang->harga)</span>
+                            @if ($barang->stok >= 1)
                                 <span class="proxi status-product-ready" style="color:green">tersedia</span>
                             @else
                                 <span class="proxi status-product-unready" style="color:red">tidak tersedia</span>
@@ -294,11 +294,19 @@
                     </button>
                   </header>
                     <section class="modal-content" style=" border: 0;">
-                        {{$barang->gambar}}
-                        {{$barang->nama}}
-                        {{$barang->harga}}
-                        {{$barang->deskripsi}}
-                        {{$barang->stok}}
+                        <p style="text-align:justify;"><img src="{{asset($barang->gambar)}}" style="float:left; width:250px; height:250px; margin:0 8px 4px 0;">
+                        <span style="font-size: 30px"><b>{{$barang->nama}}</b></span><br>
+                        <span style="color:grey">Harga :</span><br>
+                        <span style="font-size: 25px;">@currency($barang->harga)</span><br>
+                        <span style="color:grey"> Stok : </span>
+                        @if ($barang->stok >= 1)
+                        Tersisa {{$barang->stok}}
+                        @else
+                        Habis
+                        @endif
+                        <br><br>
+                        <span style="color:grey">Deskripsi :</span><br>
+                        {{$barang->deskripsi}}</p>
                     </section>
                 </div>
             </div>
