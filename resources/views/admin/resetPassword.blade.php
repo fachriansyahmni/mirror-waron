@@ -16,22 +16,31 @@
 </div>
 @endif
 
-
-
-    <form action="/admin/1/reset" method="POST">
-        @csrf
-        <div class="form-group row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Password Lama</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control" name="passwordLama" id="inputPassword">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Password Baru</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control" name="passwordBaru" id="inputPassword">
-            </div>
-        </div>
-        <button class="btn btn-success">Simpan</button>
-    </form>
+    <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Edit Password</h4>
+          </div>
+          <div class="card-body">
+            <form action="/admin/1/reset" method="POST">
+                @csrf
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group bmd-form-group">
+                    <label class="bmd-label-floating">Password Lama</label>
+                    <input type="password" class="form-control" name="passwordLama">
+                  </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group bmd-form-group">
+                      <label class="bmd-label-floating">Password Baru</label>
+                      <input type="password" class="form-control" name="passwordBaru">
+                    </div>
+                  </div>
+              </div>
+    
+              <button type="submit" class="btn btn-primary pull-right">Simpan</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
 @endsection

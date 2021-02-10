@@ -127,8 +127,8 @@ class AdminController extends Controller
         if (Hash::check($request->passwordLama, $akun->password)) {
             $akun->password = bcrypt($request->passwordBaru);
             $akun->save();
-            return redirect()->back()->with('success','success change password');
+            return redirect()->back()->with('success','berhasil merubah password');
         }
-        return redirect()->back()->with('error','error change password');
+        return redirect()->back()->with('error','password lama anda salah');
     }
 }
