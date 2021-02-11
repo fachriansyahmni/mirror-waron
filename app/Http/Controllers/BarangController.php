@@ -96,10 +96,10 @@ class BarangController extends WarungController
     //     return redirect('/barang');
     // }
 
-    public function destroy($id)
+    public function deleteBarang($idwarung,$id)
     {
         $barang = Barang::find($id);
         $barang->delete();
-        return redirect('/barang');
+        return redirect()->back();
     }
 }
