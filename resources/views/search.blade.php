@@ -70,39 +70,65 @@
                     <hr>
                     <div class="form-group">
                         Kategori
-                        <select name="category" id="">
-                            <option value="0">All</option>
-                            @php
-                                $getAllCategories = App\KategoriWarung::select(['id','kategori'])->get();
-                            @endphp
-                            @foreach ($getAllCategories as $category)
-                                <option value="{{$category->id}}">{{$category->kategori}}</option>
-                            @endforeach
-                        </select>
+                        <form action="/filter" method="POST">
+                            @csrf
+                            <select name="category" id="">
+                                <option value="0">All</option>
+                                @php
+                                    $getAllCategories = App\KategoriWarung::select(['id','kategori'])->get();
+                                @endphp
+                                @foreach ($getAllCategories as $category)
+                                    <option value="{{$category->id}}">{{$category->kategori}}</option>
+                                @endforeach
+                            </select>
+                            <button>filter</button>
+                        </form>
                     </div>
                 </div>
-                <button>filter</button>
+                
+            
             </div>
             <div id="content-filter" class="row">
-                @if (count($hasil) < 1)
-                    <div class="col-lg-12 text-center">
-                        <strong>Tidak ada hasil</strong>
-                    </div>
-                @endif
-                @foreach ($hasil as $warung)
-                <div class="col-lg-3 col-md-4 col-sm-4 mb-3">
-                    <div class="card shadow-none border-0 card-content-result">
-                        <div class="card-cr-img"></div>
-                        <div class="card-body">
-                            <b>{{$warung->nama_warung}}</b>
-                            <div class="text-muted">@isset($warung->owner)
-                                {{$warung->owner->nama}}
-                            @endisset</div>
-                            <a href="{{route('overview.warung',$warung->id)}}" class="stretched-link text-muted text-decoration-none"></a>
+                
+
+                @if (isset($ket)=="filter")
+                    @foreach ($hasils as $warung)
+                    <div class="col-lg-3 col-md-4 col-sm-4 mb-3">
+                        <div class="card shadow-none border-0 card-content-result">
+                            <div class="card-cr-img"></div>
+                            <div class="card-body">
+                                <b>{{$warung->nama_warung}}</b>
+                                <div class="text-muted">@isset($warung->owner)
+                                    {{$warung->owner->nama}}
+                                @endisset</div>
+                                <a href="{{route('overview.warung',$warung->id)}}" class="stretched-link text-muted text-decoration-none"></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                @endforeach
+                    @endforeach
+                @else
+                    @if (count($hasil) < 1)
+                        <div class="col-lg-12 text-center">
+                            <strong>Tidak ada hasil</strong>
+                        </div>
+                    @endif
+                    @foreach ($hasil as $warung)
+                    <div class="col-lg-3 col-md-4 col-sm-4 mb-3">
+                        <div class="card shadow-none border-0 card-content-result">
+                            <div class="card-cr-img"></div>
+                            <div class="card-body">
+                                <b>{{$warung->nama_warung}}</b>
+                                <div class="text-muted">@isset($warung->owner)
+                                    {{$warung->owner->nama}}
+                                @endisset</div>
+                                <a href="{{route('overview.warung',$warung->id)}}" class="stretched-link text-muted text-decoration-none"></a>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                @endif
+
+                
             </div>
         </section>
     </div>
