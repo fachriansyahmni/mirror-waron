@@ -24,7 +24,7 @@ Route::any('/about', function () {
 
 Route::any('/warung-{id}', 'MainController@warungOverview')->name('overview.warung');
 Route::any('/kategori/{id}', 'MainController@warungByKategori')->name('kategori.warung');
-
+Route::any('/filter','MainController@filterCategory');
 
 
 Auth::routes();
@@ -74,6 +74,7 @@ Route::middleware('auth:warung')->group(function () {
     // Route::get('/my-warung/{idwarung}/barang/create', 'BarangController@create'); //menampilkan form
     Route::any('/my-warung/{idwarung}/barang/create', 'BarangController@store')->name('barang.create'); //menyimpan form
     Route::get('/barang', 'BarangController@index'); //menampilkan item
+
     //Route::get('/barang/{id}/edit', 'BarangController@edit'); //menampilkan form edit
     Route::get('/barang/{id}/show', 'BarangController@show'); //lihat detail data
     Route::put('/barang/update', 'BarangController@updateBarang')->name('barang.update.action'); //menyimpan hasil edit
