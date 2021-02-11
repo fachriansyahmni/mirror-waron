@@ -95,7 +95,16 @@ class WarungController extends AkunController
         $koor = explode(",", $DataWarung->koordinat);
 
         if ($request->has('submitedit')) {
-            dd($request);
+            $vWarung = $this->getDataWarung()->where('id', $idWarung)->first(); //validasi
+            $vWarung->nama_warung = $request->nama_warung;
+            $vWarung->no_hp = $request->no_hp;
+            $vWarung->alamat = $request->alamat;
+            $vWarung->koordinat = $request->koordinat;
+            $vWarung->kec_id = $request->kec;
+            $vWarung->prov_id = $request->prov;
+            $vWarung->kabkot_id = $request->kabkot;
+            $vWarung->save();
+            return redirect()->back();
         }
 
         $compacts = ['DataWarung', 'koor'];
