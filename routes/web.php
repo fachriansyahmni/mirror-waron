@@ -67,7 +67,7 @@ Route::middleware('auth:warung')->group(function () {
 
     Route::any('/dashboard/warung/buat', 'WarungController@create')->name('user.warung.create'); //menampilkan form
     Route::any('/dashboard/warung/m/{id}', 'WarungController@manage')->name('user.warung.manage'); //manage warung (edit, delete, dsb)
-
+    Route::any('/dashboard/warung-delete/{id}', 'WarungController@deleteWarung')->name('user.warung.delete'); //menghapus warung
     Route::any('/my-warung/{idwarung}', 'WarungController@view')->name('warung.view'); //view warung
 
     //crud barang

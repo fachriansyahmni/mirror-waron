@@ -112,6 +112,13 @@ class WarungController extends AkunController
         return view('warung.edit', compact($compacts));
     }
 
+    public function deleteWarung($id)
+    {
+        $warung = Warung::find($id);
+        $warung->delete();
+        return redirect()->back();
+    }
+
     public function view($idwarung)
     {
         $DataWarung = $this->getDataWarung()->where('id', $idwarung)->first();

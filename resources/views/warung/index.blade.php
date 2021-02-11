@@ -12,7 +12,7 @@
         <div class="card">
             <div class="card-body d-flex justify-content-between">
                 <div class="d-flex">
-                    <img src="{{asset('img/shop.png')}}" width="100px">
+                    <img src="{{asset('img/shop.png')}}" width="130px">
                     <div class="ml-3 d-flex flex-column">
                         <strong class="proxi">{{$warung->nama_warung}}</strong>
                         @isset($warung->kategori)
@@ -28,6 +28,7 @@
                 <div class="d-flex flex-column">
                     <a href="{{route('warung.view',$warung->id)}}" class="btn btn-info">view</a>
                     <a href="{{route('user.warung.manage',$warung->id)}}" class="btn btn-outline-info">manage</a>
+                    <a href="{{route('user.warung.delete',$warung->id)}}" class="btn btn-danger">delete</a>
                 </div>
             </div>
         </div>
