@@ -59,10 +59,32 @@
                           <td>-</td>
                           <td>-</td> --}}
                           <td> 
-                              <button class="btn btn-info">details</button>
-                              <a href="#" class="btn btn-success">Manage</a>
+                              <a href="{{route('overview.warung',$warung->id)}}" target="_blank" rel="tooltip" data-placement="top" title="view" class="btn btn-outline-info btn-sm"><i class="fa fa-eye"></i></a>
+                              <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailsWarung{{$warung->id}}" rel="tooltip" data-placement="top" title="details"><i class="fa fa-info-circle"></i></button>
+                              <a href="#" class="btn btn-success btn-sm" rel="tooltip" data-placement="top" title="manage"><i class="material-icons">edit</i></a>
                           </td>
                         </tr>
+
+                        <div class="modal fade" id="detailsWarung{{$warung->id}}" tabindex="-1" role="dialog" aria-labelledby="detailsWarung{{$warung->id}}Label" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="detailsWarung{{$warung->id}}Label">Details Warung</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                Nama Warung : -
+                                Pemilik @isset($warung->owner)
+                                            {{$warung->owner->nama}}
+                                        @endisset
+
+                                Total Barang {{count($warung->items)}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         @endforeach
                       </tbody>
                     </table>

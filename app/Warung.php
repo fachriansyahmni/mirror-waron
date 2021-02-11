@@ -20,4 +20,8 @@ class Warung extends Model
     {
         return $this->hasOne(KategoriWarung::class, 'id', 'kategori_id');
     }
+    public function items()
+    {
+        return $this->hasMany(Barang::class, 'warung_id', 'id');
+    }
 }
