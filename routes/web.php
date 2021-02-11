@@ -85,6 +85,7 @@ Route::middleware('auth:warung')->group(function () {
     Route::put('/barang/{id}', 'WarungController@update'); //menyimpan hasil edit
     Route::get('/barang/{id}/edit-stok', 'WarungController@editStok'); //menampilkan form edit stok 
     Route::put('/barang/{id}/stok', 'WarungController@updateStok'); //menyimpan hasil edit
+    Route::any('/my-warung/{idwarung}/barang/{id}', 'BarangController@deleteBarang')->name('user.barang.delete'); //menghapus warung
 
     //profile
     Route::get('/profile/{id}/show', 'AkunController@show')->name('show.profile');; //menampilkan profile
