@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\KategoriWarung;
 use App\Warung;
 use App\Admin;
+use App\Akun;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -131,5 +132,26 @@ class AdminController extends Controller
             return redirect()->back()->with('success','berhasil merubah password');
         }
         return redirect()->back()->with('error','password lama anda salah');
+    }
+
+    public function resetOwner()
+    {
+        $akuns = Akun::get();
+        $this->data['getWarungNotActive'] = $this->getAllWarungNotActive()->get();
+        return view('admin.resetPasswordOwner',$this->data, compact('akuns'));
+    }
+
+    public function resetPsswdOwner($id)
+    {
+        $this->data['getWarungNotActive'] = $this->getAllWarungNotActive()->get();
+        return view('admin.formResetPasswordOwner',$this->data, compact('id'));
+    }
+
+    public function savePsswdOwner(Request $request, $id)
+    {
+        $akun = Akun::find($id);
+        $akun->password = bcrypt($request->passwordBaru);
+        $akun->save();
+        return redirect()->back()->with('success','berhasil merubah password');
     }
 }

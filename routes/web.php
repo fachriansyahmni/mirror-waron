@@ -50,6 +50,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::any('/admin/manage', 'AdminController@manage')->name('admin.manage');
     Route::any('/admin/manage/warung-activation', 'AdminController@warungActivation')->name('admin.manage.warung-activation');
     Route::any('/admin/mancat', 'AdminController@mancat')->name('admin.mancat');
+    Route::any('/admin/reset-Owner', 'AdminController@resetOwner')->name('admin.resetOwner');
+    Route::any('/admin/{id}/savePsswdOwner', 'AdminController@savePsswdOwner')->name('admin.savePsswdOwner');
+    Route::any('/admin/{id}/reset/owner', 'AdminController@resetPsswdOwner')->name('admin.resetPsswdOwner');
     Route::any('/admin/mancat/{id}/edit', 'AdminController@edit')->name('admin.edit');
     Route::put('/admin/mancat/{id}', 'AdminController@update')->name('admin.update');
     Route::any('/admin/reset', 'AdminController@resetPsswd')->name('admin.reset');
