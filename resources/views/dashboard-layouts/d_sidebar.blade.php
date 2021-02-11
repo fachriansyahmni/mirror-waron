@@ -28,6 +28,12 @@
             <p>Manage Category</p>
           </a>
         </li>
+        <li class="nav-item {{ (request()->routeIs('admin.resetOwner')) ? 'active' : '' }}">
+          <a class="nav-link" href="{{route('admin.resetOwner')}}">
+            <i class="material-icons">account_circle</i>
+            <p>Reset Password Owner</p>
+          </a>
+        </li>
         @elseif(Auth::guard('warung')->check())
         <li class="nav-item {{ (request()->routeIs('user.dashboard')) ? 'active' : '' }}">
           <a class="nav-link" href="{{route('user.dashboard')}}">
