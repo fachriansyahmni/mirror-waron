@@ -29,6 +29,11 @@
             background-origin: content-box;
             padding: 20px;
         }
+        @media only screen and (max-width:1020px) {
+            #filter{
+                display: none;
+            }
+        }
     </style>
 @endpush
 @section('content')

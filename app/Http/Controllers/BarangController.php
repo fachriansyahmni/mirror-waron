@@ -78,6 +78,7 @@ class BarangController extends WarungController
         if ($barang == null) return redirect()->back(); // jika null
         $barang->nama = $request->e_namabarang;
         $barang->harga = $request->e_harga;
+        $barang->stok = $request->e_stok;
         $barang->save();
         return redirect()->back();
     }
