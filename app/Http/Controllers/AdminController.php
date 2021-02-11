@@ -53,7 +53,7 @@ class AdminController extends Controller
          if ($request->has('prov')) {
             $this->data['getAllWarung'] = $this->getWarungByProv($request->prov)->get();
         }
-        $compacts = ['getAllWarung', 'getWarungNotActive'];
+        $compacts = ['getWarungNotActive'];
         return view('admin.dash_admin', $this->data, compact($compacts));
     }
     public function profile()
