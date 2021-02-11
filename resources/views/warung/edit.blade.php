@@ -82,8 +82,10 @@ $getDataKecamatan = json_decode(file_get_contents($urlDataKecamatan), true);
                     <td>Jenis Warung : </td>
                     <td>
                         <select name="jenis" id="" class="form-control">
-                            <option value="Warung Sembako">Warung Sembako</option>
-                            <option value="Warung Kelontong">Warung Kelontong</option>
+                            <option disabled selected></option>
+                            @foreach ($allCategories as $category)
+                            <option value="{{$category->id}}">{{$category->kategori}}</option>
+                            @endforeach
                         </select>
                     </td>
                 </tr>
