@@ -399,7 +399,8 @@
                                         <input type="text" name="e_stok" value="{{old('e_stok',$barang->stok)}}"><br>
                                         </p>
                                         @endif
-                                        <button type="submit" class="btn btn-primary">update</button><br><br>
+                                        <button type="submit" class="btn btn-primary">update</button>
+                                        <a href="{{route('user.barang.delete',[$DataWarung->id, $barang->id])}}" class="btn btn-danger">Delete</a><br><br>
                                     </div>
                                 </form>       
                             </section>
