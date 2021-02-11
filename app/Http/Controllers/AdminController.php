@@ -104,7 +104,8 @@ class AdminController extends Controller
     public function edit($id)
     {
         $category = KategoriWarung::find($id);
-        return view('admin.edit_mancat', compact('category'));
+        $this->data['getWarungNotActive'] = $this->getAllWarungNotActive()->get();
+        return view('admin.edit_mancat', $this->data, compact('category'));
     }
 
     public function update(Request $request, $id)

@@ -389,13 +389,16 @@
                                             <rect width="201" height="174" rx="20" fill="#EFEFEF"/>
                                         </svg>
                                         @else    
-                                        <img src="{{asset($barang->gambar)}}" width="201" height="174" alt="">
+                                        <p style="text-align:justify;"><img src="{{asset($barang->gambar)}}" width="215" height="215" alt="" style="float:left; margin:0 8px 4px 0;">
+                                        <span style="color:grey">Nama Produk :</span><br>
+                                        <input type="text" name="e_namabarang" value="{{old('e_namabarang',$barang->nama)}}" placeholder="nama barang" required><br>
+                                        <span style="color:grey">Harga Produk :</span><br>
+                                        <input type="number" name="e_harga" value="{{old('e_harga',$barang->harga)}}" required><br>
+                                        <span style="color:grey">Stok Produk :</span><br>
+                                        <input type="text" name="e_stok" value="{{old('e_stok',$barang->stok)}}"><br>
+                                        </p>
                                         @endif
-                                        <input type="text" name="e_namabarang" value="{{old('e_namabarang',$barang->nama)}}" placeholder="nama barang" required>
-                                        <input type="number" name="e_harga" value="{{old('e_harga',$barang->harga)}}" required>
-                                        <input type="text" name="e_stok" value="{{old('e_stok',$barang->stok)}}">
-
-                                        <button type="submit">update</button>
+                                        <button type="submit" class="btn btn-primary">update</button><br><br>
                                     </div>
                                 </form>       
                             </section>
