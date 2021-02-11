@@ -34,9 +34,9 @@
                         $urlDataProvinsi = "https://dev.farizdotid.com/api/daerahindonesia/provinsi"; //ambil semua data provinsi
                         $getDataProvinsi = json_decode(file_get_contents($urlDataProvinsi), true);
                     @endphp
-                    <select name="prov">
+                    <select name="prov" class="form-control">
                         @foreach ($getDataProvinsi["provinsi"] as $index => $provinsi)
-                            <option value="{{$provinsi["id"]}}">{{$provinsi['nama']}}</option>
+                            <option value="{{$provinsi["id"]}}" {{old('prov') == $provinsi["id"] ? 'selected' : ""}}>{{$provinsi['nama']}}</option>
                         @endforeach
                     </select>
                 </td>
@@ -64,7 +64,7 @@
             <tr>
                 <td>Koordinat : </td>
                 <td>
-                    <input type="text" name="koordinat"> <button class="btn btn-default" type="button" onclick="getLocation()">get coordinat</button>    
+                    <input type="hidden" name="koordinat" id="inputKoordinat"> <button class="btn btn-default" type="button" onclick="getLocation()">get coordinat</button>    
                     <div id="mapid" style="height: 180px;"></div> 
                 </td>
             </tr>
@@ -145,6 +145,11 @@
             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="#">zxc</a> Project'
             }).addTo(mymap);
+            mymap.on('click', function(e) {
+                mymap.removeLayer(marker);
+                $('#inputKoordinat').val(e.latlng.lat + ", " + e.latlng.lng);
+                marker = new L.marker([e.latlng.lat, e.latlng.lng]).addTo(mymap);
+            });
         }
     </script>
 @endpush

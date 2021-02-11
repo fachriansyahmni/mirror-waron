@@ -35,13 +35,16 @@
     <div class="container-fluid" style="margin-top: 120px; margin-bottom: 20px; min-height: 100vh;">
         <div class="search-form">
             <form method="GET" id="form_search">
+                <div style="display:flex;">
                 @isset($_GET['q'])
                 <input type="text" name="q" class="form-control" value="{{old('q',$_GET['q'])}}">
                 @else
                 <input type="text" name="q" class="form-control" value="{{old('q')}}">
                 @endisset
-                <button class="btn btn-info">cari</button>
+                    <button class="btn btn-info">cari</button>
+                </div>
             </form>
+            <br>
         </div>
         <section class="content">
             <div id="filter">

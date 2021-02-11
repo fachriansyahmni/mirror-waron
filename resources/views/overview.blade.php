@@ -108,16 +108,20 @@
         min-height: 100vh;
     }
     #etalase .items{
-        display:flex;
+        display:inline-flex;
         /* flex-direction: row; */
         flex-wrap: wrap;
+        gap: 20px;
     }
     .items .barang{
         width: 200px;
         height: 300px;
         /* margin-left: auto;
         margin-right: auto; */
-        margin: 10px auto 10px auto;
+        margin: 10px 20px;
+    }
+    .items .barang img{
+        border-radius: 20px;
     }
     .items .barang:hover{
         background:#dfe6e960;
