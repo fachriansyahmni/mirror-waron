@@ -93,7 +93,7 @@ class WarungController extends AkunController
         if ($DataWarung == null) return redirect()->back()->with('error', 'not valid'); // validasi warung jika tidak ada
 
         $koor = explode(",", $DataWarung->koordinat);
-
+        $allCategories = $this->getAllCategory();
         if ($request->has('submitedit')) {
             $vWarung = $this->getDataWarung()->where('id', $idWarung)->first(); //validasi
             $vWarung->nama_warung = $request->nama_warung;
@@ -107,7 +107,7 @@ class WarungController extends AkunController
             return redirect()->back();
         }
 
-        $compacts = ['DataWarung', 'koor'];
+        $compacts = ['DataWarung', 'koor', 'allCategories'];
 
         return view('warung.edit', compact($compacts));
     }
