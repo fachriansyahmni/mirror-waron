@@ -262,9 +262,8 @@
 <section id="etalase">
     <h3 class="proxi">Etalase</h3>
     <div class="searchform">
-        <form method="POST" style="padding: 0 50px 0 50px;text-align: -webkit-center;">
-            @csrf
-            <input type="text" class="form-control form-control-lg search-input" placeholder="cari">
+        <form method="GET" id="formCariBarang" style="padding: 0 50px 0 50px;text-align: -webkit-center;">
+            <input type="text" class="form-control form-control-lg search-input" name="cari" placeholder="cari">
         </form>
     </div>
     <div class="items">
@@ -348,6 +347,15 @@
         </script>
     @endif
 
+@isset ($_GET['cari'])
+        <script>
+            $(function() {
+                $('html, body').animate({
+                    scrollTop: $(".searchform").offset().top
+                }, 1500);
+            });
+        </script>
+@endisset
 <script>
     const openEls = document.querySelectorAll("[data-open]");
     const closeEls = document.querySelectorAll("[data-close]");

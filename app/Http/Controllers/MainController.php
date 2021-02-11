@@ -100,7 +100,7 @@ class MainController extends Controller
     {
         return Warung::where('kategori_id', $id)->get();
     }
-    public function warungOverview($id)
+    public function warungOverview(Request $request, $id)
     {
         $WarungData = $this->getDataWarungActive($id)->first();
         $WarungData->nama_provinsi = $this->getProvName($WarungData->prov_id);
@@ -110,6 +110,10 @@ class MainController extends Controller
         $koor = explode(",", $WarungData->koordinat);
 
         $barangs = DB::table('barangs')->where('warung_id', $WarungData['id'])->get();
+
+        if ($request->has('cari')) {
+            $barangs = Barang::where('warung_id', $WarungData->id)->where('nama', 'LIKE', '%' . $request->cari . '%')->get();
+        }
         $compacts = ['WarungData', 'barangs', 'koor'];
         return view('overview', compact($compacts));
     }
