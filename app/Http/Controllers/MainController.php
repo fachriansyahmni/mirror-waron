@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Warung;
 use App\Barang;
+use App\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -116,5 +117,12 @@ class MainController extends Controller
         }
         $compacts = ['WarungData', 'barangs', 'koor'];
         return view('overview', compact($compacts));
+    }
+
+    public function filterCategory(Request $request)
+    {
+        $hasils = DB::table('warungs')->where('kategori_id',$request->category)->inRandomOrder()->get();
+        $ket = "filter";
+        return view('search', compact('hasils', 'ket'));
     }
 }

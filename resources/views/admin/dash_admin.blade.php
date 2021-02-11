@@ -50,35 +50,39 @@
       <div class="card">
         <div class="card-header card-header-warning">
           <h4 class="card-title">Data Persebaran Warung</h4>
+          <form method="GET">
+           @php
+              $urlDataProvinsi = "https://dev.farizdotid.com/api/daerahindonesia/provinsi"; //ambil semua data provinsi
+              $getDataProvinsi = json_decode(file_get_contents($urlDataProvinsi), true);
+           @endphp
+          <select name="prov" class="form-control" onchange="this.form.submit()">
+              @foreach ($getDataProvinsi["provinsi"] as $index => $provinsi)
+                  <option value="{{$provinsi["id"]}}" {{old('prov') == $provinsi["id"] ? 'selected' : ""}}>{{$provinsi['nama']}}</option>
+              @endforeach
+          </select>
+        </form>
         </div>
         <div class="card-body table-responsive">
           <table class="table table-hover">
             <thead class="text-warning">
               <th>No</th>
-              <th>Kota</th>
-              <th>Jumlah Warung</th>
+              <th>Nama Warung</th>
+              <th>Provinsi</th>
             </thead>
             <tbody>
+              @foreach ($getAllWarung as $index => $warung)
               <tr>
-                <td>1</td>
-                <td>Bandung</td>
-                <td>2</td>
+                <td>{{$index + 1}}</td>
+                <td>{{$warung->nama_warung}}</td>
+                <td>
+                  @if (isset($warung->prov_id) == '32')
+                  <strong>Jawa Barat</strong>
+                  @elseif (isset($warung->prov_id) == '53')
+                  <strong>Nusa Tenggara Timur</strong>
+                  @endif
+                </td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>Bekasi</td>
-                <td>1</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Bogor</td>
-                <td>1</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Kebumen</td>
-                <td>1</td>
-              </tr>
+              @endforeach
             </tbody>
           </table>
         </div>

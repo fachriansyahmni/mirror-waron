@@ -136,6 +136,11 @@ class WarungController extends AkunController
         return view('warung.view', compact($compacts));
     }
 
+    public function filterCategory(Request $request)
+    {
+        return "hallo";
+    }
+
     public function show($id)
     {
         $barang = Barang::find($id);
