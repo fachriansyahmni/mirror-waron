@@ -36,9 +36,9 @@
         <div class="search-form">
             <form method="GET" id="form_search">
                 @isset($_GET['q'])
-                <input type="text" name="q" class="form-control" value="{{old('q',$_GET['q'])}}">
+                <input type="text" name="q" class="form-control" style="width:300px" value="{{old('q',$_GET['q'])}}">
                 @else
-                <input type="text" name="q" class="form-control" value="{{old('q')}}">
+                <input type="text" name="q" class="form-control" style="width:300px" value="{{old('q')}}">
                 @endisset
                 <button class="btn btn-info">cari</button>
             </form>
