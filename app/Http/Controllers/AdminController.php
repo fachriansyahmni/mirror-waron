@@ -28,16 +28,33 @@ class AdminController extends Controller
     {
         return Warung::where('is_active', 1);
     }
+    public function getWarungByProv($prov_id)
+    {
+        return Warung::where('prov_id',$prov_id);
+    }
     public function getAllWarungNotActive()
     {
         return Warung::where('is_active', 0);
     }
 
-    public function index()
+    public function getProvName($id)
+    {
+        $urlDataProvinsi = "https://dev.farizdotid.com/api/daerahindonesia/provinsi"; //ambil semua data provinsi
+        $getDataProvinsi = json_decode(file_get_contents($urlDataProvinsi), true);
+        $key = array_search($id, array_column($getDataProvinsi['provinsi'], 'id'));
+        $name = $getDataProvinsi['provinsi'][$key]['nama'];
+        return $name;
+    }
+
+    public function index(Request $request)
     {
         $getWarungNotActive = $this->getAllWarungNotActive()->get();
-        $compacts = ['getWarungNotActive'];
-        return view('admin.dash_admin', compact($compacts));
+        $this->data['getAllWarung'] = $this->getAllWarungActive()->get();
+         if ($request->has('prov')) {
+            $this->data['getAllWarung'] = $this->getWarungByProv($request->prov)->get();
+        }
+        $compacts = ['getAllWarung', 'getWarungNotActive'];
+        return view('admin.dash_admin', $this->data, compact($compacts));
     }
     public function profile()
     {
