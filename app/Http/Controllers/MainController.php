@@ -121,7 +121,7 @@ class MainController extends Controller
 
     public function filterCategory(Request $request)
     {
-        $hasils = DB::table('warungs')->where('kategori_id',$request->category)->get();
+        $hasils = DB::table('warungs')->where('kategori_id',$request->category)->inRandomOrder()->get();
         $ket = "filter";
         return view('search', compact('hasils', 'ket'));
     }
