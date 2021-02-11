@@ -443,21 +443,7 @@
                 <tr>
                     <td>Stok</td>
                     <td><input type="number" name="stok" placeholder="Masukan Stok Barang"></td>
-                </tr>
-                {{-- <tr>
-                    <td>Pilihan</td>
-                    <td>
-                        <input type="radio" name="status_id" checked value="1"><br>
-                        <label for="">Tersedia</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="radio" name="status_id" value="0">
-                        <label for="">Tidak Tersedia</label>
-                    </td>
-                </tr> --}}
-                
+                </tr>                
             </table>
             <button>Submit</button>
         </form>
