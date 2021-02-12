@@ -97,6 +97,10 @@
       color: black;
       font-family: "Font Proxi";
     }
+
+    form#formByCategory{
+        display: none;
+    }
 </style>
     
 @endpush
@@ -209,11 +213,14 @@
         <div class="card card-jw">
           <img src="{{ asset('img/coffee-cup.svg') }}" class="card-img-top mt-5" style="width:130px; height: 130px;">
           <div class="card-body">
-            <a href="{{route('cari')}}" class="stretched-link text-uppercase">{{$category->kategori}}</a>
+            <a href="#" onclick="$('#categoryInput').val({{$category->id}});document.getElementById('formByCategory').submit();" class="stretched-link text-uppercase">{{$category->kategori}}</a>
           </div>
         </div>
       @endforeach
-      </div>
+      <form id="formByCategory" method="GET" action="{{route('cari')}}">
+        <input type="text" name="category" id="categoryInput">
+      </form>
+    </div>
     
       <div class="right-arrow">
         <a href="#">
