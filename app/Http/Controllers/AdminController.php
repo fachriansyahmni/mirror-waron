@@ -30,7 +30,7 @@ class AdminController extends Controller
     }
     public function getWarungByProv($prov_id)
     {
-        return Warung::where('prov_id',$prov_id);
+        return Warung::where('prov_id', $prov_id);
     }
     public function getAllWarungNotActive()
     {
@@ -49,11 +49,11 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         $getWarungNotActive = $this->getAllWarungNotActive()->get();
-        $this->data['getAllWarung'] = $this->getAllWarungActive()->get();
-         if ($request->has('prov')) {
+        // $this->data['getAllWarung'] = $this->getAllWarungActive()->get();
+        if ($request->has('prov')) {
             $this->data['getAllWarung'] = $this->getWarungByProv($request->prov)->get();
         }
-        $compacts = ['getAllWarung', 'getWarungNotActive'];
+        $compacts = ['getWarungNotActive'];
         return view('admin.dash_admin', $this->data, compact($compacts));
     }
     public function profile()
@@ -137,7 +137,7 @@ class AdminController extends Controller
     public function resetPsswd()
     {
         $this->data['getWarungNotActive'] = $this->getAllWarungNotActive()->get();
-        return view('admin.resetPassword',$this->data);
+        return view('admin.resetPassword', $this->data);
     }
 
     public function savePsswd(Request $request, $id)
@@ -146,22 +146,22 @@ class AdminController extends Controller
         if (Hash::check($request->passwordLama, $akun->password)) {
             $akun->password = bcrypt($request->passwordBaru);
             $akun->save();
-            return redirect()->back()->with('success','berhasil merubah password');
+            return redirect()->back()->with('success', 'berhasil merubah password');
         }
-        return redirect()->back()->with('error','password lama anda salah');
+        return redirect()->back()->with('error', 'password lama anda salah');
     }
 
     public function resetOwner()
     {
         $akuns = Akun::get();
         $this->data['getWarungNotActive'] = $this->getAllWarungNotActive()->get();
-        return view('admin.resetPasswordOwner',$this->data, compact('akuns'));
+        return view('admin.resetPasswordOwner', $this->data, compact('akuns'));
     }
 
     public function resetPsswdOwner($id)
     {
         $this->data['getWarungNotActive'] = $this->getAllWarungNotActive()->get();
-        return view('admin.formResetPasswordOwner',$this->data, compact('id'));
+        return view('admin.formResetPasswordOwner', $this->data, compact('id'));
     }
 
     public function savePsswdOwner(Request $request, $id)
@@ -169,6 +169,6 @@ class AdminController extends Controller
         $akun = Akun::find($id);
         $akun->password = bcrypt($request->passwordBaru);
         $akun->save();
-        return redirect()->back()->with('success','berhasil merubah password');
+        return redirect()->back()->with('success', 'berhasil merubah password');
     }
 }
