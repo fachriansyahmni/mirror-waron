@@ -75,11 +75,9 @@
                 <td>{{$index + 1}}</td>
                 <td>{{$warung->nama_warung}}</td>
                 <td>
-                  @if (isset($warung->prov_id) == '32')
-                  <strong>Jawa Barat</strong>
-                  @elseif (isset($warung->prov_id) == '53')
-                  <strong>Nusa Tenggara Timur</strong>
-                  @endif
+                  @isset($warung->nama_provinsi)
+                      {{$warung->nama_provinsi}}
+                  @endisset
                 </td>
               </tr>
               @endforeach
