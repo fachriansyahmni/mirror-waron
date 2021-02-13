@@ -71,7 +71,7 @@
     }
     .left-arrow,.right-arrow{
       position: relative;
-      z-index: 1;
+      z-index: 2;
       top: 120px;
     }
     .left-arrow{
