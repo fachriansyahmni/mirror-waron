@@ -80,7 +80,6 @@ class MainController extends Controller
                     $query->where('nama_warung', 'LIKE', '%' . $querySearch . '%')
                         ->orWhere('kategori', 'LIKE', '%' . $querySearch . '%');
                 });
-                // $table->where('nama_warung', 'LIKE', '%' . $querySearch . '%')->orWhere('kategori', 'LIKE', '%' . $querySearch . '%');
                 if (isset($request->category)) {
                     $table->where('kategori_id', $request->category);
                 }
@@ -91,10 +90,6 @@ class MainController extends Controller
         }
         $hasil = $table->get();
         $compacts = ['hasil'];
-
-        // $getWarungActive = $this->getAllWarungActive()->paginate(15);
-
-        // $hasil = array_push($compacts, 'getWarungActive');
         return view('search', compact($compacts));
     }
     public function warungByKategori($id)
@@ -104,10 +99,10 @@ class MainController extends Controller
     public function warungOverview(Request $request, $id)
     {
         $WarungData = $this->getDataWarungActive($id)->first();
+        if ($WarungData == null) return redirect()->back();
         $WarungData->nama_provinsi = $this->getProvName($WarungData->prov_id);
         $WarungData->nama_kota = $this->getKotaName($WarungData->prov_id, $WarungData->kabkot_id);
         $WarungData->nama_kecamatan = $this->getKecName($WarungData->kabkot_id, $WarungData->kec_id);
-        if ($WarungData == null) return redirect()->back();
         $koor = explode(",", $WarungData->koordinat);
 
         $barangs = DB::table('barangs')->where('warung_id', $WarungData['id'])->get();
@@ -121,7 +116,7 @@ class MainController extends Controller
 
     public function filterCategory(Request $request)
     {
-        $hasils = DB::table('warungs')->where('kategori_id',$request->category)->inRandomOrder()->get();
+        $hasils = DB::table('warungs')->where('kategori_id', $request->category)->inRandomOrder()->get();
         $ket = "filter";
         return view('search', compact('hasils', 'ket'));
     }

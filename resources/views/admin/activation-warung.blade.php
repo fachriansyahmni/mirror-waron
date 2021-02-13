@@ -50,8 +50,8 @@
                                                     <td>{{$warung->alamat}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Foto</td>
-                                                    <td></td>
+                                                    <td>Peta</td>
+                                                    <td>{{$warung->koordinat}}</td>
                                                 </tr>
                                             </table>
                                         </div>

@@ -26,7 +26,7 @@ class AdminController extends Controller
     }
     public function getAllWarungActive()
     {
-        return Warung::where('is_active', 1);
+        return $this->getAllWarung()->where('is_active', 1);
     }
     public function getWarungByProv($prov_id)
     {
@@ -49,7 +49,7 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         $getWarungNotActive = $this->getAllWarungNotActive()->get();
-        // $this->data['getAllWarung'] = $this->getAllWarungActive()->get();
+        $this->data['getAllWarung'] = [];
         if ($request->has('prov')) {
             $this->data['getAllWarung'] = $this->getWarungByProv($request->prov)->get();
         }
@@ -63,8 +63,7 @@ class AdminController extends Controller
     }
     public function manage(Request $request)
     {
-        $getAllWarung = $this->getAllWarung();
-        // $getWarungActive = $this->getAllWarungActive()->get();
+        $getAllWarung = $this->getAllWarungActive();
         $getWarungNotActive = $this->getAllWarungNotActive()->get();
 
         $compacts = ['getAllWarung', 'getWarungNotActive'];

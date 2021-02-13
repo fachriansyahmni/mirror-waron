@@ -10,81 +10,83 @@
 
 @section('content')
 <div class="container-fluid">
-    <form method="POST" enctype="multipart/form-data">
-        @csrf
-        <table>
-            <tr>
-                <td>Nama Warung : </td>
-                <td><input type="text" name="nama_warung" placeholder="Masukan Nama Warung"></td>
-            </tr>
-            <tr>
-                <td>Pemilik : </td>
-                <td><input type="text" name="pemilik" value="{{old('pemilik',Auth::user()->nama)}}" disabled readonly placeholder="Masukan Nama Pemilik"></td>
-            </tr>
-            <tr>
-                <td>Alamat : </td>
-                <td>
-                    <textarea name="alamat" id="" class="form-control" placeholder="Masukan Alamat Warung" rows="10"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td>Provinsi : </td>
-                <td>
-                    @php
-                        $urlDataProvinsi = "https://dev.farizdotid.com/api/daerahindonesia/provinsi"; //ambil semua data provinsi
-                        $getDataProvinsi = json_decode(file_get_contents($urlDataProvinsi), true);
-                    @endphp
-                    <select name="prov" class="form-control">
-                        @foreach ($getDataProvinsi["provinsi"] as $index => $provinsi)
-                            <option value="{{$provinsi["id"]}}" {{old('prov') == $provinsi["id"] ? 'selected' : ""}}>{{$provinsi['nama']}}</option>
-                        @endforeach
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Kab/Kota : </td>
-                <td>
-                    <select name="kabkot">
-                        <option selected disabled>Kabupaten / kota</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Kecamatan : </td>
-                <td>
-                    <select name="kec">
-                        <option selected disabled>Kecamatan</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Nomor Handphone : </td>
-                <td><input type="number" name="no_hp"></td>
-            </tr>
-            <tr>
-                <td>Koordinat : </td>
-                <td>
-                    <input type="hidden" name="koordinat" id="inputKoordinat"> <button class="btn btn-default" type="button" onclick="getLocation()">get coordinat</button>    
-                    <div id="mapid" style="height: 180px;"></div> 
-                </td>
-            </tr>
-            <tr>
-                <td>Jenis Warung : </td>
-                <td>
-                    <select name="jenis" id="">
-                        @foreach ($getAllCategoryWarung as $categoryWarung)
-                        <option value="{{$categoryWarung->id}}">{{$categoryWarung->kategori}}</option>
-                        @endforeach
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Foto Warung : </td>
-                <td><input type="file" name="foto"></td>
-            </tr>
-        </table>
-        <button type="submit" name="submitwarung">Daftar</button>
-    </form>   
+    <div class="card">
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+                @csrf
+                <table>
+                    <tr>
+                        <td>Nama Warung : </td>
+                        <td><input class="form-control" type="text" name="nama_warung" placeholder="Masukan Nama Warung"></td>
+                    </tr>
+                    <tr>
+                        <td>Pemilik : </td>
+                        <td><input class="form-control" type="text" name="pemilik" value="{{old('pemilik',Auth::user()->nama)}}" disabled readonly placeholder="Masukan Nama Pemilik"></td>
+                    </tr>
+                    <tr>
+                        <td>Alamat : </td>
+                        <td>
+                            <textarea name="alamat" id="" class="form-control" placeholder="Masukan Alamat Warung" rows="10"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Provinsi : </td>
+                        <td>
+                            @php
+                                $urlDataProvinsi = "https://dev.farizdotid.com/api/daerahindonesia/provinsi"; //ambil semua data provinsi
+                                $getDataProvinsi = json_decode(file_get_contents($urlDataProvinsi), true);
+                            @endphp
+                            <select name="prov" class="form-control">
+                                <option disabled selected>pilih provinsi</option>
+                                @foreach ($getDataProvinsi["provinsi"] as $index => $provinsi)
+                                    <option value="{{$provinsi["id"]}}" {{old('prov') == $provinsi["id"] ? 'selected' : ""}}>{{$provinsi['nama']}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Kab/Kota : </td>
+                        <td>
+                            <select name="kabkot" class="form-control">
+                                <option selected disabled class="text-muted">pilih Kabupaten / kota</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Kecamatan : </td>
+                        <td>
+                            <select name="kec" class="form-control">
+                                <option selected disabled class="text-muted">pilih kecamatan</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Nomor Handphone : </td>
+                        <td><input type="number" class="form-control" name="no_hp"></td>
+                    </tr>
+                    <tr>
+                        <td>Koordinat : </td>
+                        <td>
+                            <input type="hidden" name="koordinat" id="inputKoordinat"> <button class="btn btn-default" type="button" onclick="getLocation()">get coordinat</button>    
+                            <div id="mapid" style="height: 180px;min-width: 50vw;"></div> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Jenis Warung : </td>
+                        <td>
+                            <select name="jenis" id="" class="form-control">
+                                <option disabled selected></option>
+                                @foreach ($getAllCategoryWarung as $categoryWarung)
+                                <option value="{{$categoryWarung->id}}">{{$categoryWarung->kategori}}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <button type="submit" name="submitwarung" class="btn btn-primary">Daftar</button>
+            </form>   
+        </div>
+    </div>
 </div>
 @endsection
 @push('scripts')
@@ -107,18 +109,20 @@
                 },
 
                 timeout: 120000,
-            })
+            });
         });
         $('select[name="kabkot"]').on('change', function() {
+            var $selectkec = $('select[name="kec"]');
             $.ajax({
                 url:"https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota="+this.value,
                 type: "GET",
                 contentType: 'application/json; charset=utf-8',
                 success: function(resultData) {
                     data = JSON.stringify(resultData.kecamatan);
-                    $('select[name="kec"]').find('option').remove();
+                    $selectkec.find('option').remove();
+                    $selectkec.append("<option disabled selected></option>");
                     $.each(JSON.parse(data), function(i, item) {
-                        $('select[name="kec"]').append("<option value="+item.id+">"+item.nama+"</option>");
+                        $selectkec.append("<option value="+item.id+">"+item.nama+"</option>");
                     });
                 },
                 error : function(jqXHR, textStatus, errorThrown) {

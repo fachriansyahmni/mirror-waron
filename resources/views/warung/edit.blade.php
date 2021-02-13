@@ -12,12 +12,12 @@
 @endpush
 
 @php
-$urlDataProvinsi = "https://dev.farizdotid.com/api/daerahindonesia/provinsi"; //ambil semua data provinsi
-$getDataProvinsi = json_decode(file_get_contents($urlDataProvinsi), true);
-$urlDataKota = "https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=".old('prov',$DataWarung->prov_id);
-$getDataKota = json_decode(file_get_contents($urlDataKota), true);
-$urlDataKecamatan = "https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=".old('kabkot',$DataWarung->kabkot_id);
-$getDataKecamatan = json_decode(file_get_contents($urlDataKecamatan), true);
+    $urlDataProvinsi = "https://dev.farizdotid.com/api/daerahindonesia/provinsi"; //ambil semua data provinsi
+    $getDataProvinsi = json_decode(file_get_contents($urlDataProvinsi), true);
+    $urlDataKota = "https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=".old('prov',$DataWarung->prov_id);
+    $getDataKota = json_decode(file_get_contents($urlDataKota), true);
+    $urlDataKecamatan = "https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=".old('kabkot',$DataWarung->kabkot_id);
+    $getDataKecamatan = json_decode(file_get_contents($urlDataKecamatan), true);
 @endphp
 
 @section('content')
@@ -88,10 +88,6 @@ $getDataKecamatan = json_decode(file_get_contents($urlDataKecamatan), true);
                             @endforeach
                         </select>
                     </td>
-                </tr>
-                <tr>
-                    <td>Foto Warung : </td>
-                    <td><input type="file" name="foto"></td>
                 </tr>
             </table>
             <button type="submit" class="btn btn-success" name="submitedit">simpan & update</button>

@@ -121,7 +121,7 @@ class WarungController extends AkunController
 
     public function view($idwarung)
     {
-        $DataWarung = $this->getDataWarung()->where('id', $idwarung)->first();
+        $DataWarung = $this->getDataWarung()->where('id', $idwarung)->where('is_active', 1)->first();
         if ($DataWarung == null) return redirect()->back()->with('error', 'not valid'); // validasi warung jika tidak ada
 
         //get nama provinsi, nama kota, nama kecamatan
@@ -146,60 +146,9 @@ class WarungController extends AkunController
         $barang = Barang::find($id);
         return view('items.show', compact('barang'));
     }
-
-    // public function edit($id)
-    // {
-    //     $barang = Barang::find($id);
-    //     return view('items.edit', compact('barang'));
-    // }
-
-    // public function updateBarang(Request $request)
-    // {
-    //     $barang = Barang::find($request["id"]);
-    //     $barang->nama = $request["nama"];
-    //     $barang->harga = $request["harga"];
-    //     $barang->deskripsi = $request["deskripsi"];
-    //     $barang->gambar = $request["gambar"];
-    //     $barang->warung_id = "1";
-
-    //     if ($request->stok <= 0) {
-    //         $barang->status_id = 0;
-    //     } else {
-    //         $barang->status_id = 1;
-    //     }
-    //     $barang->stok = $request->stok;
-
-    //     $barang->save();
-    //     return redirect('/my-warung' . '/' . $request["warung_id"]);
-    //     //note : bug return
-    // }
-
     public function editStok($id)
     {
         $barang = Barang::find($id);
         return view('items.editStok', compact('barang'));
-    }
-
-    public function updateStok(Request $request)
-    {
-        $barang = Barang::find($request->id);
-        if ($request->stok <= 0) {
-            $barang->status_id = 0;
-        } else {
-            $barang->status_id = 1;
-        }
-        $barang->stok = $request->stok;
-
-        $barang->save();
-        return redirect('/my-warung' . '/' . $request->warung_id);
-        //note : bug return
-    }
-
-    public function destroy($id)
-    {
-        $barang = Barang::find($id);
-        $barang->delete();
-        return redirect('/my-warung' . '/' . $request["warung_id"]);
-        //note : bug return
     }
 }
