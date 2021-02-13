@@ -64,6 +64,7 @@
         </div>
         <div class="card-body table-responsive">
           <table class="table table-hover">
+            Terdapat <b>{{count($getAllWarung)}}</b> Warung di provinsi ini
             <thead class="text-warning">
               <th>No</th>
               <th>Nama Warung</th>
@@ -74,13 +75,14 @@
               <tr>
                 <td>{{$index + 1}}</td>
                 <td>{{$warung->nama_warung}}</td>
-                <td>
-                  @if (isset($warung->prov_id) == '32')
-                  <strong>Jawa Barat</strong>
-                  @elseif (isset($warung->prov_id) == '53')
-                  <strong>Nusa Tenggara Timur</strong>
-                  @endif
-                </td>
+                <td>{{$warung->prov_id}}
+                    @if(($warung->prov_id) == 32)
+                    <strong>Jawa Barat</strong>
+                    @elseif(($warung->prov_id) == 53)
+                    <strong>Nusa Tenggara Timur</strong>
+                    @elseif(($warung->prov_id) == 53)
+                    <strong>Nusa Tenggara Timur</strong>
+                    @endif</td>
               </tr>
               @endforeach
             </tbody>
