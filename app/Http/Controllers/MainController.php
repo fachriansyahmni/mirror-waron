@@ -65,10 +65,12 @@ class MainController extends Controller
         } else {
             $typeSearch = "warung";
         }
+        if ($request->has('category')) {
+            $typeSearch = "filter";
+        }
         switch ($typeSearch) {
-            case "warung":
+            case "filter":
                 $dbSearch = "warungs";
-                break;
             default:
                 $dbSearch = "warungs";
                 break;
@@ -76,7 +78,10 @@ class MainController extends Controller
 
         $table = DB::table($dbSearch);
         switch ($typeSearch) {
-            case "warung":
+            case "filter":
+                $table->where('kategori_id', $request->category)->inRandomOrder();
+                break;
+            default:
                 $table->join('kategori_warungs', $dbSearch . '.kategori_id', '=', 'kategori_warungs.id');
                 $table->select($dbSearch . '.*', 'kategori_warungs.id as kategId');
                 $table->where('is_active', 1);
@@ -87,9 +92,6 @@ class MainController extends Controller
                 if (isset($request->category)) {
                     $table->where('kategori_id', $request->category);
                 }
-                break;
-            default:
-
                 break;
         }
         $hasil = $table->get();
@@ -121,13 +123,5 @@ class MainController extends Controller
         }
         $compacts = ['WarungData', 'barangs', 'koor'];
         return view('overview', compact($compacts));
-    }
-
-    public function filterCategory(Request $request)
-    {
-        $hasils = DB::table('warungs')->where('kategori_id', $request->category)->inRandomOrder()->get();
-        $ket = "filter";
-        $getAllCategories = $this->getAllCategories();
-        return view('search', compact('hasils', 'ket', 'getAllCategories'));
     }
 }

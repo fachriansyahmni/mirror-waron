@@ -54,62 +54,43 @@
         <section class="content">
             <div id="filter">
                 <div class="card card-body shadow-none">
-                    <div class="form-group">
-                        Kategori
-                        <form action="/filter" method="POST">
-                            @csrf
-                            <select name="category" id="">
+                    <form method="POST">
+                        @csrf
+                        <div class="form-group">
+                            Kategori
+                            <select name="category" class="form-control" id="">
                                 <option value="0">All</option>
                                 @foreach ($getAllCategories as $category)
                                     <option value="{{$category->id}}">{{$category->kategori}}</option>
                                 @endforeach
                             </select>
-                            <button>filter</button>
-                        </form>
-                    </div>
+                        </div>
+                        <button name="filter" class="btn btn-outline-info btn-block" type="submit">filter</button>
+                    </form>
                 </div>
                 
             
             </div>
             <div id="content-filter" class="row">
-                
-
-                @if (isset($ket)=="filter")
-                    @foreach ($hasils as $warung)
-                    <div class="col-lg-3 col-md-4 col-sm-4 mb-3">
-                        <div class="card shadow-none border-0 card-content-result">
-                            <div class="card-cr-img"></div>
-                            <div class="card-body">
-                                <b>{{$warung->nama_warung}}</b>
-                                <div class="text-muted">@isset($warung->nama_provinsi)
-                                    <i class="fa fa-map-marker-alt"></i> {{$warung->nama_provinsi}}
-                                 @endisset</div>
-                                <a href="{{route('overview.warung',$warung->id)}}" class="stretched-link text-muted text-decoration-none"></a>
-                            </div>
+            @if (count($hasil) < 1)
+                <div class="col-lg-12 text-center">
+                    <strong>Tidak ada hasil</strong>
+                </div>
+            @endif
+            @foreach ($hasil as $warung)
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                    <div class="card shadow-none border-0 card-content-result">
+                        <div class="card-cr-img"></div>
+                        <div class="card-body" style="padding: 34px;">
+                            <b>{{$warung->nama_warung}}</b>
+                            <div class="text-muted">@isset($warung->nama_provinsi)
+                                <i class="fa fa-map-marker-alt"></i> {{$warung->nama_provinsi}}
+                            @endisset</div>
+                            <a href="{{route('overview.warung',$warung->id)}}" class="stretched-link text-muted text-decoration-none"></a>
                         </div>
                     </div>
-                    @endforeach
-                @else
-                    @if (count($hasil) < 1)
-                        <div class="col-lg-12 text-center">
-                            <strong>Tidak ada hasil</strong>
-                        </div>
-                    @endif
-                    @foreach ($hasil as $warung)
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                        <div class="card shadow-none border-0 card-content-result">
-                            <div class="card-cr-img"></div>
-                            <div class="card-body" style="padding: 34px;">
-                                <b>{{$warung->nama_warung}}</b>
-                                <div class="text-muted">@isset($warung->nama_provinsi)
-                                   <i class="fa fa-map-marker-alt"></i> {{$warung->nama_provinsi}}
-                                @endisset</div>
-                                <a href="{{route('overview.warung',$warung->id)}}" class="stretched-link text-muted text-decoration-none"></a>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                @endif
+                </div>
+            @endforeach
 
                 
             </div>
