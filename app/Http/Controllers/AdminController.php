@@ -52,6 +52,9 @@ class AdminController extends Controller
         $this->data['getAllWarung'] = [];
         if ($request->has('prov')) {
             $this->data['getAllWarung'] = $this->getWarungByProv($request->prov)->get();
+            foreach ($this->data['getAllWarung'] as $warung) {
+                $warung->nama_provinsi = $this->getProvName($warung->prov_id);
+            }
         }
         $compacts = ['getWarungNotActive'];
         return view('admin.dash_admin', $this->data, compact($compacts));
