@@ -109,27 +109,6 @@
 <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css')}}">
 @endpush
 {{-- <body> --}}
-
-  <!-- Masthead -->
-  {{-- <header class="masthead text-black text-right">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-9 ml-auto">
-          <h1 style="font-size: 72px; font-weight: 600;" class="mb-5 proxi">CARI <span style="color:#b4F5FF">WARUNG</span><br>DISEKITARMU</h1>
-        </div>
-        <div class="col-md-10 col-lg-8 col-xl-7 ml-auto">
-          <form>
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0 ml-auto">
-                <input type="text" style="border-radius: 40px;" class="form-control form-control-lg" placeholder="Cari warung atau produk didekatmu...">
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </header> --}}
-
 @section('content')
 <header class="container-fluid warung-landing">
   <div class="warung-icon"></div>
@@ -143,11 +122,10 @@
         </form>
         <form method="GET" action="{{route('cari')}}" class="search-d">
           <div class="input-group">
-            <input type="text" style="border-radius: 40px; z-index: inherit;" name="q" class="form-control form-control-lg search" placeholder="Cari warung atau produk didekatmu...">
+            <input type="text" style="border-radius: 40px; z-index: inherit;" name="q" class="form-control form-control-lg search" placeholder="cari warung didekatmu...">
             <input type="text" name="type" value="warung" hidden>
             <div class="input-group-append">
               <button type="submit" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info">cari</button>
-              {{-- <input type="submit" style="border-radius: 20px;" class="submitsearch btn btn-sm btn-info"> --}}
             </div>
           </div>
         </form>

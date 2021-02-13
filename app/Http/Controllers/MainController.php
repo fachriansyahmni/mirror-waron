@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Warung;
 use App\Barang;
 use App\Kategori;
+use App\KategoriWarung;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +19,10 @@ class MainController extends Controller
     {
         return Warung::where('is_active', 1);
     }
-
+    public function getAllCategories()
+    {
+        return KategoriWarung::select(['id', 'kategori'])->get();
+    }
     public function getProvName($id)
     {
         $urlDataProvinsi = "https://dev.farizdotid.com/api/daerahindonesia/provinsi"; //ambil semua data provinsi
@@ -89,7 +93,12 @@ class MainController extends Controller
                 break;
         }
         $hasil = $table->get();
-        $compacts = ['hasil'];
+        foreach ($hasil as $result) {
+            $result->nama_provinsi = $this->getKotaName($result->prov_id, $result->kabkot_id); //get nama provinsi
+        }
+
+        $getAllCategories = $this->getAllCategories();
+        $compacts = ['hasil', 'getAllCategories'];
         return view('search', compact($compacts));
     }
     public function warungByKategori($id)

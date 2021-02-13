@@ -4,7 +4,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link proxi" style="color:black" href="{{route('cari')}}">cari produk</a>
+          <a class="nav-link proxi" style="color:black" href="{{route('cari')}}">cari warung</a>
         </li>
         @guest
         <li class="nav-item">

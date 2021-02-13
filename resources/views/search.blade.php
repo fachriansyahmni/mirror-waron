@@ -54,29 +54,12 @@
         <section class="content">
             <div id="filter">
                 <div class="card card-body shadow-none">
-                    <div class="form-group text-center">
-                        Type
-                        <div class="row">
-                            <div class="col">
-                                <input id="r_type_warung" type="radio" name="type" value="warung" checked>
-                                <label for="r_type_warung">Warung</label>
-                            </div>
-                            <div class="col">
-                                <input id="r_type_barang" type="radio" name="type" value="barang">
-                                <label for="r_type_barang">Barang</label>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
                     <div class="form-group">
                         Kategori
                         <form action="/filter" method="POST">
                             @csrf
                             <select name="category" id="">
                                 <option value="0">All</option>
-                                @php
-                                    $getAllCategories = App\KategoriWarung::select(['id','kategori'])->get();
-                                @endphp
                                 @foreach ($getAllCategories as $category)
                                     <option value="{{$category->id}}">{{$category->kategori}}</option>
                                 @endforeach
@@ -98,9 +81,9 @@
                             <div class="card-cr-img"></div>
                             <div class="card-body">
                                 <b>{{$warung->nama_warung}}</b>
-                                <div class="text-muted">@isset($warung->owner)
-                                    {{$warung->owner->nama}}
-                                @endisset</div>
+                                <div class="text-muted">@isset($warung->nama_provinsi)
+                                    <i class="fa fa-map-marker-alt"></i> {{$warung->nama_provinsi}}
+                                 @endisset</div>
                                 <a href="{{route('overview.warung',$warung->id)}}" class="stretched-link text-muted text-decoration-none"></a>
                             </div>
                         </div>
@@ -113,13 +96,13 @@
                         </div>
                     @endif
                     @foreach ($hasil as $warung)
-                    <div class="col-lg-3 col-md-4 col-sm-4 mb-3">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
                         <div class="card shadow-none border-0 card-content-result">
                             <div class="card-cr-img"></div>
-                            <div class="card-body">
+                            <div class="card-body" style="padding: 34px;">
                                 <b>{{$warung->nama_warung}}</b>
-                                <div class="text-muted">@isset($warung->owner)
-                                    {{$warung->owner->nama}}
+                                <div class="text-muted">@isset($warung->nama_provinsi)
+                                   <i class="fa fa-map-marker-alt"></i> {{$warung->nama_provinsi}}
                                 @endisset</div>
                                 <a href="{{route('overview.warung',$warung->id)}}" class="stretched-link text-muted text-decoration-none"></a>
                             </div>
