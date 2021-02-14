@@ -73,7 +73,7 @@ class WarungController extends AkunController
             $warung->nama_warung = $request->nama_warung;
             $warung->pemilik = $this->getdataAuth()->id;
             $warung->alamat = $request->alamat;
-            $warung->no_hp = $request->$request->no_hp;
+            $warung->no_hp = $request->no_hp;
             $warung->foto = $request["foto"];
             $warung->koordinat = $request->koordinat;
             $warung->kategori_id = $request->jenis;
