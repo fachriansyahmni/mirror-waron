@@ -64,6 +64,7 @@
         </div>
         <div class="card-body table-responsive">
           <table class="table table-hover">
+            Terdapat <b>{{count($getAllWarung)}}</b> Warung di provinsi ini
             <thead class="text-warning">
               <th>No</th>
               <th>Nama Warung</th>
