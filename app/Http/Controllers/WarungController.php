@@ -68,12 +68,12 @@ class WarungController extends AkunController
                 'jenis' => 'required|integer',
             ]);
             $hp = substr($request->no_hp, 0, 2);
-            if ($hp != "08") return redirect()->back();
+            if ($hp != '08') return redirect()->back();
             $warung = new Warung;
             $warung->nama_warung = $request->nama_warung;
             $warung->pemilik = $this->getdataAuth()->id;
             $warung->alamat = $request->alamat;
-            $warung->no_hp = $request->hp;
+            $warung->no_hp = $request->$request->no_hp;
             $warung->foto = $request["foto"];
             $warung->koordinat = $request->koordinat;
             $warung->kategori_id = $request->jenis;
@@ -98,6 +98,8 @@ class WarungController extends AkunController
         $allCategories = $this->getAllCategory();
         if ($request->has('submitedit')) {
             $vWarung = $this->getDataWarung()->where('id', $idWarung)->first(); //validasi
+            $hp = substr($request->no_hp, 0, 2);
+            if ($hp != '08') return redirect()->back();
             $vWarung->nama_warung = $request->nama_warung;
             $vWarung->no_hp = $request->no_hp;
             $vWarung->alamat = $request->alamat;
