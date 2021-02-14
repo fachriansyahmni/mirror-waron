@@ -9,7 +9,7 @@
             </li>
             <li class="list-inline-item">&sdot;</li>
             <li class="list-inline-item">
-              <a href="#">Contact</a>
+              <a href="http://bit.ly/3qkpFEL">Contact</a>
             </li>
           </ul>
           <p class="text-muted small mb-4 mb-lg-0">&copy; Kalong Coders 2020. All Rights Reserved.</p>
