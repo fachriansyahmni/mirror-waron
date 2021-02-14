@@ -49,7 +49,7 @@ return [
             'host' => env('DB_HOST', 'jogjahost.co.id'),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'tokohabi_kiosku'),
-            'username' => env('DB_USERNAME', 'userkiosku'),
+            'username' => env('DB_USERNAME', 'tokohabi_userkiosku'),
             'password' => env('DB_PASSWORD', 'userkiosku'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
