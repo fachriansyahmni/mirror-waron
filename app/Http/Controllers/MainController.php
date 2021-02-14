@@ -79,7 +79,11 @@ class MainController extends Controller
         $table = DB::table($dbSearch);
         switch ($typeSearch) {
             case "filter":
-                $table->where('kategori_id', $request->category)->inRandomOrder();
+                if ($request->category == 0) {
+                    $table = $this->getAllWarungActive();
+                } else {
+                    $table->where('kategori_id', $request->category)->inRandomOrder();
+                }
                 break;
             default:
                 $table->join('kategori_warungs', $dbSearch . '.kategori_id', '=', 'kategori_warungs.id');
