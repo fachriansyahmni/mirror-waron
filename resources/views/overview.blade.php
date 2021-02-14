@@ -371,7 +371,7 @@
 
     $('#btnkirim').click(function(){
         window.open(
-            'https://api.whatsapp.com/send?phone={{$WarungData->no_hp}}&text='+$('#txtMsgWA').val(),
+            'https://api.whatsapp.com/send?phone=62{{$WarungData->no_hp}}&text='+$('#txtMsgWA').val(),
             '_blank' // <- This is what makes it open in a new window.
         );
     })
