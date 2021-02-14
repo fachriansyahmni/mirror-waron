@@ -232,10 +232,6 @@
             </p>
             <br>
             <a href="#" data-open="modal1" class="btn-c-whatsapp proxi open-modal"><img style="width: 20px; margin-right: 10px;" src="{{asset('img/whatsapp.svg')}}" alt=""> whatsapp</a>
-            {{-- <button type="button" class="open-modal" data-open="modal1">
-                Launch first modal
-            </button> --}}
-
             <div class="modal" id="modal1">
                 <div class="modal-dialog">
                   <header class="modal-header">
@@ -247,12 +243,8 @@
                     <section class="modal-content">
                         Isi Pesan
                         <textarea id="txtMsgWA" rows="10"></textarea>
-                        {{-- <a id="btnkirim" href="https://api.whatsapp.com/send?phone={{$WarungData->no_hp}}&text=">kirim</a> --}}
                         <button id="btnkirim">kirim</button>
                     </section>
-                  {{-- <footer class="modal-footer">
-                    The footer of the first modal
-                  </footer> --}}
                 </div>
             </div>
         </div>
@@ -297,37 +289,27 @@
                     </button>
                   </header>
                     <section class="modal-content" style=" border: 0;">
-                        <p style="text-align:justify;"><img src="{{asset($barang->gambar)}}" style="float:left; width:250px; height:250px; margin:0 8px 4px 0;">
-                        <span style="font-size: 30px"><b>{{$barang->nama}}</b></span><br>
-                        <span style="color:grey">Harga :</span><br>
-                        <span style="font-size: 25px;">@currency($barang->harga)</span><br>
-                        <span style="color:grey"> Stok : </span>
-                        @if ($barang->stok >= 1)
-                        Tersisa {{$barang->stok}}
-                        @else
-                        Habis
-                        @endif
-                        <br><br>
-                        <span style="color:grey">Deskripsi :</span><br>
-                        {{$barang->deskripsi}}</p>
+                        <p style="text-align:justify;">
+                            <img src="{{asset($barang->gambar)}}" style="float:left; width:250px; height:250px; margin:0 8px 4px 0;">
+                            <span style="font-size: 30px"><b>{{$barang->nama}}</b></span><br>
+                            <span style="color:grey">Harga :</span><br>
+                            <span style="font-size: 25px;">@currency($barang->harga)</span><br>
+                            <span style="color:grey"> Stok : </span>
+                            @if ($barang->stok >= 1)
+                                {{$barang->stok}}
+                            @else
+                                Habis
+                            @endif
+                            <br><br>
+                                <span style="color:grey">Deskripsi :</span>
+                            <br>
+                            {{$barang->deskripsi}}
+                        </p>
                     </section>
                 </div>
             </div>
         @endforeach
     </div>
-    
-    {{-- <div class="items">
-        <div class="barang">
-            <svg width="201" height="174" viewBox="0 0 201 174" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="201" height="174" rx="20" fill="#EFEFEF"/>
-            </svg>
-            <div class="details-barang">
-                <span class="proxi name-product">product name</span>
-                <span class="proxi price-product">RP 123.456</span>
-                <span class="proxi status-product">tersedia</span>
-            </div>
-        </div>
-    </div> --}}
 </section>
 @endsection
 
@@ -336,8 +318,8 @@
 <script src="{{asset('vendor/leaflet/leaflet.js')}}"></script>
     @if(count($koor) == 2)
         <script>
-            var latx = "{{$koor[0]}}"; //misalkan -6.210591
-            var lngy = "{{$koor[1]}}"; //misalkan 106.850043
+            var latx = "{{$koor[0]}}"; 
+            var lngy = "{{$koor[1]}}"; 
             var mymap = L.map('mapid').setView([latx, lngy], 13);
             var marker = L.marker([latx, lngy]).addTo(mymap);
             marker.bindPopup("<b>{{$WarungData->nama_warung}}</b>").openPopup();

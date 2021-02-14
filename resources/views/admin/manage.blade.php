@@ -61,7 +61,7 @@
                           <td> 
                               <a href="{{route('overview.warung',$warung->id)}}" target="_blank" rel="tooltip" data-placement="top" title="view" class="btn btn-outline-info btn-sm"><i class="fa fa-eye"></i></a>
                               <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailsWarung{{$warung->id}}" rel="tooltip" data-placement="top" title="details"><i class="fa fa-info-circle"></i></button>
-                              <a href="#" class="btn btn-success btn-sm" rel="tooltip" data-placement="top" title="manage"><i class="material-icons">edit</i></a>
+                              {{-- <a href="#" class="btn btn-success btn-sm" rel="tooltip" data-placement="top" title="manage"><i class="material-icons">edit</i></a> --}}
                           </td>
                         </tr>
 

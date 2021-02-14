@@ -4,10 +4,6 @@
 <link rel="stylesheet" href="{{asset('vendor/leaflet/leaflet.css')}}" />
 @endpush
 
-@section('header-content')
-    <a href="#">back</a>
-@endsection
-
 @section('content')
 <div class="container-fluid">
     <div class="card">
