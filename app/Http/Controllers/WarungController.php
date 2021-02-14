@@ -61,17 +61,19 @@ class WarungController extends AkunController
         if ($request->has('submitwarung')) {
             $request->validate([
                 'nama_warung' => 'required',
-                'no_hp' => 'required',
+                'no_hp' => 'required|min:2',
                 'prov' => 'required|integer',
                 'kabkot' => 'required|integer',
                 'kec' => 'required|integer',
                 'jenis' => 'required|integer',
             ]);
+            $hp = substr($request->no_hp, 0, 2);
+            if ($hp != "08") return redirect()->back();
             $warung = new Warung;
             $warung->nama_warung = $request->nama_warung;
             $warung->pemilik = $this->getdataAuth()->id;
             $warung->alamat = $request->alamat;
-            $warung->no_hp = $request->no_hp;
+            $warung->no_hp = $request->hp;
             $warung->foto = $request["foto"];
             $warung->koordinat = $request->koordinat;
             $warung->kategori_id = $request->jenis;

@@ -13,7 +13,7 @@
                 <table>
                     <tr>
                         <td>Nama Warung : </td>
-                        <td><input class="form-control" type="text" name="nama_warung" placeholder="Masukan Nama Warung"></td>
+                        <td><input class="form-control" type="text" name="nama_warung" value="{{old('nama_warung')}}" placeholder="Masukan Nama Warung"></td>
                     </tr>
                     <tr>
                         <td>Pemilik : </td>
@@ -22,7 +22,7 @@
                     <tr>
                         <td>Alamat : </td>
                         <td>
-                            <textarea name="alamat" id="" class="form-control" placeholder="Masukan Alamat Warung" rows="10"></textarea>
+                            <textarea name="alamat" id="" class="form-control" placeholder="Masukan Alamat Warung" rows="10">{{old('alamat')}}</textarea>
                         </td>
                     </tr>
                     <tr>
@@ -58,12 +58,12 @@
                     </tr>
                     <tr>
                         <td>Nomor Handphone : </td>
-                        <td><input type="number" class="form-control" name="no_hp"></td>
+                        <td><input type="number" class="form-control" value="{{old('no_hp')}}" name="no_hp"></td>
                     </tr>
                     <tr>
                         <td>Koordinat : </td>
                         <td>
-                            <input type="hidden" name="koordinat" id="inputKoordinat"> <button class="btn btn-default" type="button" onclick="getLocation()">get coordinat</button>    
+                            <input type="hidden" value="{{old('koordinat')}}" name="koordinat" id="inputKoordinat"> <button class="btn btn-default" type="button" onclick="getLocation()">get coordinat</button>    
                             <div id="mapid" style="height: 180px;min-width: 50vw;"></div> 
                         </td>
                     </tr>
