@@ -174,7 +174,7 @@
       <h1 class="proxi">JENIS WARUNG</h1>
     </div>
     <div class="d-flex">
-      <div class="left-arrow">
+      {{-- <div class="left-arrow">
         <a href="#">
           <svg width="70" height="70" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="64.8995" cy="64.8994" r="64" transform="rotate(179.189 64.8995 64.8994)" fill="#EBEBEB"/>
@@ -182,7 +182,7 @@
             <line x1="44.694" y1="65.5956" x2="82.2797" y2="36.0607" stroke="black" stroke-width="4"/>
             </svg>
         </a>
-      </div>
+      </div> --}}
       <div class="owl-carousel">
       @php
           $getAllCategory = App\KategoriWarung::inRandomOrder()->get();
@@ -200,7 +200,7 @@
       </form>
     </div>
     
-      <div class="right-arrow">
+      {{-- <div class="right-arrow">
         <a href="#">
           <svg width="70" height="70" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="64" cy="64" r="64" fill="#EBEBEB"/>
@@ -208,7 +208,7 @@
             <line x1="84.2133" y1="63.5899" x2="46.2133" y2="92.5899" stroke="black" stroke-width="4"/>
           </svg>
         </a>
-      </div>
+      </div> --}}
     </div>
   </div>
 

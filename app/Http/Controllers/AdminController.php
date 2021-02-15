@@ -132,8 +132,8 @@ class AdminController extends Controller
     {
         $category = KategoriWarung::find($id);
         $category->kategori = $request["kategori"];
-        $category->save();
-        return redirect('/admin/mancat');
+        if ($category->save()) return redirect()->route('admin.mancat')->with('success', 'kategori berhasil diubah');
+        return redirect()->route('admin.mancat')->with('error', 'gagal mengubah kategori');
     }
 
     public function resetPsswd()

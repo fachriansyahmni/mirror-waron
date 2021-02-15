@@ -12,7 +12,7 @@
                 @csrf
                 <div class="form-group first">
                   <label for="username">Username</label>
-                  <input type="text" class="form-control @error('username') is-invalid @enderror" placeholder="your-email@gmail.com" id="username" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                  <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
                   @error('username')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group last mb-3">
                   <label for="password">Password</label>
-                  <input type="password" class="form-control" placeholder="Your Password" id="password" name="password">
+                  <input type="password" class="form-control" id="password" name="password">
                 </div>
                 
                 <input type="submit" value="Log In" class="btn btn-block py-2 " style="background-color: #b4F5FF;">

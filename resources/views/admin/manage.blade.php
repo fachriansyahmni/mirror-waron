@@ -32,8 +32,8 @@
               <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">List Warung</h4>
-                  <p class="card-category"> Here is a all user of warung</p>
-                  <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#newWarungModal">add a new warung</button>
+                  {{-- <p class="card-category"> </p> --}}
+                  {{-- <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#newWarungModal">add a new warung</button> --}}
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -41,8 +41,8 @@
                       <thead class="text-primary">
                         <th>NO</th>
                         <th>Warung</th>
-                        {{-- <th>City</th>
-                        <th>Districts</th>
+                        <th>Jenis</th>
+                        {{-- <th>Districts</th>
                         <th>Province</th> --}}
                         <th>Options</th>
                       </thead>
@@ -53,8 +53,11 @@
                             {{$index + 1}}
                           </td>
                           <td>
-                            <b>{{$warung->nama_warung}}</b>
+                            <strong>{{$warung->nama_warung}}</strong>
                           </td>
+                          <td>@isset($warung->kategori)
+                              {{$warung->kategori->kategori}}
+                          @endisset</td>
                           {{-- <td>-</td>
                           <td>-</td>
                           <td>-</td> --}}
@@ -75,12 +78,13 @@
                                 </button>
                               </div>
                               <div class="modal-body">
-                                Nama Warung : -
-                                Pemilik @isset($warung->owner)
-                                            {{$warung->owner->nama}}
-                                        @endisset
-
-                                Total Barang {{count($warung->items)}}
+                                <div class="d-flex flex-column">
+                                  <strong>
+                                    Nama Warung : {{$warung->nama_warung}}
+                                  </strong>
+                                  <strong>Pemilik : @isset($warung->owner) {{$warung->owner->nama}}@endisset</strong>
+                                  Total Barang : {{count($warung->items)}}
+                                </div>
                               </div>
                             </div>
                           </div>

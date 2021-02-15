@@ -82,21 +82,7 @@ class BarangController extends WarungController
         $barang->save();
         return redirect()->back();
     }
-
-    // public function updateBarang(Request $request)
-    // {
-    //     $barang = Barang::find($request["id"]);
-    //     $barang->nama = $request["nama"];
-    //     $barang->harga = $request["harga"];
-    //     $barang->deskripsi = $request["deskripsi"];
-    //     $barang->gambar = $request["gambar"];
-    //     $barang->warung_id = "1";
-    //     $barang->status_id = $request["status_id"];
-    //     $barang->save();
-    //     return redirect('/barang');
-    // }
-
-    public function deleteBarang($idwarung,$id)
+    public function deleteBarang($idwarung, $id)
     {
         $barang = Barang::find($id);
         $barang->delete();

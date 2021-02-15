@@ -22,6 +22,24 @@ class WarungController extends AkunController
     {
         return Warung::where('pemilik', $this->getdataAuth()->id);
     }
+    public function getDataProvinsi()
+    {
+        $urlDataProvinsi = "https://dev.farizdotid.com/api/daerahindonesia/provinsi"; //ambil semua data provinsi
+        $dataProvinsi = json_decode(file_get_contents($urlDataProvinsi), true);
+        return $dataProvinsi;
+    }
+    public function getDataKota($provId)
+    {
+        $urlDataKota = "https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=" . old('prov', $provId);
+        $dataKota = json_decode(file_get_contents($urlDataKota), true);
+        return $dataKota;
+    }
+    public function getDataKecamatan($kabkot_id)
+    {
+        $urlDataKecamatan = "https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=" . old('kabkot', $kabkot_id);
+        $dataKecamatan = json_decode(file_get_contents($urlDataKecamatan), true);
+        return $dataKecamatan;
+    }
     public function getProvName($id)
     {
         $urlDataProvinsi = "https://dev.farizdotid.com/api/daerahindonesia/provinsi"; //ambil semua data provinsi
@@ -82,8 +100,8 @@ class WarungController extends AkunController
             $warung->kabkot_id = $request->kabkot;
             $warung->prov_id = $request->prov;
             $warung->is_active = 0;
-            $warung->save();
-            return redirect()->route('user.warung')->with('success', 'berhasil');
+            if ($warung->save()) return redirect()->route('user.warung')->with('success', 'berhasil');
+            return redirect()->back()->with('error', 'gagal membuat warung');
         }
         $compacts = ['getAllCategoryWarung'];
         return view('warung.create', compact($compacts));
@@ -97,6 +115,14 @@ class WarungController extends AkunController
         $koor = explode(",", $DataWarung->koordinat);
         $allCategories = $this->getAllCategory();
         if ($request->has('submitedit')) {
+
+            $request->validate([
+                'nama_warung' => 'required',
+                'no_hp' => 'required',
+                'jenis' => 'required',
+            ], [
+                'required' => ':attribute wajib diisi.'
+            ]);
             $vWarung = $this->getDataWarung()->where('id', $idWarung)->first(); //validasi
             $hp = substr($request->no_hp, 0, 2);
             if ($hp != '08') return redirect()->back();
@@ -107,11 +133,14 @@ class WarungController extends AkunController
             $vWarung->kec_id = $request->kec;
             $vWarung->prov_id = $request->prov;
             $vWarung->kabkot_id = $request->kabkot;
-            $vWarung->save();
+            $vWarung->kategori_id = $request->jenis;
+            if ($vWarung->save()) return redirect()->back()->with('success', 'data berhasil diubah');
             return redirect()->back();
         }
-
-        $compacts = ['DataWarung', 'koor', 'allCategories'];
+        $getDataProvinsi = $this->getDataProvinsi();
+        $getDataKota = $this->getDataKota($DataWarung->prov_id);
+        $getDataKecamatan = $this->getDataKecamatan($DataWarung->kabkot_id);
+        $compacts = ['DataWarung', 'koor', 'allCategories', 'getDataProvinsi', 'getDataKota', 'getDataKecamatan'];
 
         return view('warung.edit', compact($compacts));
     }
@@ -119,7 +148,7 @@ class WarungController extends AkunController
     public function deleteWarung($id)
     {
         $warung = Warung::find($id);
-        $warung->delete();
+        if ($warung->delete()) return redirect()->back()->with('success', 'warung berhasil dihapus');
         return redirect()->back();
     }
 

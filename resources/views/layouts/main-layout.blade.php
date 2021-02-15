@@ -43,6 +43,7 @@
 
 <body>
     @include('layouts.main-navtop')
+    
     @yield('content')
     @include('layouts.main-footer')
 

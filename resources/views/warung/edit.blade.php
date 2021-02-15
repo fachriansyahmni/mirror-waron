@@ -11,15 +11,6 @@
 </style>
 @endpush
 
-@php
-    $urlDataProvinsi = "https://dev.farizdotid.com/api/daerahindonesia/provinsi"; //ambil semua data provinsi
-    $getDataProvinsi = json_decode(file_get_contents($urlDataProvinsi), true);
-    $urlDataKota = "https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=".old('prov',$DataWarung->prov_id);
-    $getDataKota = json_decode(file_get_contents($urlDataKota), true);
-    $urlDataKecamatan = "https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota=".old('kabkot',$DataWarung->kabkot_id);
-    $getDataKecamatan = json_decode(file_get_contents($urlDataKecamatan), true);
-@endphp
-
 @section('content')
 <div class="card">
     <div class="card-body">
@@ -75,6 +66,7 @@
                     <td>Koordinat : </td>
                     <td>
                         <input type="hidden" name="koordinat" id="inputKoordinat" value="{{old('koordinat',$DataWarung->koordinat)}}">
+                        <button class="btn btn-default" type="button" onclick="getLocation()">get coordinat</button> 
                         <div id="mapid"></div>
                     </td>
                 </tr>
@@ -84,7 +76,7 @@
                         <select name="jenis" id="" class="form-control">
                             <option disabled selected></option>
                             @foreach ($allCategories as $category)
-                            <option value="{{$category->id}}">{{$category->kategori}}</option>
+                                <option value="{{$category->id}}" {{ old('jenis',$DataWarung->kategori_id) == $category->id ? "selected" : "" }}>{{$category->kategori}}</option>
                             @endforeach
                         </select>
                     </td>
@@ -98,6 +90,33 @@
 
 @push('scripts')
     <script src="{{asset('vendor/leaflet/leaflet.js')}}"></script>
+    <script>
+        
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+        function showPosition(position) {  
+            $('input[name="koordinat"]').val(position.coords.latitude+','+position.coords.longitude);
+        
+            var latx = position.coords.latitude;
+            var lngy = position.coords.longitude;
+            var mymap = L.map('mapid').setView([latx, lngy], 13);
+            var marker = L.marker([latx, lngy]).addTo(mymap);
+            marker.bindPopup("<b>my location</b>").openPopup();
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="#">zxc</a> Project'
+            }).addTo(mymap);
+            mymap.on('click', function(e) {
+                mymap.removeLayer(marker);
+                $('#inputKoordinat').val(e.latlng.lat + ", " + e.latlng.lng);
+                marker = new L.marker([e.latlng.lat, e.latlng.lng]).addTo(mymap);
+            });
+        }
+    </script>
     @if (count($koor) == 2)
         <script>
             var latx = "{{$koor[0]}}"; 

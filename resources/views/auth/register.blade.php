@@ -12,7 +12,7 @@
                 @csrf
                 <div class="form-group last mb-3">
                   <label for="name">Nama Lengkap</label>
-                  <input type="text" class="form-control form-control @error('name') is-invalid @enderror" placeholder="Isikan nama lengkap Anda" id="name" name="name" value="{{ old('name') }}" required autocomplete="name">
+                  <input type="text" class="form-control form-control @error('name') is-invalid @enderror" placeholder="Isikan nama lengkap Anda" id="name" name="name" value="{{ old('name') }}" required autocomplete="name"autofocus>
                   @error('name')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -23,7 +23,7 @@
 
                 <div class="form-group first">
                   <label for="username">Username</label>
-                  <input type="text" class="form-control @error('username') is-invalid @enderror" placeholder="Isikan username" id="username" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                  <input type="text" class="form-control @error('username') is-invalid @enderror" placeholder="Isikan username" id="username" name="username" value="{{ old('username') }}" required autocomplete="username">
                   @error('username')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

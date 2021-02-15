@@ -27,6 +27,11 @@
         @include('dashboard-layouts.d_mainpanel')
     </div>
    
+    {{-- <div class="p-3 position-absolute alert-msg" style="top: 50px;margin: 2px;right: 20px;">
+      <div class="alert alert-primary"style="z-index: 99" role="alert">
+        This is a primary alert with Give it a click if you like.
+      </div>
+    </div> --}}
     @yield('modal-content') 
   <!--   Core JS Files   -->
   <script src="{{ asset('js/core/jquery.min.js') }}"></script>
